@@ -8,7 +8,7 @@ set(CMAKE_AUTOUIC ON)
 set(CMAKE_AUTOMOC ON)
 set(CMAKE_AUTORCC ON)
 
-set(CMAKE_CXX_STANDARD 11)
+set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
 # QtCreator supports the following variables for Android, which are identical to qmake Android variables.
@@ -26,15 +26,21 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
 find_package(Qt5 COMPONENTS Core Quick REQUIRED)
 
+set(RESOURCE_FILES qml.qrc)
+set(SOURCE_FILES
+    src/main.cpp
+
+    )
+
 if(ANDROID)
     add_library(BasketballStatistics SHARED
-      main.cpp
-      qml.qrc
+      ${SOURCE_FILES}
+      ${RESOURCE_FILES}
     )
 else()
     add_executable(BasketballStatistics
-      main.cpp
-      qml.qrc
+        ${SOURCE_FILES}
+        ${RESOURCE_FILES}
     )
 endif()
 

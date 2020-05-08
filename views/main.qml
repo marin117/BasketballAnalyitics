@@ -12,11 +12,16 @@ ApplicationWindow {
         anchors.fill: parent
         currentIndex: tabBar.currentIndex
 
-        Page1Form {
+        PlayersTableView{
+
         }
 
-        Page2Form {
+        BasketballCourtView{
         }
+
+        Item{
+        }
+
     }
 
     footer: TabBar {
@@ -26,8 +31,12 @@ ApplicationWindow {
         TabButton {
             text: qsTr("Page 1")
         }
+
         TabButton {
             text: qsTr("Page 2")
+        }
+        TabButton {
+            text: qsTr("Page 3")
         }
     }
 }

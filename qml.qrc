@@ -1,8 +1,12 @@
 <RCC>
     <qresource prefix="/">
-        <file>main.qml</file>
-        <file>Page1Form.ui.qml</file>
-        <file>Page2Form.ui.qml</file>
+        <file>views/BasketballCourtView.qml</file>
+        <file>views/main.qml</file>
         <file>qtquickcontrols2.conf</file>
+        <file>views/PlayersTableView.qml</file>
+    </qresource>
+    <qresource prefix="/res">
+        <file>res/basketball_court.png</file>
+        <file>res/basketball_court2.png</file>
     </qresource>
 </RCC>
