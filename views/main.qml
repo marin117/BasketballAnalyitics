@@ -29,14 +29,14 @@ ApplicationWindow {
         currentIndex: swipeView.currentIndex
 
         TabButton {
-            text: qsTr("Page 1")
+            text: qsTr("Player List")
         }
 
         TabButton {
-            text: qsTr("Page 2")
+            text: qsTr("Court")
         }
         TabButton {
-            text: qsTr("Page 3")
+            text: qsTr("Statistics")
         }
     }
 }

@@ -11,6 +11,7 @@ set(CMAKE_AUTORCC ON)
 set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
+
 # QtCreator supports the following variables for Android, which are identical to qmake Android variables.
 # Check http://doc.qt.io/qt-5/deployment-android.html for more information.
 # They need to be set before the find_package(Qt5 ...) call.
@@ -29,7 +30,12 @@ find_package(Qt5 COMPONENTS Core Quick REQUIRED)
 set(RESOURCE_FILES qml.qrc)
 set(SOURCE_FILES
     src/main.cpp
-
+    src/model/shot.cpp
+    src/model/shot.h
+    src/model/player.cpp
+    src/model/player.h
+    src/model/playertablemodel.cpp
+    src/model/playertablemodel.h
     )
 
 if(ANDROID)
