@@ -5,60 +5,38 @@ import QtQuick.Controls.Styles 1.4
 import QtQuick.Layouts 1.3
 import PlayerTableModel 0.1
 
-TableView {
-    backgroundVisible: false
-    selectionMode: SelectionMode.SingleSelection
+ListView {
+//    backgroundVisible: false
+    //selectionMode: SelectionMode.SingleSelection
 
     model: playerModel
 
-    TableViewColumn {
-        role: "number"
-        title: "#"
-        width: 200
-        delegate : TextField {
-            textColor: "black"
-            text: styleData.value
-            onAccepted: {
-                playerModel.number = text
-                console.log(playerModel.number)
-
+    delegate: RowLayout{
+        spacing: 10
+        TextField {
+            text: model.number
+            onTextChanged: model.number = text
+            style : TextFieldStyle {
+                textColor: 'black'
             }
         }
-    }
-
-    TableViewColumn {
-        role: "name"
-        title: "Name"
-        width: 200
-        delegate : TextField {
-            textColor: "black"
-            text: styleData.value
-            onAccepted: {
-                playerModel.name = text
-                console.log(playerModel.name)
+        TextField {
+            text: model.name
+            onTextChanged: model.name = text
+            style : TextFieldStyle {
+                textColor: 'black'
             }
         }
-    }
-
-    TableViewColumn {
-        role: "surname"
-        title: "Surname"
-        width: 200
-        delegate : TextField {
-            textColor: "black"
-            text: styleData.value
-            onAccepted: {
-                playerModel.surname = text
-                console.log(playerModel.surname)
+        TextField {
+            text: model.surname
+            onTextChanged: model.surname = text
+            style : TextFieldStyle {
+                textColor: 'black'
             }
         }
 
     }
 
-    style: TableViewStyle{
-        alternateBackgroundColor: "transparent"
-        textColor: "black"
-    }
 
     ButtonControls.RoundButton{
         text: "+"

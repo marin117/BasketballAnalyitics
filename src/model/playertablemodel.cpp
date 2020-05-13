@@ -2,7 +2,7 @@
 #include <QDebug>
 
 PlayerTableModel::PlayerTableModel(QObject *parent)
-    : QAbstractTableModel(parent)
+    : QAbstractListModel(parent)
 {
 }
 
@@ -14,13 +14,13 @@ int PlayerTableModel::rowCount(const QModelIndex &parent) const
     return playerList.size();
 }
 
-int PlayerTableModel::columnCount(const QModelIndex &parent) const
-{
-    if (parent.isValid())
-        return 0;
+//int PlayerTableModel::columnCount(const QModelIndex &parent) const
+//{
+//    if (parent.isValid())
+//        return 0;
 
-    return 3;
-}
+//    return 3;
+//}
 
 QVariant PlayerTableModel::data(const QModelIndex &index, int role) const
 {
@@ -77,7 +77,7 @@ Qt::ItemFlags PlayerTableModel::flags(const QModelIndex &index) const
     if (!index.isValid())
         return Qt::NoItemFlags;
 
-    return QAbstractTableModel::flags(index) | Qt::ItemIsEditable;
+    return QAbstractListModel::flags(index) | Qt::ItemIsEditable;
 }
 
 bool PlayerTableModel::insertRows(int row, int count, const QModelIndex &parent)

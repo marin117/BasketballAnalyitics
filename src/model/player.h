@@ -3,6 +3,7 @@
 #include <QString>
 #include <vector>
 #include "shot.h"
+#include <QObject>
 
 class Player
 {
