@@ -3,40 +3,54 @@ import QtQuick.Controls 1.4
 import QtQuick.Controls 2.4 as ButtonControls
 import QtQuick.Controls.Styles 1.4
 import QtQuick.Layouts 1.3
-import PlayerTableModel 0.1
+import MainModel 0.1
 
 ListView {
-//    backgroundVisible: false
-    //selectionMode: SelectionMode.SingleSelection
+    id: playerList
+    objectName: "playerListObject"
+    model: mainModel.getPlayerModel()
+    highlight: Rectangle { color: "maroon"; radius: 5 }
 
-    model: playerModel
+    signal selectedPlayerChanged(pos: int)
+    delegate: Component{
+        Item {
+            //        spacing: 10
+            width: parent.width; height: 40
+            RowLayout{
+                height: 40
+                TextField {
+                    text: model.number
+                    onTextChanged: model.number = text
+                    style : TextFieldStyle {
+                        textColor: 'black'
+                    }
+                }
+                TextField {
+                    text: model.name
+                    onTextChanged: model.name = text
+                    style : TextFieldStyle {
+                        textColor: 'black'
+                    }
+                }
+                TextField {
+                    text: model.surname
+                    onTextChanged: model.surname = text
+                    style : TextFieldStyle {
+                        textColor: 'black'
+                    }
+                }
+            }
+            MouseArea {
+                anchors.fill: parent
+                onClicked: {
+                    playerList.currentIndex = index;
+                    selectedPlayerChanged(index);
+                }
+            }
 
-    delegate: RowLayout{
-        spacing: 10
-        TextField {
-            text: model.number
-            onTextChanged: model.number = text
-            style : TextFieldStyle {
-                textColor: 'black'
-            }
         }
-        TextField {
-            text: model.name
-            onTextChanged: model.name = text
-            style : TextFieldStyle {
-                textColor: 'black'
-            }
-        }
-        TextField {
-            text: model.surname
-            onTextChanged: model.surname = text
-            style : TextFieldStyle {
-                textColor: 'black'
-            }
-        }
-
     }
-
+    focus: true
 
     ButtonControls.RoundButton{
         text: "+"

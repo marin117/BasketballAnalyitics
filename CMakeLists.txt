@@ -36,6 +36,8 @@ set(SOURCE_FILES
     src/model/player.h
     src/model/playertablemodel.cpp
     src/model/playertablemodel.h
+    src/mainmodel.h
+    src/mainmodel.cpp
     )
 
 if(ANDROID)

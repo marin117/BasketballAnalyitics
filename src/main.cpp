@@ -3,6 +3,7 @@
 #include "src/model/playertablemodel.h"
 #include <QQuickView>
 #include <QQmlContext>
+#include "mainmodel.h"
 
 int main(int argc, char *argv[])
 {
@@ -10,29 +11,31 @@ int main(int argc, char *argv[])
 
     QGuiApplication app(argc, argv);
 
-    PlayerTableModel playerModel;
 
-    QList<Player> playerList;
-    playerList.append(Player("Ivo", "Ivic", 15));
-    playerList.append(Player("Marko", "Markic", 11));
-    playerList.append(Player("Jure", "Juric", 13));
-    playerList.append(Player("Fran", "Jovic", 12));
+    //playerModel.setPlayerList(playerList);
 
-    playerModel.setPlayerList(playerList);
+    MainModel mainModel;
 
-    qmlRegisterType<PlayerTableModel>("PlayerTableModel", 0 ,1, "PlayerTableModel");
+    //qmlRegisterType<PlayerTableModel>("PlayerTableModel", 0 ,1, "PlayerTableModel");
+
+    qmlRegisterType<PlayerTableModel>("MainModel", 0 ,1, "MainModel");
 
     QQmlApplicationEngine engine;
     const QUrl url(QStringLiteral("qrc:/views/main.qml"));
     QQmlContext *ctx = engine.rootContext();
-    ctx->setContextProperty("playerModel", &playerModel);
+    ctx->setContextProperty("mainModel", &mainModel);
 
     QObject::connect(&engine, &QQmlApplicationEngine::objectCreated,
                      &app, [url](QObject *obj, const QUrl &objUrl) {
         if (!obj && url == objUrl)
             QCoreApplication::exit(-1);
     }, Qt::QueuedConnection);
+
     engine.load(url);
+    qDebug() << engine.rootObjects().size();
+
+    QObject* playerListObject = engine.rootObjects().first()->findChild<QObject*>("playerListObject");
+    QObject::connect(playerListObject, SIGNAL(selectedPlayerChanged(int)), &mainModel, SLOT(onSelectedPlayerChanged(int)));
 
     return app.exec();
 }
