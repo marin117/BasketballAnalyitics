@@ -17,13 +17,14 @@ public:
 
 public slots:
     void onSelectedPlayerChanged(const int& pos);
+    void onShotAdded(const int& x, const int& y);
 
 signals:
     void selectedPlayerChanged();
 
 private:
     PlayerTableModel playerModel;
-    int selectedPlayer;
+    int selectedPlayer = 0;
 };
 
 #endif // MAINMODEL_H

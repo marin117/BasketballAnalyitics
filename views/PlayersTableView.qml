@@ -7,9 +7,9 @@ import MainModel 0.1
 
 ListView {
     id: playerList
-    objectName: "playerListObject"
     model: mainModel.getPlayerModel()
     highlight: Rectangle { color: "maroon"; radius: 5 }
+    objectName: "playerListObject"
 
     signal selectedPlayerChanged(pos: int)
     delegate: Component{

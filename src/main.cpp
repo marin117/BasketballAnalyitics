@@ -35,7 +35,11 @@ int main(int argc, char *argv[])
     qDebug() << engine.rootObjects().size();
 
     QObject* playerListObject = engine.rootObjects().first()->findChild<QObject*>("playerListObject");
+    QObject* basketballCourtObject = engine.rootObjects().first()->findChild<QObject*>("basketballCourtObject");
+
     QObject::connect(playerListObject, SIGNAL(selectedPlayerChanged(int)), &mainModel, SLOT(onSelectedPlayerChanged(int)));
+    QObject::connect(basketballCourtObject, SIGNAL(shotAdded(int, int)), &mainModel, SLOT(onShotAdded(int, int)));
+
 
     return app.exec();
 }

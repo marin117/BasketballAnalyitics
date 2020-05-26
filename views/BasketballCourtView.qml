@@ -1,6 +1,9 @@
 import QtQuick 2.0
 
 Item {
+    objectName: "basketballCourtObject"
+    signal shotAdded(x: int, y: int)
+
     Canvas {
         id: basketballCourtCanvas
         anchors.centerIn: parent
@@ -47,26 +50,27 @@ Item {
             anchors.centerIn: parent
             anchors.fill: parent
             onClicked: {
-                shots.push({'x': mouseX , 'y':mouseY })
-                basketballCourtCanvas.requestPaint()
+                shots.push({'x': mouseX , 'y':mouseY });
+                shotAdded(mouseX, mouseY);
+                basketballCourtCanvas.requestPaint();
             }
         }
 
         onWidthChanged: {
             for(var i=0; i< canvasMouseArea.shots.length; i++){
-                var point = canvasMouseArea.shots[i]
-                canvasMouseArea.shots[i]['x'] = point['x'] * width/ currWidth
+                var point = canvasMouseArea.shots[i];
+                canvasMouseArea.shots[i]['x'] = point['x'] * width/ currWidth;
             }
             currWidth = width
         }
 
         onHeightChanged: {
             for(var i=0; i< canvasMouseArea.shots.length; i++){
-                var point = canvasMouseArea.shots[i]
-                canvasMouseArea.shots[i]['y'] = point['y'] * height / currHeight
+                var point = canvasMouseArea.shots[i];
+                canvasMouseArea.shots[i]['y'] = point['y'] * height / currHeight;
             }
 
-            currHeight = height
+            currHeight = height;
         }
     }
 }

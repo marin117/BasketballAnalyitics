@@ -7,6 +7,7 @@ ApplicationWindow {
     height: 480
     title: qsTr("Tabs")
 
+
     SwipeView {
         id: swipeView
         anchors.fill: parent

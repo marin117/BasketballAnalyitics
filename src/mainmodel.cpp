@@ -35,3 +35,12 @@ void MainModel::onSelectedPlayerChanged(const int &pos)
     emit selectedPlayerChanged();
 }
 
+void MainModel::onShotAdded(const int &x, const int &y)
+{
+    Shot shot;
+    shot.pos.setX(x);
+    shot.pos.setY(y);
+    playerModel.getPlayerAt(selectedPlayer)->addShot(shot);
+    qDebug() << playerModel.getPlayerAt(selectedPlayer)->getShots().size();
+}
+
