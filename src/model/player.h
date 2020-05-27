@@ -10,7 +10,7 @@ class Player
 public:
     Player();
     Player(const QString &name, const QString &surname,const int &number);
-    QString getName() const;
+    Q_INVOKABLE QString getName() const;
     void setName(const QString &value);
 
     QString getSurname() const;

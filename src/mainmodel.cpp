@@ -18,14 +18,19 @@ PlayerTableModel* MainModel::getPlayerModel()
     return &playerModel;
 }
 
-int MainModel::getSelectedPlayer() const
+Player* MainModel::getSelectedPlayer()
 {
-    return selectedPlayer;
+    return playerModel.getPlayerAt(selectedPlayer);
 }
 
 void MainModel::setSelectedPlayer(int value)
 {
     selectedPlayer = value;
+}
+
+QString MainModel::getSelectedPlayerName()
+{
+    return playerModel.getPlayerAt(selectedPlayer)->getName();
 }
 
 void MainModel::onSelectedPlayerChanged(const int &pos)

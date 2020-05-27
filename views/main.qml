@@ -14,10 +14,12 @@ ApplicationWindow {
         currentIndex: tabBar.currentIndex
 
         PlayersTableView{
-
+            id: playerTableView
+            onSelectedPlayerChanged: basketballCourtView.repaintCanvas()
         }
 
         BasketballCourtView{
+            id: basketballCourtView
         }
 
         Item{

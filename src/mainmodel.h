@@ -12,9 +12,9 @@ public:
 
     Q_INVOKABLE PlayerTableModel* getPlayerModel();
 
-    int getSelectedPlayer() const;
+    Q_INVOKABLE Player* getSelectedPlayer();
     void setSelectedPlayer(int value);
-
+    Q_INVOKABLE QString getSelectedPlayerName();
 public slots:
     void onSelectedPlayerChanged(const int& pos);
     void onShotAdded(const int& x, const int& y);

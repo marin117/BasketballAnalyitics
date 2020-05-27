@@ -32,8 +32,8 @@ Item {
             currHeight = height
         }
 
-
         onPaint: {
+            console.log(mainModel.getSelectedPlayerName());
             var ctx = getContext("2d");
             ctx.reset()
             ctx.strokeStyle = Qt.rgba(1,0,0,1);
@@ -72,5 +72,10 @@ Item {
 
             currHeight = height;
         }
+    }
+
+    function repaintCanvas(){
+        canvasMouseArea.shots = []
+        basketballCourtCanvas.requestPaint();
     }
 }
