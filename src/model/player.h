@@ -19,16 +19,19 @@ public:
     int getNumber() const;
     void setNumber(int value);
 
-    const std::vector<Shot>& getShots() const;
-    void setShots(const std::vector<Shot> &value);
-    void addShot(const Shot& shot);
-    void undoShot();
+//    const QList<Shot>& getShots() const;
+//    void setShots(const QList<Shot> &value);
+    void addShot(Shot* shot);
+//    void undoShot();
+
+    QList<Shot *>* getShots();
+    void setShots(const QList<Shot *> &value);
 
 private:
     QString name = "";
     QString surname = "";
     int number = 0;
-    std::vector<Shot> shots;
+    QList<Shot *> shots;
 
 };
 

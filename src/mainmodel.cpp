@@ -11,6 +11,7 @@ MainModel::MainModel(QObject *parent) : QObject(parent)
     playerList.append(Player("Fran", "Jovic", 12));
 
     playerModel.setPlayerList(playerList);
+    setSelectedPlayer(playerModel.getPlayerAt(0));
 }
 
 PlayerTableModel* MainModel::getPlayerModel()
@@ -18,34 +19,71 @@ PlayerTableModel* MainModel::getPlayerModel()
     return &playerModel;
 }
 
-Player* MainModel::getSelectedPlayer()
-{
-    return playerModel.getPlayerAt(selectedPlayer);
-}
-
-void MainModel::setSelectedPlayer(int value)
-{
-    selectedPlayer = value;
-}
 
 QString MainModel::getSelectedPlayerName()
 {
-    return playerModel.getPlayerAt(selectedPlayer)->getName();
+    return selectedPlayer->getName();
+}
+
+QList<Shot *> MainModel::getSelectedPlayerShots()
+{
+    return *selectedPlayer->getShots();
 }
 
 void MainModel::onSelectedPlayerChanged(const int &pos)
 {
-    setSelectedPlayer(pos);
-    qDebug() << playerModel.getPlayerAt(pos)->getName();
+    setSelectedPlayer(playerModel.getPlayerAt(pos));
+    qDebug() << selectedPlayer->getName();
     emit selectedPlayerChanged();
 }
 
 void MainModel::onShotAdded(const int &x, const int &y)
 {
-    Shot shot;
-    shot.pos.setX(x);
-    shot.pos.setY(y);
-    playerModel.getPlayerAt(selectedPlayer)->addShot(shot);
-    qDebug() << playerModel.getPlayerAt(selectedPlayer)->getShots().size();
+    Shot* shot = new Shot(this);
+    shot->x = x;
+    shot->y = y;
+    selectedPlayer->addShot(shot);
+    for(auto i : *selectedPlayer->getShots()){
+        qDebug() << i->getX() << "  " << i->getY();
+    }
 }
+
+Player *MainModel::getSelectedPlayer() const
+{
+    return selectedPlayer;
+}
+
+void MainModel::setSelectedPlayer(Player *value)
+{
+    selectedPlayer = value;
+}
+
+QQmlListProperty<Shot> MainModel::selectedShots()
+{
+    return QQmlListProperty<Shot>(this, *selectedPlayer->getShots());
+}
+
+int MainModel::shotsCount() const
+{
+    return selectedPlayer->getShots()->size();
+}
+
+Shot *MainModel::shotAt(int i) const
+{
+    return selectedPlayer->getShots()->at(i);
+}
+
+
+int MainModel::shotsCount(QQmlListProperty<Shot>* list) {
+    return reinterpret_cast< MainModel* >(list->data)->shotsCount();
+}
+
+Shot* MainModel::shotAt(QQmlListProperty<Shot>* list, int i)
+{
+    return reinterpret_cast< MainModel* >(list->data)->shotAt(i);
+}
+
+
+
+
 

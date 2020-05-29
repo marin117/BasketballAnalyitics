@@ -1,4 +1,5 @@
 import QtQuick 2.0
+import Shot 0.1
 
 Item {
     objectName: "basketballCourtObject"
@@ -33,20 +34,20 @@ Item {
         }
 
         onPaint: {
-            console.log(mainModel.getSelectedPlayerName());
             var ctx = getContext("2d");
             ctx.reset()
             ctx.strokeStyle = Qt.rgba(1,0,0,1);
             ctx.lineWidth = 1
-            for(var i=0; i< canvasMouseArea.shots.length; i++){
-                var point = canvasMouseArea.shots[i]
-                ctx.ellipse(point['x'], point['y'], 10, 10)
+            for(var i=0; i< mainModel.selectedShots.length; i++){
+                var point = mainModel.selectedShots[i]
+                ctx.ellipse(mainModel.selectedShots[i].x,  mainModel.selectedShots[i].y, 10, 10);
             }
             ctx.stroke()
         }
         MouseArea {
             id: canvasMouseArea
             property var shots: []
+
             anchors.centerIn: parent
             anchors.fill: parent
             onClicked: {

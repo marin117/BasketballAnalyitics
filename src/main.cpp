@@ -4,6 +4,7 @@
 #include <QQuickView>
 #include <QQmlContext>
 #include "mainmodel.h"
+#include "model/player.h"
 
 int main(int argc, char *argv[])
 {
@@ -12,13 +13,11 @@ int main(int argc, char *argv[])
     QGuiApplication app(argc, argv);
 
 
-    //playerModel.setPlayerList(playerList);
 
     MainModel mainModel;
 
-    //qmlRegisterType<PlayerTableModel>("PlayerTableModel", 0 ,1, "PlayerTableModel");
-
-    qmlRegisterType<PlayerTableModel>("MainModel", 0 ,1, "MainModel");
+    qmlRegisterType<PlayerTableModel>("PlayerTableModel", 0 ,1, "PlayerTableModel");
+    qmlRegisterType<Shot>("Shot", 0 ,1, "Shot");
 
     QQmlApplicationEngine engine;
     const QUrl url(QStringLiteral("qrc:/views/main.qml"));

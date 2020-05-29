@@ -39,24 +39,34 @@ void Player::setNumber(int value)
     number = value;
 }
 
-const std::vector<Shot>& Player::getShots() const
+QList<Shot *>* Player::getShots()
 {
-    return shots;
+    return &shots;
 }
 
-
-void Player::setShots(const std::vector<Shot> &value)
+void Player::setShots(const QList<Shot *> &value)
 {
     shots = value;
 }
 
-void Player::addShot(const Shot &shot)
+//const QList<Shot>& Player::getShots() const
+//{
+//    return shots;
+//}
+
+
+//void Player::setShots(const QList<Shot> &value)
+//{
+//    shots = value;
+//}
+
+void Player::addShot(Shot *shot)
 {
-    shots.emplace_back(shot);
+    shots.push_back(shot);
 }
 
-void Player::undoShot(){
-    if(shots.size()){
-        shots.pop_back();
-    }
-}
+//void Player::undoShot(){
+//    if(shots.size()){
+//        shots.pop_back();
+//    }
+//}
