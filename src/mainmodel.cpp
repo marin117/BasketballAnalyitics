@@ -4,11 +4,11 @@
 
 MainModel::MainModel(QObject *parent) : QObject(parent)
 {
-    QList<Player> playerList;
-    playerList.append(Player("Ivo", "Ivic", 15));
-    playerList.append(Player("Marko", "Markic", 11));
-    playerList.append(Player("Jure", "Juric", 13));
-    playerList.append(Player("Fran", "Jovic", 12));
+    QList<Player *> playerList;
+    playerList.append(new Player("Ivo", "Ivic", 15));
+    playerList.append(new Player("Marko", "Markic", 11));
+    playerList.append(new Player("Jure", "Juric", 13));
+    playerList.append(new Player("Fran", "Jovic", 12));
 
     playerModel.setPlayerList(playerList);
     setSelectedPlayer(playerModel.getPlayerAt(0));
@@ -39,7 +39,7 @@ void MainModel::onSelectedPlayerChanged(const int &pos)
 
 void MainModel::onShotAdded(const int &x, const int &y)
 {
-    Shot* shot = new Shot(this);
+    Shot* shot = new Shot();
     shot->x = x;
     shot->y = y;
     selectedPlayer->addShot(shot);

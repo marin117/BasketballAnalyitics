@@ -5,11 +5,12 @@
 #include "shot.h"
 #include <QObject>
 
-class Player
+class Player : public QObject
 {
+    Q_OBJECT
 public:
-    Player();
-    Player(const QString &name, const QString &surname,const int &number);
+    Player(QObject *parent = nullptr);
+    Player(const QString &name, const QString &surname,const int &number, QObject *parent = nullptr);
     Q_INVOKABLE QString getName() const;
     void setName(const QString &value);
 

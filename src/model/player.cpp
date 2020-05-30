@@ -1,11 +1,11 @@
 #include "player.h"
 
-Player::Player()
+Player::Player(QObject *parent) : QObject(parent)
 {
 }
 
-Player::Player(const QString &name, const QString &surname,const int &number) :
-    name(name), surname(surname), number(number)
+Player::Player(const QString &name, const QString &surname,const int &number, QObject *parent) :
+    name(name), surname(surname), number(number), QObject(parent)
 {
 }
 

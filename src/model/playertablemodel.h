@@ -42,14 +42,14 @@ public:
     // Remove data:
     Q_INVOKABLE bool removeRows(int row, int count, const QModelIndex &parent = QModelIndex()) override;
 
-    QList<Player> getPlayerList() const;
-    void setPlayerList(const QList<Player> &value);
+    QList<Player *> getPlayerList() const;
+    void setPlayerList(const QList<Player *> &value);
 
     Player *getPlayerAt(const int& pos);
 
 
 private:
-    QList<Player> playerList;
+    QList<Player *> playerList;
 
     // QAbstractItemModel interface
 };

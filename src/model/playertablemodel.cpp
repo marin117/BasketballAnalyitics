@@ -31,14 +31,14 @@ QVariant PlayerTableModel::data(const QModelIndex &index, int role) const
         return QVariant();
 
 
-    Player player = playerList.at(index.row());
+    Player* player = playerList.at(index.row());
     switch (role) {
     case NameRole:
-        return player.getName();
+        return player->getName();
     case SurnameRole:
-        return player.getSurname();
+        return player->getSurname();
     case NumberRole:
-        return player.getNumber();
+        return player->getNumber();
     default:
         break;
     }
@@ -49,17 +49,17 @@ bool PlayerTableModel::setData(const QModelIndex &index, const QVariant &value, 
 {
     if(index.isValid() && role == Qt::EditRole){
         int row = index.row();
-        Player player = playerList.at(row);
+        Player* player = playerList.at(row);
 
         switch (role) {
         case NameRole:
-            player.setName(value.toString());
+            player->setName(value.toString());
             break;
         case SurnameRole:
-            player.setSurname(value.toString());
+            player->setSurname(value.toString());
             break;
         case NumberRole:
-            player.setNumber(value.toInt());
+            player->setNumber(value.toInt());
             break;
         default:
             break;
@@ -83,7 +83,7 @@ Qt::ItemFlags PlayerTableModel::flags(const QModelIndex &index) const
 bool PlayerTableModel::insertRows(int row, int count, const QModelIndex &parent)
 {
     beginInsertRows(parent, row, row + count - 1);
-    Player p;
+    Player* p = new Player();
     playerList.append(p);
     endInsertRows();
     return true;
@@ -100,17 +100,17 @@ bool PlayerTableModel::removeRows(int row, int count, const QModelIndex &parent)
 }
 
 
-void PlayerTableModel::setPlayerList(const QList<Player> &value)
+void PlayerTableModel::setPlayerList(const QList<Player *> &value)
 {
     playerList = value;
 }
 
 Player *PlayerTableModel::getPlayerAt(const int &pos)
 {
-    return &playerList[pos];
+    return playerList[pos];
 }
 
-QList<Player> PlayerTableModel::getPlayerList() const
+QList<Player *> PlayerTableModel::getPlayerList() const
 {
     return playerList;
 }

@@ -58,7 +58,7 @@ ListView {
         anchors.bottom: parent.bottom
         radius: 10
         onClicked: {
-            playerModel.insertRows(playerModel.rowCount(), 1)
+            mainModel.getPlayerModel().insertRows(mainModel.getPlayerModel().rowCount(), 1)
         }
     }
 
