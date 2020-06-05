@@ -14,7 +14,7 @@ MainModel::MainModel(QObject *parent) : QObject(parent)
     setSelectedPlayer(playerModel.getPlayerAt(0));
 }
 
-PlayerTableModel* MainModel::getPlayerModel()
+PlayerListModel* MainModel::getPlayerModel()
 {
     return &playerModel;
 }

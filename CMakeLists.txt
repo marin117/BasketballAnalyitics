@@ -34,8 +34,8 @@ set(SOURCE_FILES
     src/model/shot.h
     src/model/player.cpp
     src/model/player.h
-    src/model/playertablemodel.cpp
-    src/model/playertablemodel.h
+    src/model/playerlistmodel.cpp
+    src/model/playerlistmodel.h
     src/mainmodel.h
     src/mainmodel.cpp
     )

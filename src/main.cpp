@@ -1,6 +1,6 @@
 #include <QGuiApplication>
 #include <QQmlApplicationEngine>
-#include "src/model/playertablemodel.h"
+#include "src/model/playerlistmodel.h"
 #include <QQuickView>
 #include <QQmlContext>
 #include "mainmodel.h"
@@ -16,7 +16,7 @@ int main(int argc, char *argv[])
 
     MainModel mainModel;
 
-    qmlRegisterType<PlayerTableModel>("PlayerTableModel", 0 ,1, "PlayerTableModel");
+    qmlRegisterType<PlayerListModel>("PlayerListModel", 0 ,1, "PlayerListModel");
     qmlRegisterType<Shot>("Shot", 0 ,1, "Shot");
 
     QQmlApplicationEngine engine;

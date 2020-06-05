@@ -3,7 +3,7 @@
         <file>views/BasketballCourtView.qml</file>
         <file>views/main.qml</file>
         <file>qtquickcontrols2.conf</file>
-        <file>views/PlayersTableView.qml</file>
+        <file>views/PlayerListView.qml</file>
     </qresource>
     <qresource prefix="/res">
         <file>res/basketball_court.png</file>

@@ -1,12 +1,12 @@
-#include "playertablemodel.h"
+#include "playerlistmodel.h"
 #include <QDebug>
 
-PlayerTableModel::PlayerTableModel(QObject *parent)
+PlayerListModel::PlayerListModel(QObject *parent)
     : QAbstractListModel(parent)
 {
 }
 
-int PlayerTableModel::rowCount(const QModelIndex &parent) const
+int PlayerListModel::rowCount(const QModelIndex &parent) const
 {
     if (parent.isValid())
         return 0;
@@ -22,7 +22,7 @@ int PlayerTableModel::rowCount(const QModelIndex &parent) const
 //    return 3;
 //}
 
-QVariant PlayerTableModel::data(const QModelIndex &index, int role) const
+QVariant PlayerListModel::data(const QModelIndex &index, int role) const
 {
     if (!index.isValid())
         return QVariant();
@@ -45,7 +45,7 @@ QVariant PlayerTableModel::data(const QModelIndex &index, int role) const
     return QVariant();
 }
 
-bool PlayerTableModel::setData(const QModelIndex &index, const QVariant &value, int role)
+bool PlayerListModel::setData(const QModelIndex &index, const QVariant &value, int role)
 {
     if(index.isValid() && role == Qt::EditRole){
         int row = index.row();
@@ -72,7 +72,7 @@ bool PlayerTableModel::setData(const QModelIndex &index, const QVariant &value, 
     return false;
 }
 
-Qt::ItemFlags PlayerTableModel::flags(const QModelIndex &index) const
+Qt::ItemFlags PlayerListModel::flags(const QModelIndex &index) const
 {
     if (!index.isValid())
         return Qt::NoItemFlags;
@@ -80,7 +80,7 @@ Qt::ItemFlags PlayerTableModel::flags(const QModelIndex &index) const
     return QAbstractListModel::flags(index) | Qt::ItemIsEditable;
 }
 
-bool PlayerTableModel::insertRows(int row, int count, const QModelIndex &parent)
+bool PlayerListModel::insertRows(int row, int count, const QModelIndex &parent)
 {
     beginInsertRows(parent, row, row + count - 1);
     Player* p = new Player();
@@ -90,7 +90,7 @@ bool PlayerTableModel::insertRows(int row, int count, const QModelIndex &parent)
 }
 
 
-bool PlayerTableModel::removeRows(int row, int count, const QModelIndex &parent)
+bool PlayerListModel::removeRows(int row, int count, const QModelIndex &parent)
 {
     beginRemoveRows(parent, row, row + count - 1);
     if(row >=0 && row < playerList.size())
@@ -100,24 +100,24 @@ bool PlayerTableModel::removeRows(int row, int count, const QModelIndex &parent)
 }
 
 
-void PlayerTableModel::setPlayerList(const QList<Player *> &value)
+void PlayerListModel::setPlayerList(const QList<Player *> &value)
 {
     playerList = value;
 }
 
-Player *PlayerTableModel::getPlayerAt(const int &pos)
+Player *PlayerListModel::getPlayerAt(const int &pos)
 {
     return playerList[pos];
 }
 
-QList<Player *> PlayerTableModel::getPlayerList() const
+QList<Player *> PlayerListModel::getPlayerList() const
 {
     return playerList;
 }
 
 
 
-QHash<int, QByteArray> PlayerTableModel::roleNames() const
+QHash<int, QByteArray> PlayerListModel::roleNames() const
 {
     QHash<int, QByteArray> roles;
     roles[NameRole] = "name" ;

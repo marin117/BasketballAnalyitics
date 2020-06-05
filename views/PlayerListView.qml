@@ -3,7 +3,7 @@ import QtQuick.Controls 1.4
 import QtQuick.Controls 2.4 as ButtonControls
 import QtQuick.Controls.Styles 1.4
 import QtQuick.Layouts 1.3
-import PlayerTableModel 0.1
+import PlayerListModel 0.1
 
 ListView {
     id: playerList

@@ -5,12 +5,12 @@
 #include <QList>
 #include "player.h"
 
-class PlayerTableModel : public QAbstractListModel
+class PlayerListModel : public QAbstractListModel
 {
     Q_OBJECT
 
 public:
-    explicit PlayerTableModel(QObject *parent = nullptr);
+    explicit PlayerListModel(QObject *parent = nullptr);
 
 
     enum {

@@ -13,7 +13,7 @@ ApplicationWindow {
         anchors.fill: parent
         currentIndex: tabBar.currentIndex
 
-        PlayersTableView{
+        PlayerListView{
             id: playerTableView
             onSelectedPlayerChanged: basketballCourtView.repaintCanvas()
         }

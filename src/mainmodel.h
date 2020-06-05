@@ -2,7 +2,7 @@
 #define MAINMODEL_H
 
 #include <QObject>
-#include "model/playertablemodel.h"
+#include "model/playerlistmodel.h"
 #include <QQmlListProperty>
 
 class MainModel : public QObject
@@ -12,7 +12,7 @@ class MainModel : public QObject
 public:
     explicit MainModel(QObject *parent = nullptr);
 
-    Q_INVOKABLE PlayerTableModel* getPlayerModel();
+    Q_INVOKABLE PlayerListModel* getPlayerModel();
 
     Q_INVOKABLE QString getSelectedPlayerName();
     Q_INVOKABLE QList<Shot *> getSelectedPlayerShots();
@@ -36,7 +36,7 @@ signals:
     void selectedPlayerChanged();
 
 private:
-    PlayerTableModel playerModel;
+    PlayerListModel playerModel;
     Player *selectedPlayer;
 };
 
