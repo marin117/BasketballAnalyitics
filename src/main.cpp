@@ -38,7 +38,8 @@ int main(int argc, char *argv[])
 
     QObject::connect(playerListObject, SIGNAL(selectedPlayerChanged(int)), &mainModel, SLOT(onSelectedPlayerChanged(int)));
     QObject::connect(basketballCourtObject, SIGNAL(shotAdded(int, int)), &mainModel, SLOT(onShotAdded(int, int)));
-
+    QObject::connect(basketballCourtObject, SIGNAL(canvasWidthChanged(int, int)), &mainModel, SLOT(onWidthChanged(int, int)));
+    QObject::connect(basketballCourtObject, SIGNAL(canvasHeightChanged(int, int)), &mainModel, SLOT(onHeightChanged(int, int)));
 
     return app.exec();
 }

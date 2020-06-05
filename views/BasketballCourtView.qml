@@ -3,7 +3,9 @@ import Shot 0.1
 
 Item {
     objectName: "basketballCourtObject"
-    signal shotAdded(x: int, y: int)
+    signal shotAdded(int x, int y)
+    signal canvasHeightChanged(int height, int prevHeight)
+    signal canvasWidthChanged(int width, int prevWidth)
 
     Canvas {
         id: basketballCourtCanvas
@@ -11,6 +13,7 @@ Item {
         anchors.fill: parent
         antialiasing: true
         transformOrigin: Item.TopLeft
+
 
         Image {
             id: basketballCourtImage
@@ -39,44 +42,33 @@ Item {
             ctx.strokeStyle = Qt.rgba(1,0,0,1);
             ctx.lineWidth = 1
             for(var i=0; i< mainModel.selectedShots.length; i++){
-                var point = mainModel.selectedShots[i]
                 ctx.ellipse(mainModel.selectedShots[i].x,  mainModel.selectedShots[i].y, 10, 10);
             }
             ctx.stroke()
         }
         MouseArea {
             id: canvasMouseArea
-            property var shots: []
 
             anchors.centerIn: parent
             anchors.fill: parent
             onClicked: {
-                shots.push({'x': mouseX , 'y':mouseY });
                 shotAdded(mouseX, mouseY);
                 basketballCourtCanvas.requestPaint();
             }
         }
 
         onWidthChanged: {
-            for(var i=0; i< canvasMouseArea.shots.length; i++){
-                var point = canvasMouseArea.shots[i];
-                canvasMouseArea.shots[i]['x'] = point['x'] * width/ currWidth;
-            }
-            currWidth = width
+            canvasWidthChanged(width, currWidth);
+            currWidth = width;
         }
 
         onHeightChanged: {
-            for(var i=0; i< canvasMouseArea.shots.length; i++){
-                var point = canvasMouseArea.shots[i];
-                canvasMouseArea.shots[i]['y'] = point['y'] * height / currHeight;
-            }
-
+            canvasHeightChanged(height, currHeight);
             currHeight = height;
         }
     }
 
     function repaintCanvas(){
-        canvasMouseArea.shots = []
         basketballCourtCanvas.requestPaint();
     }
 }
