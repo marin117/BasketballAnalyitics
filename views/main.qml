@@ -14,7 +14,7 @@ ApplicationWindow {
         currentIndex: tabBar.currentIndex
 
         PlayerListView{
-            id: playerTableView
+            id: playerListView
             onSelectedPlayerChanged: basketballCourtView.repaintCanvas()
         }
 

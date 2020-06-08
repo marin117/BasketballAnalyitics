@@ -1,11 +1,41 @@
 import QtQuick 2.0
 import Shot 0.1
+import QtQuick.Controls 2.3
 
 Item {
+    id: courtRoot
     objectName: "basketballCourtObject"
     signal shotAdded(int x, int y)
     signal canvasHeightChanged(int height, int prevHeight)
     signal canvasWidthChanged(int width, int prevWidth)
+
+    // TODO: move this to seperate file
+    Dialog {
+        id: shotDialog
+        title: "Shot properties"
+        standardButtons: Dialog.Ok | Dialog.Cancel
+        modal: true
+        x: (parent.width - width) / 2
+        y: (parent.height - height) / 2
+
+        CheckBox {
+            id: isMiss
+            checked: false
+            text: "Miss"
+            tristate: false
+        }
+
+        onAccepted: {
+            console.log("Ok clicked");
+            isMiss.checked = false;
+            this.close();
+        }
+        onRejected: {
+            console.log("Cancel clicked");
+            isMiss.checked = false;
+            this.close();
+        }
+    }
 
     Canvas {
         id: basketballCourtCanvas
@@ -14,20 +44,16 @@ Item {
         antialiasing: true
         transformOrigin: Item.TopLeft
 
-
         Image {
             id: basketballCourtImage
             anchors.centerIn:  parent
             z: -50
             antialiasing: true
             anchors.fill: parent
-            source: "qrc:/res/res/basketball_court2.png"
-            fillMode: Image.Stretch
-
+            source: "qrc:/res/res/halfcourt_4k.png"
+            fillMode: Image.PreserveAspectFit
         }
 
-        property var prevWidth
-        property var prevHeight
         property var currWidth
         property var currHeight
 
@@ -47,13 +73,19 @@ Item {
             ctx.stroke()
         }
         MouseArea {
+            property int it: 0
             id: canvasMouseArea
-
             anchors.centerIn: parent
             anchors.fill: parent
             onClicked: {
-                shotAdded(mouseX, mouseY);
-                basketballCourtCanvas.requestPaint();
+                shotDialog.open();
+                shotDialog.accepted.connect(function(){
+                    console.log(isMiss.checkState);
+                    shotAdded(mouseX, mouseY);
+                    basketballCourtCanvas.requestPaint();
+                    it+=1;
+                    console.log("Iterator " + it);
+                });
             }
         }
 
@@ -71,4 +103,8 @@ Item {
     function repaintCanvas(){
         basketballCourtCanvas.requestPaint();
     }
+
 }
+
+
+

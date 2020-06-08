@@ -6,7 +6,7 @@
         <file>views/PlayerListView.qml</file>
     </qresource>
     <qresource prefix="/res">
-        <file>res/basketball_court.png</file>
-        <file>res/basketball_court2.png</file>
+        <file>res/halfcourt_4k.png</file>
+        <file>res/fullcourt_fhd.png</file>
     </qresource>
 </RCC>

@@ -43,9 +43,6 @@ void MainModel::onShotAdded(const int &x, const int &y)
     shot->x = x;
     shot->y = y;
     selectedPlayer->addShot(shot);
-    for(auto i : *selectedPlayer->getShots()){
-        qDebug() << i->getX() << "  " << i->getY();
-    }
 }
 
 void MainModel::onWidthChanged(const int &width, const int &prevWidth)
