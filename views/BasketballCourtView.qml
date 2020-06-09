@@ -1,6 +1,8 @@
 import QtQuick 2.0
 import Shot 0.1
+//import "ShotDialog.qml"
 import QtQuick.Controls 2.3
+
 
 Item {
     id: courtRoot
@@ -8,34 +10,6 @@ Item {
     signal shotAdded(int x, int y)
     signal canvasHeightChanged(int height, int prevHeight)
     signal canvasWidthChanged(int width, int prevWidth)
-
-    // TODO: move this to seperate file
-    Dialog {
-        id: shotDialog
-        title: "Shot properties"
-        standardButtons: Dialog.Ok | Dialog.Cancel
-        modal: true
-        x: (parent.width - width) / 2
-        y: (parent.height - height) / 2
-
-        CheckBox {
-            id: isMiss
-            checked: false
-            text: "Miss"
-            tristate: false
-        }
-
-        onAccepted: {
-            console.log("Ok clicked");
-            isMiss.checked = false;
-            this.close();
-        }
-        onRejected: {
-            console.log("Cancel clicked");
-            isMiss.checked = false;
-            this.close();
-        }
-    }
 
     Canvas {
         id: basketballCourtCanvas
@@ -64,27 +38,28 @@ Item {
 
         onPaint: {
             var ctx = getContext("2d");
-            ctx.reset()
-            ctx.strokeStyle = Qt.rgba(1,0,0,1);
-            ctx.lineWidth = 1
+            ctx.reset();
+            ctx.lineWidth = 2;
             for(var i=0; i< mainModel.selectedShots.length; i++){
+                if(mainModel.selectedShots[i].isMiss)
+                    ctx.strokeStyle = Qt.rgba(1,0,0,1);
+                else
+                    ctx.strokeStyle = Qt.rgba(0,0.7,0,1);
                 ctx.ellipse(mainModel.selectedShots[i].x,  mainModel.selectedShots[i].y, 10, 10);
             }
-            ctx.stroke()
+            ctx.stroke();
         }
         MouseArea {
-            property int it: 0
             id: canvasMouseArea
             anchors.centerIn: parent
             anchors.fill: parent
             onClicked: {
-                shotDialog.open();
-                shotDialog.accepted.connect(function(){
-                    console.log(isMiss.checkState);
+                shotDlgLoader.active = false;
+                shotDlgLoader.active = true;
+                shotDlgLoader.item.open();
+                shotDlgLoader.item.accepted.connect(function(){
                     shotAdded(mouseX, mouseY);
                     basketballCourtCanvas.requestPaint();
-                    it+=1;
-                    console.log("Iterator " + it);
                 });
             }
         }
@@ -104,6 +79,15 @@ Item {
         basketballCourtCanvas.requestPaint();
     }
 
+
+    Loader{
+        id: shotDlgLoader
+        source: "ShotDialog.qml"
+        active: false
+        x: (parent.width - width) / 2
+        y: (parent.height - height) / 2
+
+    }
 }
 
 
