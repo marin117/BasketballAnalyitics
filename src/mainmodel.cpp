@@ -37,12 +37,13 @@ void MainModel::onSelectedPlayerChanged(const int &pos)
     emit selectedPlayerChanged();
 }
 
-void MainModel::onShotAdded(const int &x, const int &y)
+void MainModel::onShotAdded(Shot* shot)
 {
-    Shot* shot = new Shot();
-    shot->x = x;
-    shot->y = y;
-    selectedPlayer->addShot(shot);
+    Shot* newShot = new Shot();
+    newShot->x = shot->x;
+    newShot->y = shot->y;
+    newShot->isMiss = shot->isMiss;
+    selectedPlayer->addShot(newShot);
 }
 
 void MainModel::onWidthChanged(const int &width, const int &prevWidth)

@@ -1,15 +1,20 @@
 import QtQuick 2.0
 import Shot 0.1
-//import "ShotDialog.qml"
 import QtQuick.Controls 2.3
-
 
 Item {
     id: courtRoot
     objectName: "basketballCourtObject"
-    signal shotAdded(int x, int y)
+    signal shotAdded(Shot shot)
     signal canvasHeightChanged(int height, int prevHeight)
     signal canvasWidthChanged(int width, int prevWidth)
+
+    Shot {
+        id: newShot
+        x: 0
+        y: 0
+        isMiss: false
+    }
 
     Canvas {
         id: basketballCourtCanvas
@@ -41,13 +46,14 @@ Item {
             ctx.reset();
             ctx.lineWidth = 2;
             for(var i=0; i< mainModel.selectedShots.length; i++){
-                if(mainModel.selectedShots[i].isMiss)
+                ctx.beginPath();
+                if(mainModel.selectedShots[i].isMiss === true)
                     ctx.strokeStyle = Qt.rgba(1,0,0,1);
                 else
                     ctx.strokeStyle = Qt.rgba(0,0.7,0,1);
                 ctx.ellipse(mainModel.selectedShots[i].x,  mainModel.selectedShots[i].y, 10, 10);
+                ctx.stroke();
             }
-            ctx.stroke();
         }
         MouseArea {
             id: canvasMouseArea
@@ -58,7 +64,10 @@ Item {
                 shotDlgLoader.active = true;
                 shotDlgLoader.item.open();
                 shotDlgLoader.item.accepted.connect(function(){
-                    shotAdded(mouseX, mouseY);
+                    newShot.x = mouseX;
+                    newShot.y = mouseY;
+                    newShot.isMiss = shotDlgLoader.item.isMiss;
+                    shotAdded(newShot);
                     basketballCourtCanvas.requestPaint();
                 });
             }

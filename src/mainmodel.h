@@ -28,7 +28,7 @@ public:
 
 public slots:
     void onSelectedPlayerChanged(const int& pos);
-    void onShotAdded(const int& x, const int& y);
+    void onShotAdded(Shot* shot);
     void onWidthChanged(const int& width, const int& prevWidth);
     void onHeightChanged(const int& height, const int& prevHeight);
 
