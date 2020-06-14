@@ -4,14 +4,26 @@
 
 MainModel::MainModel(QObject *parent) : QObject(parent)
 {
-    QList<Player *> playerList;
-    playerList.append(new Player("Ivo", "Ivic", 15));
-    playerList.append(new Player("Marko", "Markic", 11));
-    playerList.append(new Player("Jure", "Juric", 13));
-    playerList.append(new Player("Fran", "Jovic", 12));
+    teams[0] = new Team();
+    teams[1] = new Team();
 
-    playerModel.setPlayerList(playerList);
+    QList<Player *> playerList;
+    playerList.append(new Player("Ivo", "Ivic", 15, teams[0]));
+    playerList.append(new Player("Marko", "Markic", 11, teams[0]));
+    playerList.append(new Player("Jure", "Juric", 13, teams[0]));
+    playerList.append(new Player("Fran", "Jovic", 12, teams[0]));
+
+    teams[0]->setPlayerList(playerList);
+
+    QList<Player *> playerList2;
+    playerList2.append(new Player("Sandro", "Sandric", 4, teams[1]));
+
+    teams[1]->setPlayerList(playerList2);
+
+    playerModel.setPlayerList(teams[0]->getPlayerList());
     setSelectedPlayer(playerModel.getPlayerAt(0));
+
+    connect(this, SIGNAL(refreshList()), &playerModel, SLOT(onRefresh()));
 }
 
 PlayerListModel* MainModel::getPlayerModel()
@@ -63,6 +75,13 @@ void MainModel::onHeightChanged(const int& height, const int& prevHeight){
             player->getShots()->at(i)->setY(newY);
         }
     }
+}
+
+void MainModel::onSelectedTeamChanged(const int &index)
+{
+    playerModel.setPlayerList(teams[index]->getPlayerList());
+    setSelectedPlayer(playerModel.getPlayerAt(0));
+    emit refreshList();
 }
 
 Player *MainModel::getSelectedPlayer() const

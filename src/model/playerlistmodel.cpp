@@ -110,6 +110,13 @@ Player *PlayerListModel::getPlayerAt(const int &pos)
     return playerList[pos];
 }
 
+void PlayerListModel::onRefresh()
+{
+    beginResetModel();
+    dataChanged(createIndex(0,0), createIndex(rowCount()-1, 0));
+    endResetModel();
+}
+
 QList<Player *> PlayerListModel::getPlayerList() const
 {
     return playerList;

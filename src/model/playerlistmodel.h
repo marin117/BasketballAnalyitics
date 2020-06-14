@@ -47,6 +47,9 @@ public:
 
     Player *getPlayerAt(const int& pos);
 
+public slots:
+    void onRefresh();
+
 
 private:
     QList<Player *> playerList;

@@ -5,7 +5,10 @@ ApplicationWindow {
     visible: true
     width: 640
     height: 480
-    title: qsTr("Tabs")
+    title: qsTr("Pick and scope")
+    objectName: "mainWindow"
+
+    signal selectedTeamChanged(int index)
 
     header: TabBar{
         id: headerTab
@@ -13,7 +16,8 @@ ApplicationWindow {
             text: qsTr("Team 1")
             onClicked: {
                 headerTab.setCurrentIndex(0);
-                console.log(0);
+                selectedTeamChanged(0);
+                playerListView.model = mainModel.getPlayerModel();
             }
         }
 
@@ -21,7 +25,8 @@ ApplicationWindow {
             text: qsTr("Team 2")
             onClicked: {
                 headerTab.setCurrentIndex(1);
-                console.log(1);
+                selectedTeamChanged(1);
+                playerListView.model = mainModel.getPlayerModel();
             }
         }
     }

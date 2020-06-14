@@ -4,6 +4,7 @@
 #include <QObject>
 #include "model/playerlistmodel.h"
 #include <QQmlListProperty>
+#include "src/model/team.h"
 
 class MainModel : public QObject
 {
@@ -31,13 +32,18 @@ public slots:
     void onShotAdded(Shot* shot);
     void onWidthChanged(const int& width, const int& prevWidth);
     void onHeightChanged(const int& height, const int& prevHeight);
+    void onSelectedTeamChanged(const int& index);
 
 signals:
     void selectedPlayerChanged();
+    void refreshList();
 
 private:
     PlayerListModel playerModel;
     Player *selectedPlayer;
+    Team* teams[2];
+    int selectedTeamIndex = 0;
+
 };
 
 #endif // MAINMODEL_H
