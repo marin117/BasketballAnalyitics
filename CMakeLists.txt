@@ -38,6 +38,8 @@ set(SOURCE_FILES
     src/model/playerlistmodel.h
     src/mainmodel.h
     src/mainmodel.cpp
+    src/model/team.cpp
+    src/model/team.h
     )
 
 if(ANDROID)

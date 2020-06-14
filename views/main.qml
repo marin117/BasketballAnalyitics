@@ -7,6 +7,25 @@ ApplicationWindow {
     height: 480
     title: qsTr("Tabs")
 
+    header: TabBar{
+        id: headerTab
+        TabButton {
+            text: qsTr("Team 1")
+            onClicked: {
+                headerTab.setCurrentIndex(0);
+                console.log(0);
+            }
+        }
+
+        TabButton {
+            text: qsTr("Team 2")
+            onClicked: {
+                headerTab.setCurrentIndex(1);
+                console.log(1);
+            }
+        }
+    }
+
 
     SwipeView {
         id: swipeView
@@ -25,6 +44,10 @@ ApplicationWindow {
         Item{
         }
 
+        Item {
+
+        }
+
     }
 
     footer: TabBar {
@@ -39,7 +62,10 @@ ApplicationWindow {
             text: qsTr("Court")
         }
         TabButton {
-            text: qsTr("Statistics")
+            text: qsTr("Player Statistics")
+        }
+        TabButton {
+            text: qsTr("Team Statistics")
         }
     }
 }
