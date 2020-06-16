@@ -21,7 +21,8 @@ MainModel::MainModel(QObject *parent) : QObject(parent)
     teams[1]->setPlayerList(playerList2);
 
     playerModel.setPlayerList(teams[0]->getPlayerList());
-    setSelectedPlayer(playerModel.getPlayerAt(0));
+    if(playerModel.getPlayerList().size())
+        setSelectedPlayer(playerModel.getPlayerAt(0));
 
     connect(this, SIGNAL(refreshList()), &playerModel, SLOT(onRefresh()));
 }
@@ -84,7 +85,8 @@ void MainModel::onHeightChanged(const int& height, const int& prevHeight){
 void MainModel::onSelectedTeamChanged(const int &index)
 {
     playerModel.setPlayerList(teams[index]->getPlayerList());
-    setSelectedPlayer(playerModel.getPlayerAt(0));
+    if(playerModel.getPlayerList().size())
+        setSelectedPlayer(playerModel.getPlayerAt(0));
     emit refreshList();
 }
 

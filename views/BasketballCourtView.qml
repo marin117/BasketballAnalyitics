@@ -1,6 +1,7 @@
 import QtQuick 2.0
 import Shot 0.1
 import QtQuick.Controls 2.3
+import Player 0.1
 
 Item {
     id: courtRoot
@@ -45,14 +46,16 @@ Item {
             var ctx = getContext("2d");
             ctx.reset();
             ctx.lineWidth = 2;
-            for(var i=0; i< mainModel.selectedShots.length; i++){
-                ctx.beginPath();
-                if(mainModel.selectedShots[i].isMiss === true)
-                    ctx.strokeStyle = Qt.rgba(1,0,0,1);
-                else
-                    ctx.strokeStyle = Qt.rgba(0,0.7,0,1);
-                ctx.ellipse(mainModel.selectedShots[i].x,  mainModel.selectedShots[i].y, 10, 10);
-                ctx.stroke();
+            if(mainModel.getSelectedPlayer() !== null){
+                for(var i=0; i< mainModel.selectedShots.length; i++){
+                    ctx.beginPath();
+                    if(mainModel.selectedShots[i].isMiss === true)
+                        ctx.strokeStyle = Qt.rgba(1,0,0,1);
+                    else
+                        ctx.strokeStyle = Qt.rgba(0,0.7,0,1);
+                    ctx.ellipse(mainModel.selectedShots[i].x,  mainModel.selectedShots[i].y, 10, 10);
+                    ctx.stroke();
+                }
             }
         }
         MouseArea {
@@ -60,16 +63,18 @@ Item {
             anchors.centerIn: parent
             anchors.fill: parent
             onClicked: {
-                shotDlgLoader.active = false;
-                shotDlgLoader.active = true;
-                shotDlgLoader.item.open();
-                shotDlgLoader.item.accepted.connect(function(){
-                    newShot.x = mouseX;
-                    newShot.y = mouseY;
-                    newShot.isMiss = shotDlgLoader.item.isMiss;
-                    shotAdded(newShot);
-                    basketballCourtCanvas.requestPaint();
-                });
+                if(mainModel.getSelectedPlayer() !== null){
+                    shotDlgLoader.active = false;
+                    shotDlgLoader.active = true;
+                    shotDlgLoader.item.open();
+                    shotDlgLoader.item.accepted.connect(function(){
+                        newShot.x = mouseX;
+                        newShot.y = mouseY;
+                        newShot.isMiss = shotDlgLoader.item.isMiss;
+                        shotAdded(newShot);
+                        basketballCourtCanvas.requestPaint();
+                    });
+                }
             }
         }
 

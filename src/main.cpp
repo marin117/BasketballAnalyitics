@@ -18,6 +18,7 @@ int main(int argc, char *argv[])
 
     qmlRegisterType<PlayerListModel>("PlayerListModel", 0 ,1, "PlayerListModel");
     qmlRegisterType<Shot>("Shot", 0 ,1, "Shot");
+    qmlRegisterType<Player>("Player", 0 ,1, "Player");
 
     QQmlApplicationEngine engine;
     const QUrl url(QStringLiteral("qrc:/views/main.qml"));

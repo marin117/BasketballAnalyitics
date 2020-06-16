@@ -1,5 +1,6 @@
 import QtQuick 2.14
 import QtQuick.Controls 2.14
+import QtQuick.Controls 2.4 as ButtonControls
 
 ApplicationWindow {
     visible: true
@@ -67,6 +68,16 @@ ApplicationWindow {
         }
         TabButton {
             text: qsTr("Team Statistics")
+        }
+    }
+
+    ButtonControls.RoundButton{
+        text: "+"
+        anchors.right : parent.right
+        anchors.bottom: parent.bottom
+        radius: 10
+        onClicked: {
+            console.log("Button for teams handling");
         }
     }
 

@@ -17,7 +17,7 @@ public:
 
     Q_INVOKABLE QString getSelectedPlayerName();
     Q_INVOKABLE QList<Shot *> getSelectedPlayerShots();
-    Player *getSelectedPlayer() const;
+    Q_INVOKABLE Player *getSelectedPlayer() const;
     void setSelectedPlayer(Player *value);
 
     QQmlListProperty<Shot> selectedShots();
@@ -40,7 +40,7 @@ signals:
 
 private:
     PlayerListModel playerModel;
-    Player *selectedPlayer;
+    Player *selectedPlayer = nullptr;
     Team* teams[2];
     int selectedTeamIndex = 0;
 
