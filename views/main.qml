@@ -5,7 +5,7 @@ ApplicationWindow {
     visible: true
     width: 640
     height: 480
-    title: qsTr("Pick and scope")
+    title: qsTr("Pick&Scope")
     objectName: "mainWindow"
 
     signal selectedTeamChanged(int index)
@@ -15,18 +15,14 @@ ApplicationWindow {
         TabButton {
             text: qsTr("Team 1")
             onClicked: {
-                headerTab.setCurrentIndex(0);
-                selectedTeamChanged(0);
-                playerListView.model = mainModel.getPlayerModel();
+                changeTeam(0);
             }
         }
 
         TabButton {
             text: qsTr("Team 2")
             onClicked: {
-                headerTab.setCurrentIndex(1);
-                selectedTeamChanged(1);
-                playerListView.model = mainModel.getPlayerModel();
+                changeTeam(1);
             }
         }
     }
@@ -72,5 +68,11 @@ ApplicationWindow {
         TabButton {
             text: qsTr("Team Statistics")
         }
+    }
+
+    function changeTeam(pos){
+        headerTab.setCurrentIndex(pos);
+        selectedTeamChanged(pos);
+        basketballCourtView.repaintCanvas();
     }
 }
