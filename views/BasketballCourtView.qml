@@ -10,6 +10,9 @@ Item {
     signal canvasHeightChanged(int height, int prevHeight)
     signal canvasWidthChanged(int width, int prevWidth)
 
+    property int imageScaleX: 400
+    property int imageScaleY: 300
+
     Shot {
         id: newShot
         x: 0
@@ -53,7 +56,7 @@ Item {
                         ctx.strokeStyle = Qt.rgba(1,0,0,1);
                     else
                         ctx.strokeStyle = Qt.rgba(0,0.7,0,1);
-                    ctx.ellipse(mainModel.selectedShots[i].x,  mainModel.selectedShots[i].y, 10, 10);
+                    ctx.ellipse(mainModel.selectedShots[i].x * width/imageScaleX,  mainModel.selectedShots[i].y * height/imageScaleY, 10, 10);
                     ctx.stroke();
                 }
             }
@@ -68,24 +71,14 @@ Item {
                     shotDlgLoader.active = true;
                     shotDlgLoader.item.open();
                     shotDlgLoader.item.accepted.connect(function(){
-                        newShot.x = mouseX;
-                        newShot.y = mouseY;
+                        newShot.x = mouseX * imageScaleX / width;
+                        newShot.y = mouseY * imageScaleY /height;
                         newShot.isMiss = shotDlgLoader.item.isMiss;
                         shotAdded(newShot);
                         basketballCourtCanvas.requestPaint();
                     });
                 }
             }
-        }
-
-        onWidthChanged: {
-            canvasWidthChanged(width, currWidth);
-            currWidth = width;
-        }
-
-        onHeightChanged: {
-            canvasHeightChanged(height, currHeight);
-            currHeight = height;
         }
     }
 
