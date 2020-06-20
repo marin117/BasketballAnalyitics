@@ -30,11 +30,12 @@ Item {
         Image {
             id: basketballCourtImage
             anchors.centerIn:  parent
+            anchors.top: parent.top
             z: -50
             antialiasing: true
             anchors.fill: parent
             source: "qrc:/res/res/halfcourt_4k.png"
-            fillMode: Image.PreserveAspectFit
+            fillMode: Image.Stretch
         }
 
         property var currWidth
@@ -91,8 +92,8 @@ Item {
         id: shotDlgLoader
         source: "ShotDialog.qml"
         active: false
-        x: (parent.width - width) / 2
-        y: (parent.height - height) / 2
+        //x: (parent.width - width) / 2
+        y: parent.height / 2
 
     }
 }

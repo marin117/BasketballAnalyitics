@@ -33,15 +33,20 @@ ApplicationWindow {
         id: swipeView
         anchors.fill: parent
         currentIndex: tabBar.currentIndex
-
-        PlayerListView{
-            id: playerListView
-            onSelectedPlayerChanged: basketballCourtView.repaintCanvas()
+        Row {
+            PlayerListView{
+                id: playerListView
+                onSelectedPlayerChanged: basketballCourtView.repaintCanvas()
+                width: parent.width / 2
+                height:  parent.height
+            }
+            BasketballCourtView{
+                id: basketballCourtView
+                width: parent.width / 2
+                height:  parent.height
+            }
         }
 
-        BasketballCourtView{
-            id: basketballCourtView
-        }
 
         Item{
         }
@@ -55,10 +60,6 @@ ApplicationWindow {
     footer: TabBar {
         id: tabBar
         currentIndex: swipeView.currentIndex
-
-        TabButton {
-            text: qsTr("Player List")
-        }
 
         TabButton {
             text: qsTr("Court")

@@ -17,26 +17,14 @@ ListView {
             width: parent.width; height: 40
             RowLayout{
                 height: 40
-                TextField {
+                Label {
                     text: model.number
-                    onTextChanged: model.number = text
-                    style : TextFieldStyle {
-                        textColor: 'black'
-                    }
                 }
-                TextField {
+                Label {
                     text: model.name
-                    onTextChanged: model.name = text
-                    style : TextFieldStyle {
-                        textColor: 'black'
-                    }
                 }
-                TextField {
+                Label {
                     text: model.surname
-                    onTextChanged: model.surname = text
-                    style : TextFieldStyle {
-                        textColor: 'black'
-                    }
                 }
             }
             MouseArea {
