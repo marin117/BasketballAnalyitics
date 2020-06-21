@@ -5,6 +5,7 @@
         <file>qtquickcontrols2.conf</file>
         <file>views/PlayerListView.qml</file>
         <file>views/ShotDialog.qml</file>
+        <file>views/Tabs.qml</file>
     </qresource>
     <qresource prefix="/res">
         <file>res/halfcourt_4k.png</file>

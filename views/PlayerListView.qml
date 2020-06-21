@@ -11,6 +11,7 @@ ListView {
     objectName: "playerListObject"
 
     signal selectedPlayerChanged(pos: int)
+    signal playerDoubleClicked()
     delegate: Component{
         Item {
             //        spacing: 10
@@ -33,10 +34,18 @@ ListView {
                     playerList.currentIndex = index;
                     selectedPlayerChanged(index);
                 }
+
+                onDoubleClicked: {
+                    playerDoubleClicked();
+                }
             }
 
         }
     }
     focus: true
+
+    function setToFirst(){
+        playerList.currentIndex = 0;
+    }
 
 }

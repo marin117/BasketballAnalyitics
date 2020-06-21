@@ -28,17 +28,22 @@ ApplicationWindow {
         }
     }
 
-
     SwipeView {
         id: swipeView
         anchors.fill: parent
         currentIndex: tabBar.currentIndex
+        interactive: currentIndex
+
         Row {
             PlayerListView{
                 id: playerListView
                 onSelectedPlayerChanged: basketballCourtView.repaintCanvas()
                 width: parent.width / 2
                 height:  parent.height
+                onPlayerDoubleClicked: {
+                    console.log("double click");
+                    swipeView.setCurrentIndex(Tabs.TabIndexes.PlayerStatisticTab);
+                }
             }
             BasketballCourtView{
                 id: basketballCourtView
@@ -85,6 +90,7 @@ ApplicationWindow {
     function changeTeam(pos){
         headerTab.setCurrentIndex(pos);
         selectedTeamChanged(pos);
+        playerListView.setToFirst();
         basketballCourtView.repaintCanvas();
     }
 }
