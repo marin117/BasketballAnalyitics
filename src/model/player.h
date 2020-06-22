@@ -5,6 +5,8 @@
 #include "shot.h"
 #include <QObject>
 
+class Statistics;
+
 class Player : public QObject
 {
     Q_OBJECT
@@ -28,11 +30,15 @@ public:
     QList<Shot *>* getShots();
     void setShots(const QList<Shot *> &value);
 
+    Statistics *getStatistics() const;
+    void setStatistics(Statistics *value);
+
 private:
     QString name = "";
     QString surname = "";
     int number = 0;
     QList<Shot *> shots;
+    Statistics *statistics;
 
 };
 

@@ -40,6 +40,12 @@ set(SOURCE_FILES
     src/mainmodel.cpp
     src/model/team.cpp
     src/model/team.h
+    src/model/statistics.h
+    src/model/statistics.cpp
+    src/model/playerstatistics.cpp
+    src/model/playerstatistics.h
+    src/model/teamstatistics.cpp
+    src/model/teamstatistics.h
     )
 
 if(ANDROID)

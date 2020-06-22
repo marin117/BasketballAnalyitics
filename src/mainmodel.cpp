@@ -125,6 +125,11 @@ Shot* MainModel::shotAt(QQmlListProperty<Shot>* list, int i)
     return reinterpret_cast< MainModel* >(list->data)->shotAt(i);
 }
 
+Statistics *MainModel::selectedPlayerStatistics()
+{
+    return selectedPlayer->getStatistics();
+}
+
 
 
 

@@ -1,12 +1,15 @@
 #include "player.h"
+#include "playerstatistics.h"
 
 Player::Player(QObject *parent) : QObject(parent)
 {
+    statistics = new PlayerStatistics(this);
 }
 
 Player::Player(const QString &name, const QString &surname,const int &number, QObject *parent) :
     name(name), surname(surname), number(number), QObject(parent)
 {
+    statistics = new PlayerStatistics(this);
 }
 
 QString Player::getName() const
@@ -49,24 +52,18 @@ void Player::setShots(const QList<Shot *> &value)
     shots = value;
 }
 
-//const QList<Shot>& Player::getShots() const
-//{
-//    return shots;
-//}
+Statistics *Player::getStatistics() const
+{
+    return statistics;
+}
 
+void Player::setStatistics(Statistics *value)
+{
+    statistics = value;
+}
 
-//void Player::setShots(const QList<Shot> &value)
-//{
-//    shots = value;
-//}
 
 void Player::addShot(Shot *shot)
 {
     shots.push_back(shot);
 }
-
-//void Player::undoShot(){
-//    if(shots.size()){
-//        shots.pop_back();
-//    }
-//}

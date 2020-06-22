@@ -6,10 +6,13 @@
 #include <QQmlListProperty>
 #include "src/model/team.h"
 
+class PlayerStatistics;
+
 class MainModel : public QObject
 {
     Q_OBJECT
     Q_PROPERTY(QQmlListProperty<Shot> selectedShots READ selectedShots())
+    Q_PROPERTY(Statistics* playerStatistics READ selectedPlayerStatistics())
 public:
     explicit MainModel(QObject *parent = nullptr);
 
@@ -25,6 +28,8 @@ public:
      Shot *shotAt(int i) const;
     static int shotsCount(QQmlListProperty<Shot>*);
     static Shot* shotAt(QQmlListProperty<Shot>*, int i);
+
+    Statistics *selectedPlayerStatistics();
 
 
 public slots:

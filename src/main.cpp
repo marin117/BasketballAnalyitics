@@ -5,6 +5,7 @@
 #include <QQmlContext>
 #include "mainmodel.h"
 #include "model/player.h"
+#include "model/statistics.h"
 
 int main(int argc, char *argv[])
 {
@@ -12,13 +13,12 @@ int main(int argc, char *argv[])
 
     QGuiApplication app(argc, argv);
 
-
-
     MainModel mainModel;
 
     qmlRegisterType<PlayerListModel>("PlayerListModel", 0 ,1, "PlayerListModel");
     qmlRegisterType<Shot>("Shot", 0 ,1, "Shot");
     qmlRegisterType<Player>("Player", 0 ,1, "Player");
+    qmlRegisterType<Statistics>("Statistics", 0, 1, "Statistics");
 
     QQmlApplicationEngine engine;
     const QUrl url(QStringLiteral("qrc:/views/main.qml"));

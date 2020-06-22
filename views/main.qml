@@ -53,7 +53,8 @@ ApplicationWindow {
         }
 
 
-        Item{
+        PlayerStatistics{
+
         }
 
         Item {
