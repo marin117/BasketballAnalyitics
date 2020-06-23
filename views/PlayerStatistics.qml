@@ -51,8 +51,15 @@ Item {
                         }
                     }
                 }
-
-
+            }
+        }
+        Connections {
+            target: mainModel.playerStatistics
+            function onPointsChanged(){
+                pointsNum.text = mainModel.playerStatistics.points;
+            }
+            function onOffensiveReboundsChanged(){
+                console.log("gsgf");
             }
         }
     }
