@@ -3,11 +3,12 @@ import QtQuick.Controls 1.4
 import QtQuick.Controls.Styles 1.4
 import QtQuick.Layouts 1.3
 import PlayerListModel 0.1
+import QtQuick.Controls.Material 2.3
 
 ListView {
     id: playerList
     model: mainModel.getPlayerModel()
-    highlight: Rectangle { color: "maroon"; radius: 5 }
+    highlight: Rectangle { color: Material.color(Material.Red); radius: 5 }
     objectName: "playerListObject"
 
     signal selectedPlayerChanged(pos: int)

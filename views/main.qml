@@ -52,7 +52,6 @@ ApplicationWindow {
             }
         }
 
-
         PlayerStatistics{
 
         }
