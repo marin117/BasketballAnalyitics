@@ -12,7 +12,7 @@ class MainModel : public QObject
 {
     Q_OBJECT
     Q_PROPERTY(QQmlListProperty<Shot> selectedShots READ selectedShots())
-    Q_PROPERTY(Statistics* playerStatistics READ selectedPlayerStatistics())
+    Q_PROPERTY(Statistics* playerStatistics READ selectedPlayerStatistics() NOTIFY statisticsChanged)
 public:
     explicit MainModel(QObject *parent = nullptr);
 
@@ -42,6 +42,7 @@ public slots:
 signals:
     void selectedPlayerChanged();
     void refreshList();
+    void statisticsChanged();
 
 private:
     PlayerListModel playerModel;

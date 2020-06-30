@@ -5,62 +5,23 @@ import QtQuick.Controls 2.4 as ButtonControls
 
 
 Item {
-    Grid {
-       // anchors.horizontalCenter: parent.horizontalCenter
-        //anchors.verticalCenter: parent.verticalCenter
-        anchors.fill: parent
-        columns: 3
-        spacing: 6
+    StatisticCategory {
+        id: pointsCategory
+        categoryName: "Points"
+        categoryVal: "points"
 
-        Item {
-            width: parent.width/3; height: 50
-            Text {
-                text: qsTr("Points")
-            }
-        }
-        Item {
-            id: pointsNumItem
-            width: parent.width/3; height: 50
-            Text {
-                id: pointsNum
-                text: mainModel.playerStatistics.points
-            }
-        }
-        Item {
-            width: parent.width/3; height: 50
-            Row {
-                ButtonControls.RoundButton {
-                    id: addPointsButton
-                    text: qsTr("+")
-                    onClicked: {
-                        mainModel.playerStatistics.points += 1;
-                        console.log(mainModel.playerStatistics.points);
-                        pointsNum.text = mainModel.playerStatistics.points;
-                        decreasePointsButton.enabled = true;
-                    }
-                }
-                ButtonControls.RoundButton{
-                    id: decreasePointsButton
-                    text: qsTr("-")
-                    enabled: mainModel.playerStatistics.points > 0
-                    onClicked: {
-                        mainModel.playerStatistics.points -= 1;
-                        pointsNum.text = mainModel.playerStatistics.points;
-                        if (mainModel.playerStatistics.points <= 0){
-                            this.enabled = false;
-                        }
-                    }
-                }
-            }
-        }
         Connections {
-            target: mainModel.playerStatistics
-            function onPointsChanged(){
-                pointsNum.text = mainModel.playerStatistics.points;
+            target: mainModel
+            function onStatisticsChanged(){
+                pointsCategory.categoryValueText.text = mainModel.playerStatistics[pointsCategory.categoryVal]
+
             }
-            function onOffensiveReboundsChanged(){
-                console.log("gsgf");
+
+            function onSelectedPlayerChanged(){
+                pointsCategory.categoryValueText.text = mainModel.playerStatistics["points"]
+
             }
         }
     }
+
 }

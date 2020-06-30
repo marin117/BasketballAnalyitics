@@ -57,6 +57,7 @@ void MainModel::onShotAdded(Shot* shot)
     newShot->y = shot->y;
     newShot->isMiss = shot->isMiss;
     selectedPlayer->addShot(newShot);
+    emit statisticsChanged();
 }
 
 void MainModel::onWidthChanged(const int &width, const int &prevWidth)

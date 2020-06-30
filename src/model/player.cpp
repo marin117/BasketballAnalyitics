@@ -68,5 +68,4 @@ void Player::addShot(Shot *shot)
     shots.push_back(shot);
     if (!shot->isMiss)
         statistics->setPoints(statistics->getPoints() + 2);
-    emit statistics->pointsChanged();
 }

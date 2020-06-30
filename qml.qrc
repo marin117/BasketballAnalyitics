@@ -7,6 +7,8 @@
         <file>views/ShotDialog.qml</file>
         <file>views/Tabs.qml</file>
         <file>views/PlayerStatistics.qml</file>
+        <file>views/StatisticCategory.qml</file>
+        <file>views/StatisticCategoryForm.ui.qml</file>
     </qresource>
     <qresource prefix="/res">
         <file>res/halfcourt_4k.png</file>
