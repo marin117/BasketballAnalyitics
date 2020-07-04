@@ -5,23 +5,19 @@ import QtQuick.Controls 2.4 as ButtonControls
 
 
 Item {
-    StatisticCategory {
-        id: pointsCategory
-        categoryName: "Points"
-        categoryVal: "points"
+    ColumnLayout {
+        StatisticCategory {
+            id: pointsCategory
+            categoryName: "Points"
+            categoryVal: "points"
+        }
 
-        Connections {
-            target: mainModel
-            function onStatisticsChanged(){
-                pointsCategory.categoryValueText.text = mainModel.playerStatistics[pointsCategory.categoryVal]
-
-            }
-
-            function onSelectedPlayerChanged(){
-                pointsCategory.categoryValueText.text = mainModel.playerStatistics["points"]
-
-            }
+        StatisticCategory {
+            id: stealsCategory
+            categoryName: "Steals"
+            categoryVal: "steals"
         }
     }
-
 }
+
+

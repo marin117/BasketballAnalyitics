@@ -16,7 +16,8 @@ ListView {
     delegate: Component{
         Item {
             //        spacing: 10
-            width: parent.width; height: 40
+            width: parent.width;
+            height: 40
             RowLayout{
                 height: 40
                 Label {
@@ -46,6 +47,7 @@ ListView {
     focus: true
 
     function setToFirst(){
+        selectedPlayerChanged(0);
         playerList.currentIndex = 0;
     }
 

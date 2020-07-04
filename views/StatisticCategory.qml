@@ -21,4 +21,16 @@ StatisticCategoryForm {
             categoryValueText.text = mainModel.playerStatistics[categoryVal];
         }
     }
+
+    Connections {
+        target: mainModel
+        function onSelectedPlayerChanged(){
+            pointsCategory.categoryValueText.text = mainModel.playerStatistics[categoryVal];
+        }
+    }
+    Binding {
+        target: pointsCategory.categoryValueText
+        property: "text"
+        value: mainModel.playerStatistics[categoryVal]
+    }
 }
