@@ -25,11 +25,11 @@ StatisticCategoryForm {
     Connections {
         target: mainModel
         function onSelectedPlayerChanged(){
-            pointsCategory.categoryValueText.text = mainModel.playerStatistics[categoryVal];
+            categoryValueText.text = mainModel.playerStatistics[categoryVal];
         }
     }
     Binding {
-        target: pointsCategory.categoryValueText
+        target: categoryValueText
         property: "text"
         value: mainModel.playerStatistics[categoryVal]
     }
