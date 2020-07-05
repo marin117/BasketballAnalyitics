@@ -65,14 +65,14 @@ void Statistics::setSteals(int value)
     steals = value;
 }
 
-int Statistics::getAssits() const
+int Statistics::getAssists() const
 {
-    return assits;
+    return assists;
 }
 
-void Statistics::setAssits(int value)
+void Statistics::setAssists(int value)
 {
-    assits = value;
+    assists = value;
 }
 
 int Statistics::getBlocks() const

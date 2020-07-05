@@ -12,7 +12,7 @@ class Statistics : public QObject
     Q_PROPERTY(int offensiveRebounds READ getOffensiveRebounds WRITE setOffensiveRebounds NOTIFY offensiveReboundsChanged)
     Q_PROPERTY(int defensiveRebounds READ getDefensiveRebounds WRITE setDefensiveRebounds NOTIFY defensiveReboundsChanged)
     Q_PROPERTY(int steals READ getSteals WRITE setSteals NOTIFY stealsChanged)
-    Q_PROPERTY(int assists READ getAssits WRITE setAssits NOTIFY assistsChanged)
+    Q_PROPERTY(int assists READ getAssists WRITE setAssists NOTIFY assistsChanged)
     Q_PROPERTY(int blocks READ getBlocks WRITE setBlocks NOTIFY blocksChanged)
     Q_PROPERTY(int turnovers READ getTurnovers WRITE setTurnovers NOTIFY turnoversChanged)
 
@@ -37,8 +37,8 @@ public:
     int getSteals() const;
     void setSteals(int value);
 
-    int getAssits() const;
-    void setAssits(int value);
+    int getAssists() const;
+    void setAssists(int value);
 
 
 
@@ -66,7 +66,7 @@ protected:
     int offensiveRebounds = 0;
     int defensiveRebounds = 0;
     int steals = 0;
-    int assits = 0;
+    int assists = 0;
     int blocks = 0;
     int turnovers = 0;
 };

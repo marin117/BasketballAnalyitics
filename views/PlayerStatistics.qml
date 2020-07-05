@@ -17,6 +17,40 @@ Item {
             categoryName: "Steals"
             categoryVal: "steals"
         }
+
+        StatisticCategory {
+            id: offensiveReboundsCategory
+            categoryName: "Offensive Rebounds"
+            categoryVal: "offensiveRebounds"
+        }
+
+        StatisticCategory {
+            id: defensiveReboundsCategory
+            categoryName: "Defensive Rebounds"
+            categoryVal: "defensiveRebounds"
+        }
+
+
+        StatisticCategory {
+            id: assitsCategory
+            categoryName: "Assists"
+            categoryVal: "assists"
+        }
+
+
+        StatisticCategory {
+            id: blocksCategory
+            categoryName: "Blocks"
+            categoryVal: "blocks"
+        }
+
+
+        StatisticCategory {
+            id: turnoversCategory
+            categoryName: "Turnovers"
+            categoryVal: "turnovers"
+        }
+
     }
 }
 
