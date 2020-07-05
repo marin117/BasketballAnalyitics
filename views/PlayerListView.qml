@@ -8,15 +8,19 @@ import QtQuick.Controls.Material 2.3
 ListView {
     id: playerList
     model: mainModel.getPlayerModel()
-    highlight: Rectangle { color: Material.color(Material.Red); radius: 5 }
+    highlight: Rectangle {
+        color: Material.color(Material.Red)
+        radius: 5
+    }
     objectName: "playerListObject"
 
     signal selectedPlayerChanged(pos: int)
     signal playerDoubleClicked()
+    width: parent.width
     delegate: Component{
         Item {
             //        spacing: 10
-            width: parent.width;
+            width: playerList.width;
             height: 40
             RowLayout{
                 height: 40
