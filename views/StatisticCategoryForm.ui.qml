@@ -9,6 +9,7 @@ Item {
     property alias categoryValueText: categoryValueText
     property alias increaseButton: increaseButton
     property alias decreaseButton: decreaseButton
+    property alias controlRowVisible: controlsRow.visible
 
     property string categoryName: "Category"
     property string categoryVal

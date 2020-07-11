@@ -1,6 +1,7 @@
 #include "mainmodel.h"
 #include "model/player.h"
 #include <QDebug>
+#include "model/playerstatistics.h"
 
 MainModel::MainModel(QObject *parent) : QObject(parent)
 {
@@ -57,6 +58,10 @@ void MainModel::onShotAdded(Shot* shot)
     newShot->y = shot->y;
     newShot->isMiss = shot->isMiss;
     selectedPlayer->addShot(newShot);
+    selectedPlayerStatistics()->setShotsNum(selectedPlayer->getShots()->size());
+    if(!shot->isMiss){
+        selectedPlayerStatistics()->setShotsScored(selectedPlayerStatistics()->getShotsScored() + 1);
+    }
     emit statisticsChanged();
 }
 

@@ -14,6 +14,20 @@ Item {
         }
 
         StatisticCategory {
+            id: shotsNumCategory
+            categoryName: "Shots"
+            categoryVal: "shotsNum"
+            controlRowVisible: false
+        }
+
+        StatisticCategory {
+            id: shotsScoredCategory
+            categoryName: "Shots scored"
+            categoryVal: "shotsScored"
+            controlRowVisible: false
+        }
+
+        StatisticCategory {
             id: stealsCategory
             categoryName: "Steals"
             categoryVal: "steals"
@@ -44,7 +58,6 @@ Item {
             categoryName: "Blocks"
             categoryVal: "blocks"
         }
-
 
         StatisticCategory {
             id: turnoversCategory
