@@ -1,7 +1,7 @@
 import QtQuick 2.4
 
 StatisticCategoryForm {
-
+    implicitWidth: parent.width
     Connections {
         target: increaseButton
         function onClicked() {

@@ -6,6 +6,7 @@ import QtQuick.Controls 2.4 as ButtonControls
 
 Item {
     ColumnLayout {
+        width: parent.width
         StatisticCategory {
             id: pointsCategory
             categoryName: "Points"
