@@ -3,6 +3,8 @@
 
 #include <QObject>
 
+
+class Statistics;
 class Player;
 
 class Team : public QObject
@@ -18,11 +20,15 @@ public:
     QString getName() const;
     void setName(const QString &value);
 
+    Statistics *getStatistics() const;
+    void setStatistics(Statistics *value);
+
 signals:
 
 private:
     QString name;
     QList<Player *> playerList;
+    Statistics *statistics;
 
 };
 

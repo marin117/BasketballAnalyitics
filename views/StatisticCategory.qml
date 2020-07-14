@@ -6,8 +6,10 @@ StatisticCategoryForm {
         target: increaseButton
         function onClicked() {
             mainModel.playerStatistics[categoryVal] += 1;
+            mainModel.teamStatistics[categoryVal] += 1;
             decreaseButton.enabled = true;
             categoryValueText.text = mainModel.playerStatistics[categoryVal];
+            console.log(categoryVal + "   " + mainModel.teamStatistics[categoryVal]);
         }
     }
 
@@ -15,10 +17,12 @@ StatisticCategoryForm {
         target: decreaseButton
         function onClicked(){
             mainModel.playerStatistics[categoryVal] -= 1;
+            mainModel.teamStatistics[categoryVal] -= 1;
             if (mainModel.playerStatistics[categoryVal] <= 0){
                 decreaseButton.enabled = false;
             }
             categoryValueText.text = mainModel.playerStatistics[categoryVal];
+            console.log(categoryVal + "   " + mainModel.teamStatistics[categoryVal]);
         }
     }
 

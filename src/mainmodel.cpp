@@ -62,7 +62,7 @@ void MainModel::onShotAdded(Shot* shot)
     if(!shot->isMiss){
         selectedPlayerStatistics()->setShotsScored(selectedPlayerStatistics()->getShotsScored() + 1);
     }
-    emit statisticsChanged();
+    emit playerStatisticsChanged();
 }
 
 void MainModel::onWidthChanged(const int &width, const int &prevWidth)
@@ -108,7 +108,7 @@ void MainModel::setSelectedPlayer(Player *value)
 
 QQmlListProperty<Shot> MainModel::selectedShots()
 {
-    return QQmlListProperty<Shot>(this, *selectedPlayer->getShots());
+    return QQmlListProperty<Shot>(this, selectedPlayer->getShots());
 }
 
 int MainModel::shotsCount() const
@@ -134,6 +134,11 @@ Shot* MainModel::shotAt(QQmlListProperty<Shot>* list, int i)
 Statistics *MainModel::selectedPlayerStatistics()
 {
     return selectedPlayer->getStatistics();
+}
+
+Statistics *MainModel::selectedTeamStatistics()
+{
+    return teams[selectedTeamIndex]->getStatistics();
 }
 
 
