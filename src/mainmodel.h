@@ -45,7 +45,7 @@ signals:
     void selectedPlayerChanged();
     void refreshList();
     void playerStatisticsChanged();
-    void teamStatisticsChanged();
+    Q_INVOKABLE void teamStatisticsChanged();
 
 private:
     PlayerListModel playerModel;

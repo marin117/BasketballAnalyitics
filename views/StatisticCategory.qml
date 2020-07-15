@@ -14,6 +14,8 @@ StatisticCategoryForm {
             else
                 textValue = mainModel.teamStatistics[categoryVal];
             console.log(categoryVal + "   " + mainModel.teamStatistics[categoryVal]);
+            mainModel.teamStatisticsChanged();
+
         }
     }
 
@@ -28,7 +30,8 @@ StatisticCategoryForm {
             if(!isTeam)
                 textValue = mainModel.playerStatistics[categoryVal];
             else
-                textValue= mainModel.teamStatistics[categoryVal];
+                textValue = mainModel.teamStatistics[categoryVal];
+            mainModel.teamStatisticsChanged();
         }
     }
 
@@ -43,6 +46,14 @@ StatisticCategoryForm {
             }
         }
     }
+
+    Connections {
+        target: mainModel
+        function onTeamStatisticsChanged(){
+            textValue = mainModel.teamStatistics[categoryVal];
+        }
+    }
+
     Binding {
         target: categoryValueText
         property: "text"
