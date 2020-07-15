@@ -50,7 +50,8 @@ StatisticCategoryForm {
     Connections {
         target: mainModel
         function onTeamStatisticsChanged(){
-            textValue = mainModel.teamStatistics[categoryVal];
+            if(isTeam)
+                textValue = mainModel.teamStatistics[categoryVal];
         }
     }
 

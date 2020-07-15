@@ -97,6 +97,8 @@ void MainModel::onSelectedTeamChanged(const int &index)
     playerModel.setPlayerList(teams[index]->getPlayerList());
     if(playerModel.getPlayerList().size())
         setSelectedPlayer(playerModel.getPlayerAt(0));
+    selectedTeamIndex = index;
+    emit teamStatisticsChanged();
     emit refreshList();
 }
 
