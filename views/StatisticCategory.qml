@@ -2,13 +2,17 @@ import QtQuick 2.4
 
 StatisticCategoryForm {
     implicitWidth: parent.width
+    property bool isTeam : false
     Connections {
         target: increaseButton
         function onClicked() {
             mainModel.playerStatistics[categoryVal] += 1;
             mainModel.teamStatistics[categoryVal] += 1;
             decreaseButton.enabled = true;
-            categoryValueText.text = mainModel.playerStatistics[categoryVal];
+            if(!isTeam)
+                textValue = mainModel.playerStatistics[categoryVal];
+            else
+                textValue = mainModel.teamStatistics[categoryVal];
             console.log(categoryVal + "   " + mainModel.teamStatistics[categoryVal]);
         }
     }
@@ -21,20 +25,34 @@ StatisticCategoryForm {
             if (mainModel.playerStatistics[categoryVal] <= 0){
                 decreaseButton.enabled = false;
             }
-            categoryValueText.text = mainModel.playerStatistics[categoryVal];
-            console.log(categoryVal + "   " + mainModel.teamStatistics[categoryVal]);
+            if(!isTeam)
+                textValue = mainModel.playerStatistics[categoryVal];
+            else
+                textValue= mainModel.teamStatistics[categoryVal];
         }
     }
 
     Connections {
         target: mainModel
         function onSelectedPlayerChanged(){
-            categoryValueText.text = mainModel.playerStatistics[categoryVal];
+            if (!isTeam)
+                textValue = mainModel.playerStatistics[categoryVal];
+            else{
+                textValue = mainModel.teamStatistics[categoryVal];
+                console.log(categoryVal + "  " + mainModel.teamStatistics[categoryVal]);
+            }
         }
     }
     Binding {
         target: categoryValueText
         property: "text"
-        value: mainModel.playerStatistics[categoryVal]
+        value: if (!isTeam) mainModel.playerStatistics[categoryVal]
     }
+
+    Binding{
+        target: categoryValueText
+        property: "text"
+        value: if (isTeam) mainModel.teamStatistics[categoryVal]
+    }
+
 }

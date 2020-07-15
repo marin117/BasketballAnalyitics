@@ -13,6 +13,7 @@ Item {
 
     property string categoryName: "Category"
     property string categoryVal
+    property alias textValue: categoryValueText.text
 
     Row {
         id: rowLayout
@@ -37,7 +38,7 @@ Item {
             Text {
                 anchors.horizontalCenter: parent.horizontalCenter
                 id: categoryValueText
-                text: mainModel.playerStatistics[categoryVal]
+                //text: mainModel.playerStatistics[categoryVal]
                 font.pixelSize: 12
             }
         }

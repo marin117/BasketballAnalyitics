@@ -59,9 +59,13 @@ void MainModel::onShotAdded(Shot* shot)
     newShot->isMiss = shot->isMiss;
     selectedPlayer->addShot(newShot);
     selectedPlayerStatistics()->setShotsNum(selectedPlayer->getShots()->size());
+    selectedTeamStatistics()->setShotsNum(selectedTeamStatistics()->getShotsNum() + 1);
     if(!shot->isMiss){
+        selectedTeamStatistics()->setPoints(selectedTeamStatistics()->getPoints() + 2);
         selectedPlayerStatistics()->setShotsScored(selectedPlayerStatistics()->getShotsScored() + 1);
+        selectedTeamStatistics()->setShotsScored(selectedTeamStatistics()->getShotsScored() + 1);
     }
+    emit teamStatisticsChanged();
     emit playerStatisticsChanged();
 }
 

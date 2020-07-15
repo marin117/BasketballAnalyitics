@@ -57,7 +57,8 @@ ApplicationWindow {
 
         }
 
-        Item {
+        TeamStatistics {
+            id: teamStatistics
 
         }
 
