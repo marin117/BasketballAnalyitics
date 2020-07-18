@@ -14,7 +14,7 @@ StatisticCategoryForm {
             else
                 textValue = mainModel.teamStatistics[categoryVal];
             console.log(categoryVal + "   " + mainModel.teamStatistics[categoryVal]);
-            mainModel.teamStatisticsChanged();
+            mainModel.teamStatistics[categoryVal + "Changed"]();
 
         }
     }
@@ -31,7 +31,6 @@ StatisticCategoryForm {
                 textValue = mainModel.playerStatistics[categoryVal];
             else
                 textValue = mainModel.teamStatistics[categoryVal];
-            mainModel.teamStatisticsChanged();
         }
     }
 
@@ -42,7 +41,6 @@ StatisticCategoryForm {
                 textValue = mainModel.playerStatistics[categoryVal];
             else{
                 textValue = mainModel.teamStatistics[categoryVal];
-                console.log(categoryVal + "  " + mainModel.teamStatistics[categoryVal]);
             }
         }
     }

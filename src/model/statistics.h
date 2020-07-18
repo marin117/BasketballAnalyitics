@@ -49,15 +49,15 @@ public:
     void setTurnovers(int value);
 
 signals:
-    void pointsChanged();
-    void shotsScoredChanged();
-    void shotsNumChanged();
-    void offensiveReboundsChanged();
-    void defensiveReboundsChanged();
-    void stealsChanged();
-    void assistsChanged();
-    void blocksChanged();
-    void turnoversChanged();
+    Q_INVOKABLE void pointsChanged();
+    Q_INVOKABLE void shotsScoredChanged();
+    Q_INVOKABLE void shotsNumChanged();
+    Q_INVOKABLE void offensiveReboundsChanged();
+    Q_INVOKABLE void defensiveReboundsChanged();
+    Q_INVOKABLE void stealsChanged();
+    Q_INVOKABLE void assistsChanged();
+    Q_INVOKABLE void blocksChanged();
+    Q_INVOKABLE void turnoversChanged();
 
 protected:
     int points = 0;
