@@ -1,8 +1,9 @@
 #ifndef SHOOTMODEL_H
 #define SHOOTMODEL_H
 #include <QObject>
+#include "basemodel.h"
 
-class Shot : public QObject
+class Shot : public BaseModel
 {
     Q_OBJECT
 
@@ -17,6 +18,11 @@ public:
     bool isThreePoints = false;
     int x;
     int y;
+
+    // BaseModel interface
+public:
+    void readFromJson(const QJsonObject &) override;
+    void writeToJson(QJsonObject &) override;
 };
 
 #endif // SHOOTMODEL_H

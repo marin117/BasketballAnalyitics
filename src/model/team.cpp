@@ -1,7 +1,7 @@
 #include "team.h"
 #include "teamstatistics.h"
 
-Team::Team(QObject *parent) : QObject(parent)
+Team::Team(QObject *parent) : BaseModel(parent)
 {
     statistics = new TeamStatistics(this);
 }
@@ -34,4 +34,13 @@ Statistics *Team::getStatistics() const
 void Team::setStatistics(Statistics *value)
 {
     statistics = value;
+}
+
+
+void Team::readFromJson(const QJsonObject &)
+{
+}
+
+void Team::writeToJson(QJsonObject &)
+{
 }

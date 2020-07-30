@@ -2,8 +2,9 @@
 #define STATISITCS_H
 
 #include <QObject>
+#include "basemodel.h"
 
-class Statistics : public QObject
+class Statistics : public BaseModel
 {
     Q_OBJECT
     Q_PROPERTY(int points READ getPoints WRITE setPoints NOTIFY pointsChanged)
@@ -69,6 +70,11 @@ protected:
     int assists = 0;
     int blocks = 0;
     int turnovers = 0;
+
+    // BaseModel interface
+public:
+    void readFromJson(const QJsonObject &) override;
+    void writeToJson(QJsonObject &) override;
 };
 
 #endif // STATISITCS_H

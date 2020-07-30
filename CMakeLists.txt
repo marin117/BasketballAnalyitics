@@ -46,6 +46,7 @@ set(SOURCE_FILES
     src/model/playerstatistics.h
     src/model/teamstatistics.cpp
     src/model/teamstatistics.h
+    src/model/basemodel.h
     )
 
 if(ANDROID)

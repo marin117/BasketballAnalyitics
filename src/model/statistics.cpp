@@ -1,6 +1,6 @@
 #include "statistics.h"
 
-Statistics::Statistics(QObject *parent) : QObject(parent)
+Statistics::Statistics(QObject *parent) : BaseModel(parent)
 {
 
 }
@@ -93,4 +93,13 @@ int Statistics::getTurnovers() const
 void Statistics::setTurnovers(int value)
 {
     turnovers = value;
+}
+
+
+void Statistics::readFromJson(const QJsonObject &)
+{
+}
+
+void Statistics::writeToJson(QJsonObject &)
+{
 }

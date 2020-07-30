@@ -1,13 +1,13 @@
 #include "player.h"
 #include "playerstatistics.h"
 
-Player::Player(QObject *parent) : QObject(parent)
+Player::Player(QObject *parent) : BaseModel(parent)
 {
     statistics = new PlayerStatistics(this);
 }
 
 Player::Player(const QString &name, const QString &surname,const int &number, QObject *parent) :
-    name(name), surname(surname), number(number), QObject(parent)
+    name(name), surname(surname), number(number), BaseModel(parent)
 {
     statistics = new PlayerStatistics(this);
 }
@@ -68,4 +68,13 @@ void Player::addShot(Shot *shot)
     shots.push_back(shot);
     if (!shot->isMiss)
         statistics->setPoints(statistics->getPoints() + 2);
+}
+
+
+void Player::readFromJson(const QJsonObject &)
+{
+}
+
+void Player::writeToJson(QJsonObject &)
+{
 }

@@ -4,10 +4,11 @@
 #include <vector>
 #include "shot.h"
 #include <QObject>
+#include "basemodel.h"
 
 class Statistics;
 
-class Player : public QObject
+class Player : public BaseModel
 {
     Q_OBJECT
 public:
@@ -40,6 +41,11 @@ private:
     QList<Shot *> shots;
     Statistics *statistics;
 
+
+    // BaseModel interface
+public:
+    void readFromJson(const QJsonObject &) override;
+    void writeToJson(QJsonObject &) override;
 };
 
 #endif // PLAYER_H
