@@ -74,8 +74,8 @@ void MainModel::onWidthChanged(const int &width, const int &prevWidth)
     for(auto team : teams){
         for(auto player : team->getPlayerList()){
             for(int i = 0; i < player->getShots()->size(); i++){
-                int newX = player->getShots()->at(i)->getX() * width / prevWidth;
-                player->getShots()->at(i)->setX(newX);
+                int newX = player->getShots()->at(i)->x * width / prevWidth;
+                player->getShots()->at(i)->x = newX;
             }
         }
     }
@@ -85,8 +85,8 @@ void MainModel::onHeightChanged(const int& height, const int& prevHeight){
     for(auto team : teams){
         for(auto player : team->getPlayerList()){
             for(int i = 0; i < player->getShots()->size(); i++){
-                int newY = player->getShots()->at(i)->getY() * height / prevHeight;
-                player->getShots()->at(i)->setY(newY);
+                int newY = player->getShots()->at(i)->y * height / prevHeight;
+                player->getShots()->at(i)->y = newY;
             }
         }
     }
