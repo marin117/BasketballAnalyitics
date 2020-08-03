@@ -100,6 +100,15 @@ void Statistics::readFromJson(const QJsonObject &)
 {
 }
 
-void Statistics::writeToJson(QJsonObject &)
+void Statistics::writeToJson(QJsonObject &json)
 {
+    json["points"] = points;
+    json["shotsScored"] = shotsScored;
+    json["shotsNum"] = shotsNum;
+    json["offensiveRebounds"] = offensiveRebounds;
+    json["defensiveRebounds"] = defensiveRebounds;
+    json["steals"] = steals;
+    json["assists"] = assists;
+    json["blocks"] = blocks;
+    json["turnovers"] = turnovers;
 }

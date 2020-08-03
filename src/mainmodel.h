@@ -33,6 +33,8 @@ public:
     Statistics *selectedPlayerStatistics();
     Statistics *selectedTeamStatistics();
 
+    Q_INVOKABLE void exportTeams();
+
 
 public slots:
     void onSelectedPlayerChanged(const int& pos);

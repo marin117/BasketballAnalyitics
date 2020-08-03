@@ -1,6 +1,7 @@
 #include "mainmodel.h"
 #include "model/player.h"
 #include <QDebug>
+#include <QJsonArray>
 #include "model/playerstatistics.h"
 
 MainModel::MainModel(QObject *parent) : QObject(parent)
@@ -145,6 +146,20 @@ Statistics *MainModel::selectedPlayerStatistics()
 Statistics *MainModel::selectedTeamStatistics()
 {
     return teams[selectedTeamIndex]->getStatistics();
+}
+
+void MainModel::exportTeams()
+{
+    QJsonObject json;
+    QJsonArray teamsArray;
+    for(auto team : teams){
+        QJsonObject teamJson;
+        team->writeToJson(teamJson);
+        teamsArray.append(teamJson);
+
+    }
+    json["teams"] = teamsArray;
+    qDebug() << json;
 }
 
 

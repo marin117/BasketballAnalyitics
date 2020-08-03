@@ -1,5 +1,6 @@
 #include "player.h"
 #include "playerstatistics.h"
+#include <QJsonArray>
 
 Player::Player(QObject *parent) : BaseModel(parent)
 {
@@ -75,6 +76,21 @@ void Player::readFromJson(const QJsonObject &)
 {
 }
 
-void Player::writeToJson(QJsonObject &)
+void Player::writeToJson(QJsonObject &json)
 {
+    json["name"] = name;
+    json["surname"] = surname;
+    json["number"] = number;
+
+    QJsonObject statisticsJson;
+    statistics->writeToJson(statisticsJson);
+    json["statistics"] = statisticsJson;
+
+    QJsonArray shotsArray;
+    for(auto shot : shots){
+        QJsonObject shotJson;
+        shot->writeToJson(shotJson);
+        shotsArray.append(shotJson);
+    }
+    json["shots"] = shotsArray;
 }

@@ -86,6 +86,7 @@ ApplicationWindow {
         radius: 10
         onClicked: {
             console.log("Button for teams handling");
+            mainModel.exportTeams();
         }
     }
 

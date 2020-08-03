@@ -1,5 +1,7 @@
 #include "team.h"
 #include "teamstatistics.h"
+#include <QJsonArray>
+#include "player.h"
 
 Team::Team(QObject *parent) : BaseModel(parent)
 {
@@ -41,6 +43,14 @@ void Team::readFromJson(const QJsonObject &)
 {
 }
 
-void Team::writeToJson(QJsonObject &)
+void Team::writeToJson(QJsonObject &json)
 {
+    QJsonArray playersArray;
+
+    for(auto player : playerList){
+        QJsonObject playerJson;
+        player->writeToJson(playerJson);
+        playersArray.append(playerJson);
+    }
+    json["players"] = playersArray;
 }

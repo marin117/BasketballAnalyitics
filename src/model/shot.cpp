@@ -12,10 +12,15 @@ Shot::Shot(const bool &isMiss, const bool &isContested, const bool &isThreePoint
 }
 
 
-void Shot::readFromJson(const QJsonObject &)
+void Shot::readFromJson(const QJsonObject &json)
 {
 }
 
-void Shot::writeToJson(QJsonObject &)
+void Shot::writeToJson(QJsonObject &json)
 {
+    json["x"] = x;
+    json["y"] = y;
+    json["isContested"] = isContested;
+    json["isMiss"] = isMiss;
+    json["isThreePoints"] = isThreePoints;
 }
