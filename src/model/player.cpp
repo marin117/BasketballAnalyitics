@@ -72,8 +72,25 @@ void Player::addShot(Shot *shot)
 }
 
 
-void Player::readFromJson(const QJsonObject &)
+void Player::readFromJson(const QJsonObject &json)
 {
+    if(json.contains("name") && json["name"].isString())
+        name = json["name"].toString();
+    if(json.contains("surname") && json["surname"].isString())
+        surname = json["surname"].toString();
+    if(json.contains("number") && json["number"].isDouble())
+        number = json["number"].toInt();
+
+    if(json.contains("shots") && json["shots"].isArray()){
+        QJsonArray shotsArray = json["shots"].toArray();
+        shots.reserve(shotsArray.size());
+        for(int i = 0; i < shotsArray.size(); i++){
+            QJsonObject shot = shotsArray[i].toObject();
+            auto s = new Shot(this);
+            s->readFromJson(shot);
+            shots.append(s);
+        }
+    }
 }
 
 void Player::writeToJson(QJsonObject &json)

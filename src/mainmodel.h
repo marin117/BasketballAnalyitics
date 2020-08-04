@@ -34,6 +34,7 @@ public:
     Statistics *selectedTeamStatistics();
 
     Q_INVOKABLE void exportTeams();
+    Q_INVOKABLE void importTeams();
 
 
 public slots:
@@ -52,7 +53,7 @@ signals:
 private:
     PlayerListModel playerModel;
     Player *selectedPlayer = nullptr;
-    Team* teams[2];
+    Team* teams[2] = {nullptr, nullptr};
     int selectedTeamIndex = 0;
 
 };

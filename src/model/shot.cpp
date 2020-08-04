@@ -14,6 +14,21 @@ Shot::Shot(const bool &isMiss, const bool &isContested, const bool &isThreePoint
 
 void Shot::readFromJson(const QJsonObject &json)
 {
+    if (json.contains("x") && json["x"].isDouble()){
+        x = json["x"].toInt();
+    }
+    if (json.contains("y") && json["y"].isDouble()){
+        y = json["y"].toInt();
+    }
+    if (json.contains("isContested") && json["isContested"].isBool()){
+        isContested = json["isContested"].toBool();
+    }
+    if (json.contains("isMiss") && json["isMiss"].isBool()){
+        isMiss = json["isMiss"].toBool();
+    }
+    if (json.contains("isThreePoints") && json["isThreePoints"].isBool()){
+        isThreePoints = json["isThreePoints"].toBool();
+    }
 }
 
 void Shot::writeToJson(QJsonObject &json)

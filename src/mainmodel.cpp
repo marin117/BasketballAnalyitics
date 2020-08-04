@@ -1,30 +1,32 @@
 #include "mainmodel.h"
 #include "model/player.h"
 #include <QDebug>
+#include <QFile>
 #include <QJsonArray>
+#include <QJsonDocument>
 #include "model/playerstatistics.h"
 
 MainModel::MainModel(QObject *parent) : QObject(parent)
 {
-    teams[0] = new Team();
-    teams[1] = new Team();
+//    teams[0] = new Team();
+//    teams[1] = new Team();
 
-    QList<Player *> playerList;
-    playerList.append(new Player("Ivo", "Ivic", 15, teams[0]));
-    playerList.append(new Player("Marko", "Markic", 11, teams[0]));
-    playerList.append(new Player("Jure", "Juric", 13, teams[0]));
-    playerList.append(new Player("Fran", "Jovic", 12, teams[0]));
+//    QList<Player *> playerList;
+//    playerList.append(new Player("Ivo", "Ivic", 15, teams[0]));
+//    playerList.append(new Player("Marko", "Markic", 11, teams[0]));
+//    playerList.append(new Player("Jure", "Juric", 13, teams[0]));
+//    playerList.append(new Player("Fran", "Jovic", 12, teams[0]));
 
-    teams[0]->setPlayerList(playerList);
+//    teams[0]->setPlayerList(playerList);
 
-    QList<Player *> playerList2;
-    playerList2.append(new Player("Sandro", "Sandric", 4, teams[1]));
+//    QList<Player *> playerList2;
+//    playerList2.append(new Player("Sandro", "Sandric", 4, teams[1]));
 
-    teams[1]->setPlayerList(playerList2);
+//    teams[1]->setPlayerList(playerList2);
 
-    playerModel.setPlayerList(teams[0]->getPlayerList());
-    if(playerModel.getPlayerList().size())
-        setSelectedPlayer(playerModel.getPlayerAt(0));
+//    playerModel.setPlayerList(teams[0]->getPlayerList());
+//    if(playerModel.getPlayerList().size())
+//        setSelectedPlayer(playerModel.getPlayerAt(0));
 
     connect(this, SIGNAL(refreshList()), &playerModel, SLOT(onRefresh()));
 }
@@ -140,12 +142,16 @@ Shot* MainModel::shotAt(QQmlListProperty<Shot>* list, int i)
 
 Statistics *MainModel::selectedPlayerStatistics()
 {
-    return selectedPlayer->getStatistics();
+    if(selectedPlayer)
+        return selectedPlayer->getStatistics();
+    return new Statistics(this);
 }
 
 Statistics *MainModel::selectedTeamStatistics()
 {
-    return teams[selectedTeamIndex]->getStatistics();
+    if(teams[selectedTeamIndex])
+        return teams[selectedTeamIndex]->getStatistics();
+    return new Statistics(this);
 }
 
 void MainModel::exportTeams()
@@ -160,6 +166,42 @@ void MainModel::exportTeams()
     }
     json["teams"] = teamsArray;
     qDebug() << json;
+    QFile saveFile(QStringLiteral("save.json"));
+
+    if (!saveFile.open(QIODevice::WriteOnly)) {
+        qWarning("Couldn't open save file.");
+        return;
+    }
+
+    saveFile.write(QJsonDocument(json).toJson());
+}
+
+void MainModel::importTeams()
+{
+    QFile loadFile(QStringLiteral("save.json"));
+
+    if (!loadFile.open(QIODevice::ReadOnly)) {
+        qWarning("Couldn't open save file.");
+        return;
+    }
+
+    QByteArray saveData = loadFile.readAll();
+
+    QJsonDocument loadDoc(QJsonDocument::fromJson(saveData));
+    QJsonObject loadObj = loadDoc.object();
+
+    QJsonArray teamsArray = loadObj["teams"].toArray();
+
+    for(int i = 0; i < teamsArray.size(); i++){
+        QJsonObject teamJson = teamsArray[i].toObject();
+        teams[i] = new Team(this);
+        teams[i]->readFromJson(teamJson);
+    }
+    playerModel.setPlayerList(teams[0]->getPlayerList());
+
+    refreshList();
+    if(playerModel.getPlayerList().size())
+        setSelectedPlayer(playerModel.getPlayerAt(0));
 }
 
 
