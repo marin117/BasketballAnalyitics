@@ -86,6 +86,7 @@ ApplicationWindow {
         anchors.bottom: parent.bottom
         radius: 10
         onClicked: {
+
             menuImportExport.open();
         }
 

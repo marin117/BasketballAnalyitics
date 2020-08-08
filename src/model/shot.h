@@ -8,6 +8,8 @@ class Shot : public BaseModel
     Q_OBJECT
 
     Q_PROPERTY(bool isMiss MEMBER isMiss)
+    Q_PROPERTY(bool isContested MEMBER isContested)
+    Q_PROPERTY(bool isThreePoints MEMBER isThreePoints)
     Q_PROPERTY(int x MEMBER x)
     Q_PROPERTY(int y MEMBER y)
 public:
