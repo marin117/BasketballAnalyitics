@@ -202,6 +202,8 @@ void MainModel::importTeams()
     refreshList();
     if(playerModel.getPlayerList().size())
         setSelectedPlayer(playerModel.getPlayerAt(0));
+
+    onSelectedPlayerChanged(0);
 }
 
 

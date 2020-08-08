@@ -80,15 +80,34 @@ ApplicationWindow {
     }
 
     ButtonControls.RoundButton{
+        id: menuButton
         text: "+"
-        anchors.right : parent.right
+        anchors.left: parent.left
         anchors.bottom: parent.bottom
         radius: 10
         onClicked: {
-            console.log("Button for teams handling");
-            mainModel.importTeams();
+            menuImportExport.open();
+        }
+
+        Menu {
+            id: menuImportExport
+            title: "File"
+            MenuItem {
+                text: "Import"
+                onTriggered: {
+                    mainModel.importTeams();
+                    playerListView.setToFirst();
+                    selectedTeamChanged(0);
+                }
+            }
+            MenuItem {
+                text: "Export"
+                onTriggered: mainModel.exportTeams();
+            }
         }
     }
+
+
 
     function changeTeam(pos){
         headerTab.setCurrentIndex(pos);
