@@ -7,8 +7,8 @@ Player::Player(QObject *parent) : BaseModel(parent)
     statistics = new PlayerStatistics(this);
 }
 
-Player::Player(const QString &name, const QString &surname,const int &number, QObject *parent) :
-    name(name), surname(surname), number(number), BaseModel(parent)
+Player::Player(const QString &name, const QString &surname,const int &number, QObject *parent) : BaseModel(parent),
+    name(name), surname(surname), number(number)
 {
     statistics = new PlayerStatistics(this);
 }
@@ -67,8 +67,12 @@ void Player::setStatistics(Statistics *value)
 void Player::addShot(Shot *shot)
 {
     shots.push_back(shot);
-    if (!shot->isMiss)
-        statistics->setPoints(statistics->getPoints() + 2);
+    if (!shot->isMiss){
+        if(!shot->isThreePoints)
+            statistics->setPoints(statistics->getPoints() + 2);
+        else
+            statistics->setPoints(statistics->getPoints() + 3);
+    }
 }
 
 

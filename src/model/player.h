@@ -12,8 +12,8 @@ class Player : public BaseModel
 {
     Q_OBJECT
 public:
-    Player(QObject *parent = nullptr);
-    Player(const QString &name, const QString &surname,const int &number, QObject *parent = nullptr);
+    explicit Player(QObject *parent = nullptr);
+    explicit Player(const QString &name, const QString &surname,const int &number, QObject *parent = nullptr);
     Q_INVOKABLE QString getName() const;
     void setName(const QString &value);
 
@@ -23,10 +23,7 @@ public:
     int getNumber() const;
     void setNumber(int value);
 
-//    const QList<Shot>& getShots() const;
-//    void setShots(const QList<Shot> &value);
     void addShot(Shot* shot);
-//    void undoShot();
 
     QList<Shot *>* getShots();
     void setShots(const QList<Shot *> &value);

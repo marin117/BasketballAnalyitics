@@ -18,6 +18,18 @@ Item {
         x: 0
         y: 0
         isMiss: false
+        isOffhand : false
+        isOffTheDribble : false
+        isCatchAndShoot : false
+        isPickAndRoll : false
+        isPickAndPop : false
+        isPost : false
+        isMismatch : false
+        isIso : false
+        isLayup : false
+        isFaul : false
+        isTransition : false
+        isThreePoints: false
     }
 
     Canvas {
@@ -74,7 +86,7 @@ Item {
                     shotDlgLoader.item.accepted.connect(function(){
                         newShot.x = mouseX * imageScaleX / width;
                         newShot.y = mouseY * imageScaleY /height;
-                        newShot.isMiss = shotDlgLoader.item.isMiss;
+                        shotProperties();
                         shotAdded(newShot);
                         basketballCourtCanvas.requestPaint();
                     });
@@ -95,6 +107,23 @@ Item {
         //x: (parent.width - width) / 2
         y: parent.height / 2
 
+    }
+
+    function shotProperties() {
+        newShot.isMiss = shotDlgLoader.item.isMiss;
+        newShot.isThreePoints = shotDlgLoader.item.isThree;
+        newShot.isContested = shotDlgLoader.item.isContested;
+        newShot.isOffhand = shotDlgLoader.item.isOffhand;
+        newShot.isOffTheDribble = shotDlgLoader.item.isOffTheDribble;
+        newShot.isCatchAndShoot = shotDlgLoader.item.isCatchAndShoot;
+        newShot.isPickAndRoll = shotDlgLoader.item.isPickAndRoll;
+        newShot.isPickAndPop = shotDlgLoader.item.isPickAndPop;
+        newShot.isPost = shotDlgLoader.item.isPost;
+        newShot.isMismatch = shotDlgLoader.item.isMismatch;
+        newShot.isIso = shotDlgLoader.item.isIso;
+        newShot.isLayup = shotDlgLoader.item.isLayup;
+        newShot.isFaul = shotDlgLoader.item.isFaul;
+        newShot.isTransition = shotDlgLoader.item.isTransition;
     }
 }
 

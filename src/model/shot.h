@@ -10,16 +10,38 @@ class Shot : public BaseModel
     Q_PROPERTY(bool isMiss MEMBER isMiss)
     Q_PROPERTY(bool isContested MEMBER isContested)
     Q_PROPERTY(bool isThreePoints MEMBER isThreePoints)
+    Q_PROPERTY(bool isOffhand MEMBER isOffhand)
+    Q_PROPERTY(bool isOffTheDribble MEMBER isOffTheDribble)
+    Q_PROPERTY(bool isCatchAndShoot MEMBER isCatchAndShoot)
+    Q_PROPERTY(bool isPickAndRoll MEMBER isPickAndRoll)
+    Q_PROPERTY(bool isPickAndPop MEMBER isPickAndPop)
+    Q_PROPERTY(bool isPost MEMBER isPost)
+    Q_PROPERTY(bool isMismatch MEMBER isMismatch)
+    Q_PROPERTY(bool isIso MEMBER isIso)
+    Q_PROPERTY(bool isLayup MEMBER isLayup)
+    Q_PROPERTY(bool isFaul MEMBER isFaul)
+    Q_PROPERTY(bool isTransition MEMBER isTransition)
+
     Q_PROPERTY(int x MEMBER x)
     Q_PROPERTY(int y MEMBER y)
 public:
-    Shot(QObject *parent = nullptr);
-    Shot(const bool& isMiss, const bool& isContested, const bool& isThreePoints, const int& x, const int& y, QObject *parent = nullptr);
+    explicit Shot(QObject *parent = nullptr);
     bool isMiss = false;
     bool isContested = false;
     bool isThreePoints = false;
     int x;
     int y;
+    bool isOffhand = false;
+    bool isOffTheDribble = false;
+    bool isCatchAndShoot = false;
+    bool isPickAndRoll = false;
+    bool isPickAndPop = false;
+    bool isPost = false;
+    bool isMismatch = false;
+    bool isIso = false;
+    bool isLayup = false;
+    bool isFaul = false;
+    bool isTransition = false;
 
     // BaseModel interface
 public:

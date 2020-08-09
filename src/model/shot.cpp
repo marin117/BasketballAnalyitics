@@ -5,13 +5,6 @@ Shot::Shot(QObject *parent) : BaseModel(parent)
 
 }
 
-Shot::Shot(const bool &isMiss, const bool &isContested, const bool &isThreePoints, const int& x, const int& y, QObject *parent) :
-    isMiss(isMiss), isContested(isContested), isThreePoints(isThreePoints), x(x), y(y), BaseModel(parent)
-{
-
-}
-
-
 void Shot::readFromJson(const QJsonObject &json)
 {
     if (json.contains("x") && json["x"].isDouble()){
@@ -29,6 +22,40 @@ void Shot::readFromJson(const QJsonObject &json)
     if (json.contains("isThreePoints") && json["isThreePoints"].isBool()){
         isThreePoints = json["isThreePoints"].toBool();
     }
+
+    if (json.contains("isOffhand") && json["isOffhand"].isBool()) {
+        isOffhand = json["isOffhand"].toBool();
+    }
+    if (json.contains("isOffTheDribble") && json["isOffTheDribble"].isBool()) {
+        isOffTheDribble = json["isOffTheDribble"].toBool();
+    }
+    if (json.contains("isCatchAndShoot") && json["isCatchAndShoot"].isBool()) {
+        isCatchAndShoot = json["isCatchAndShoot"].toBool();
+    }
+    if (json.contains("isPickAndRoll") && json["isPickAndRoll"].isBool()) {
+        isPickAndRoll = json["isPickAndRoll"].toBool();
+    }
+    if (json.contains("isPickAndPop") && json["isPickAndPop"].isBool()) {
+        isPickAndPop = json["isPickAndPop"].toBool();
+    }
+    if (json.contains("isPost") && json["isPost"].isBool()) {
+        isPost = json["isPost"].toBool();
+    }
+    if (json.contains("isMismatch") && json["isMismatch"].isBool()) {
+        isMismatch = json["isMismatch"].toBool();
+    }
+    if (json.contains("isIso") && json["isIso"].isBool()) {
+        isIso = json["isIso"].toBool();
+    }
+    if (json.contains("isLayup") && json["isLayup"].isBool()) {
+        isLayup = json["isLayup"].toBool();
+    }
+    if (json.contains("isFaul") && json["isFaul"].isBool()) {
+        isFaul = json["isFaul"].toBool();
+    }
+    if (json.contains("isTransition") && json["isTransition"].isBool()) {
+        isTransition = json["isTransition"].toBool();
+    }
 }
 
 void Shot::writeToJson(QJsonObject &json)
@@ -38,4 +65,15 @@ void Shot::writeToJson(QJsonObject &json)
     json["isContested"] = isContested;
     json["isMiss"] = isMiss;
     json["isThreePoints"] = isThreePoints;
+    json["isOffhand"] = isOffhand;
+    json["isOffTheDribble"] = isOffTheDribble;
+    json["isCatchAndShoot"] = isCatchAndShoot;
+    json["isPickAndRoll"] = isPickAndRoll;
+    json["isPickAndPop"] = isPickAndPop;
+    json["isPost"] = isPost;
+    json["isMismatch"] = isMismatch;
+    json["isIso"] = isIso;
+    json["isLayup"] = isLayup;
+    json["isFaul"] = isFaul;
+    json["isTransition"] = isTransition;
 }

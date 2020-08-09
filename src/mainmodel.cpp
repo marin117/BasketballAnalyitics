@@ -8,26 +8,6 @@
 
 MainModel::MainModel(QObject *parent) : QObject(parent)
 {
-//    teams[0] = new Team();
-//    teams[1] = new Team();
-
-//    QList<Player *> playerList;
-//    playerList.append(new Player("Ivo", "Ivic", 15, teams[0]));
-//    playerList.append(new Player("Marko", "Markic", 11, teams[0]));
-//    playerList.append(new Player("Jure", "Juric", 13, teams[0]));
-//    playerList.append(new Player("Fran", "Jovic", 12, teams[0]));
-
-//    teams[0]->setPlayerList(playerList);
-
-//    QList<Player *> playerList2;
-//    playerList2.append(new Player("Sandro", "Sandric", 4, teams[1]));
-
-//    teams[1]->setPlayerList(playerList2);
-
-//    playerModel.setPlayerList(teams[0]->getPlayerList());
-//    if(playerModel.getPlayerList().size())
-//        setSelectedPlayer(playerModel.getPlayerAt(0));
-
     connect(this, SIGNAL(refreshList()), &playerModel, SLOT(onRefresh()));
 }
 
@@ -57,19 +37,43 @@ void MainModel::onSelectedPlayerChanged(const int &pos)
 void MainModel::onShotAdded(Shot* shot)
 {
     Shot* newShot = new Shot();
-    newShot->x = shot->x;
-    newShot->y = shot->y;
-    newShot->isMiss = shot->isMiss;
+
+    copyShot(newShot, shot);
     selectedPlayer->addShot(newShot);
+
     selectedPlayerStatistics()->setShotsNum(selectedPlayer->getShots()->size());
     selectedTeamStatistics()->setShotsNum(selectedTeamStatistics()->getShotsNum() + 1);
+
     if(!shot->isMiss){
-        selectedTeamStatistics()->setPoints(selectedTeamStatistics()->getPoints() + 2);
+        if(!shot->isThreePoints)
+            selectedTeamStatistics()->setPoints(selectedTeamStatistics()->getPoints() + 2);
+        else
+            selectedTeamStatistics()->setPoints(selectedTeamStatistics()->getPoints() + 3);
         selectedPlayerStatistics()->setShotsScored(selectedPlayerStatistics()->getShotsScored() + 1);
         selectedTeamStatistics()->setShotsScored(selectedTeamStatistics()->getShotsScored() + 1);
     }
     emit teamStatisticsChanged();
     emit playerStatisticsChanged();
+}
+
+void MainModel::copyShot(Shot *newShot, Shot *shot){
+    newShot->x = shot->x;
+    newShot->y = shot->y;
+
+    newShot->isMiss = shot->isMiss;
+    newShot->isOffhand = shot->isOffhand;
+    newShot->isOffTheDribble = shot->isOffTheDribble;
+    newShot->isCatchAndShoot = shot->isCatchAndShoot;
+    newShot->isPickAndRoll = shot->isPickAndRoll;
+    newShot->isPickAndPop = shot->isPickAndPop;
+    newShot->isPost = shot->isPost;
+    newShot->isMismatch = shot->isMismatch;
+    newShot->isIso = shot->isIso;
+    newShot->isLayup = shot->isLayup;
+    newShot->isFaul = shot->isFaul;
+    newShot->isTransition = shot->isTransition;
+    newShot->isThreePoints = shot->isThreePoints;
+    newShot->isContested = shot->isContested;
 }
 
 void MainModel::onWidthChanged(const int &width, const int &prevWidth)

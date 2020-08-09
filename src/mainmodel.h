@@ -51,6 +51,8 @@ signals:
     Q_INVOKABLE void teamStatisticsChanged();
 
 private:
+    void copyShot(Shot *newShot, Shot *shot);
+
     PlayerListModel playerModel;
     Player *selectedPlayer = nullptr;
     Team* teams[2] = {nullptr, nullptr};
