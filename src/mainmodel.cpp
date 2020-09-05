@@ -8,12 +8,13 @@
 
 MainModel::MainModel(QObject *parent) : QObject(parent)
 {
-    connect(this, SIGNAL(refreshList()), &playerModel, SLOT(onRefresh()));
+    playerModel = new PlayerListModel(this);
+    connect(this, SIGNAL(refreshList()), playerModel, SLOT(onRefresh()));
 }
 
 PlayerListModel* MainModel::getPlayerModel()
 {
-    return &playerModel;
+    return playerModel;
 }
 
 
@@ -29,7 +30,7 @@ QList<Shot *> MainModel::getSelectedPlayerShots()
 
 void MainModel::onSelectedPlayerChanged(const int &pos)
 {
-    setSelectedPlayer(playerModel.getPlayerAt(pos));
+    setSelectedPlayer(playerModel->getPlayerAt(pos));
     qDebug() << selectedPlayer->getName();
     emit selectedPlayerChanged();
 }
@@ -101,9 +102,9 @@ void MainModel::onHeightChanged(const int& height, const int& prevHeight){
 
 void MainModel::onSelectedTeamChanged(const int &index)
 {
-    playerModel.setPlayerList(teams[index]->getPlayerList());
-    if(playerModel.getPlayerList().size())
-        setSelectedPlayer(playerModel.getPlayerAt(0));
+    playerModel->setPlayerList(teams[index]->getPlayerList());
+    if(playerModel->getPlayerList().size())
+        setSelectedPlayer(playerModel->getPlayerAt(0));
     selectedTeamIndex = index;
     emit teamStatisticsChanged();
     emit refreshList();
@@ -201,11 +202,11 @@ void MainModel::importTeams()
         teams[i] = new Team(this);
         teams[i]->readFromJson(teamJson);
     }
-    playerModel.setPlayerList(teams[0]->getPlayerList());
+    playerModel->setPlayerList(teams[0]->getPlayerList());
 
     refreshList();
-    if(playerModel.getPlayerList().size())
-        setSelectedPlayer(playerModel.getPlayerAt(0));
+    if(playerModel->getPlayerList().size())
+        setSelectedPlayer(playerModel->getPlayerAt(0));
 
     onSelectedPlayerChanged(0);
 }

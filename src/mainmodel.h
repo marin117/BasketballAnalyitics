@@ -53,7 +53,7 @@ signals:
 private:
     void copyShot(Shot *newShot, Shot *shot);
 
-    PlayerListModel playerModel;
+    PlayerListModel *playerModel;
     Player *selectedPlayer = nullptr;
     Team* teams[2] = {nullptr, nullptr};
     int selectedTeamIndex = 0;
