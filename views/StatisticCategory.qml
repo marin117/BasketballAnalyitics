@@ -14,8 +14,6 @@ StatisticCategoryForm {
             else
                 textValue = mainModel.teamStatistics[categoryVal];
             console.log(categoryVal + "   " + mainModel.teamStatistics[categoryVal]);
-            mainModel.teamStatistics[categoryVal + "Changed"]();
-
         }
     }
 

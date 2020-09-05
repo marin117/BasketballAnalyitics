@@ -13,6 +13,7 @@ int Statistics::getPoints() const
 void Statistics::setPoints(int value)
 {
     points = value;
+    emit pointsChanged();
 }
 
 int Statistics::getShotsScored() const
@@ -23,6 +24,7 @@ int Statistics::getShotsScored() const
 void Statistics::setShotsScored(int value)
 {
     shotsScored = value;
+    emit shotsScoredChanged();
 }
 
 int Statistics::getShotsNum() const
@@ -33,6 +35,7 @@ int Statistics::getShotsNum() const
 void Statistics::setShotsNum(int value)
 {
     shotsNum = value;
+    emit shotsNumChanged();
 }
 
 int Statistics::getOffensiveRebounds() const
@@ -43,6 +46,7 @@ int Statistics::getOffensiveRebounds() const
 void Statistics::setOffensiveRebounds(int value)
 {
     offensiveRebounds = value;
+    emit offensiveReboundsChanged();
 }
 
 int Statistics::getDefensiveRebounds() const
@@ -53,6 +57,7 @@ int Statistics::getDefensiveRebounds() const
 void Statistics::setDefensiveRebounds(int value)
 {
     defensiveRebounds = value;
+    emit defensiveReboundsChanged();
 }
 
 int Statistics::getSteals() const
@@ -63,6 +68,7 @@ int Statistics::getSteals() const
 void Statistics::setSteals(int value)
 {
     steals = value;
+    emit stealsChanged();
 }
 
 int Statistics::getAssists() const
@@ -73,6 +79,7 @@ int Statistics::getAssists() const
 void Statistics::setAssists(int value)
 {
     assists = value;
+    emit assistsChanged();
 }
 
 int Statistics::getBlocks() const
@@ -83,6 +90,7 @@ int Statistics::getBlocks() const
 void Statistics::setBlocks(int value)
 {
     blocks = value;
+    emit blocksChanged();
 }
 
 int Statistics::getTurnovers() const
@@ -93,6 +101,31 @@ int Statistics::getTurnovers() const
 void Statistics::setTurnovers(int value)
 {
     turnovers = value;
+    emit turnoversChanged();
+}
+
+int Statistics::getFreeThrowsMade() const
+{
+    return freeThrowsMade;
+}
+
+void Statistics::setFreeThrowsMade(int value)
+{
+    freeThrowsMade = value;
+    setFreeThrows(freeThrows + 1);
+    setPoints(points + 1);
+    emit freeThrowsMadeChanged();
+}
+
+int Statistics::getFreeThrows() const
+{
+    return freeThrows;
+}
+
+void Statistics::setFreeThrows(int value)
+{
+    freeThrows = value;
+    emit freeThrowsChanged();
 }
 
 

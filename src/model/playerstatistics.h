@@ -5,8 +5,10 @@
 
 class PlayerStatistics : public Statistics
 {
+    Q_OBJECT
 public:
     explicit PlayerStatistics(QObject *parent = nullptr);
+
 };
 
 #endif // PLAYERSTATISTICS_H

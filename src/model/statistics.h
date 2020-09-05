@@ -16,6 +16,8 @@ class Statistics : public BaseModel
     Q_PROPERTY(int assists READ getAssists WRITE setAssists NOTIFY assistsChanged)
     Q_PROPERTY(int blocks READ getBlocks WRITE setBlocks NOTIFY blocksChanged)
     Q_PROPERTY(int turnovers READ getTurnovers WRITE setTurnovers NOTIFY turnoversChanged)
+    Q_PROPERTY(int freeThrows READ getFreeThrows WRITE setFreeThrows NOTIFY freeThrowsChanged)
+    Q_PROPERTY(int freeThrowsMade READ getFreeThrowsMade WRITE setFreeThrowsMade NOTIFY freeThrowsMadeChanged)
 
 public:
     explicit Statistics(QObject *parent = nullptr);
@@ -49,6 +51,16 @@ public:
     int getTurnovers() const;
     void setTurnovers(int value);
 
+    int getFreeThrows() const;
+    void setFreeThrows(int value);
+
+    int getFreeThrowsMade() const;
+    void setFreeThrowsMade(int value);
+
+
+    void readFromJson(const QJsonObject &) override;
+    void writeToJson(QJsonObject &) override;
+
 signals:
     Q_INVOKABLE void pointsChanged();
     Q_INVOKABLE void shotsScoredChanged();
@@ -59,6 +71,8 @@ signals:
     Q_INVOKABLE void assistsChanged();
     Q_INVOKABLE void blocksChanged();
     Q_INVOKABLE void turnoversChanged();
+    Q_INVOKABLE void freeThrowsChanged();
+    Q_INVOKABLE void freeThrowsMadeChanged();
 
 protected:
     int points = 0;
@@ -70,11 +84,8 @@ protected:
     int assists = 0;
     int blocks = 0;
     int turnovers = 0;
-
-    // BaseModel interface
-public:
-    void readFromJson(const QJsonObject &) override;
-    void writeToJson(QJsonObject &) override;
+    int freeThrows = 0;
+    int freeThrowsMade = 0;
 };
 
 #endif // STATISITCS_H

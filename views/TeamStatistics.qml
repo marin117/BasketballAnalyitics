@@ -18,7 +18,7 @@ Item {
 
         StatisticCategory {
             id: shotsNumCategory
-            categoryName: "Shots"
+            categoryName: "FGA"
             categoryVal: "shotsNum"
             isTeam: true
             controlRowVisible: false
@@ -27,8 +27,27 @@ Item {
 
         StatisticCategory {
             id: shotsScoredCategory
-            categoryName: "Shots scored"
+            categoryName: "FGM"
             categoryVal: "shotsScored"
+            isTeam: true
+            controlRowVisible: false
+            textValue: mainModel.teamStatistics[categoryVal]
+        }
+
+        StatisticCategory {
+            id: freeThrowsMadeCategory
+            categoryName: "Free Throws Made"
+            categoryVal: "freeThrowsMade"
+            isTeam: true
+            controlRowVisible: false
+            textValue: mainModel.teamStatistics[categoryVal]
+
+        }
+
+        StatisticCategory {
+            id: freeThrows
+            categoryName: "Free Throws"
+            categoryVal: "freeThrows"
             isTeam: true
             controlRowVisible: false
             textValue: mainModel.teamStatistics[categoryVal]
