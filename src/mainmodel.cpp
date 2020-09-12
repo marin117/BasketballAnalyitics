@@ -193,7 +193,7 @@ void MainModel::exportTeams()
     }
     json["teams"] = teamsArray;
     qDebug() << json;
-    QFile saveFile(QStringLiteral("save.json"));
+    QFile saveFile(QStringLiteral("export.json"));
 
     if (!saveFile.open(QIODevice::WriteOnly)) {
         qWarning("Couldn't open save file.");
@@ -205,7 +205,7 @@ void MainModel::exportTeams()
 
 void MainModel::importTeams()
 {
-    QFile loadFile(QStringLiteral("save.json"));
+    QFile loadFile(QStringLiteral("import.json"));
 
     if (!loadFile.open(QIODevice::ReadOnly)) {
         qWarning("Couldn't open save file.");
