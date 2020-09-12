@@ -30,6 +30,8 @@ QList<Shot *> MainModel::getSelectedPlayerShots()
 
 void MainModel::onSelectedPlayerChanged(const int &pos)
 {
+    if(!playerModel->getPlayerList().size())
+        return;
     setSelectedPlayer(playerModel->getPlayerAt(pos));
     qDebug() << selectedPlayer->getName();
     emit selectedPlayerChanged();
@@ -102,6 +104,8 @@ void MainModel::onHeightChanged(const int& height, const int& prevHeight){
 
 void MainModel::onSelectedTeamChanged(const int &index)
 {
+    if(!teams[index])
+        return;
     playerModel->setPlayerList(teams[index]->getPlayerList());
     if(playerModel->getPlayerList().size())
         setSelectedPlayer(playerModel->getPlayerAt(0));
@@ -164,6 +168,8 @@ void MainModel::exportTeams()
     QJsonObject json;
     QJsonArray teamsArray;
     for(auto team : teams){
+        if(!team)
+            break;
         QJsonObject teamJson;
         team->writeToJson(teamJson);
         teamsArray.append(teamJson);
