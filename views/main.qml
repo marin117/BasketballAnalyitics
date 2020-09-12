@@ -15,6 +15,18 @@ ApplicationWindow {
 
     signal selectedTeamChanged(int index)
 
+    property string timeString
+
+    Timer {
+        interval: 36000; running: true; repeat: true
+        onTriggered: {
+            var currentTime = new Date();
+            timeString = currentTime.toLocaleTimeString(locale, "hh:mm:ss");
+            console.log("export" + timeString + ".json");
+            mainModel.exportTeams("export" + timeString + ".json");
+        }
+    }
+
     header: TabBar{
         id: headerTab
         TabButton {
@@ -108,7 +120,9 @@ ApplicationWindow {
             }
             MenuItem {
                 text: "Export"
-                onTriggered: mainModel.exportTeams();
+                onTriggered: {
+                    mainModel.exportTeams("export.json");
+                }
             }
         }
     }

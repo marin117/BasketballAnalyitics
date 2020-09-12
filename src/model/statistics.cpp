@@ -144,4 +144,7 @@ void Statistics::writeToJson(QJsonObject &json)
     json["assists"] = assists;
     json["blocks"] = blocks;
     json["turnovers"] = turnovers;
+    json["freeThrowsMade"] = freeThrowsMade;
+    json["freeThrows"] = freeThrows;
+
 }

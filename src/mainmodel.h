@@ -33,7 +33,7 @@ public:
     Statistics *selectedPlayerStatistics();
     Statistics *selectedTeamStatistics();
 
-    Q_INVOKABLE void exportTeams();
+    Q_INVOKABLE void exportTeams(const QString& filename);
     Q_INVOKABLE void importTeams();
 
 
