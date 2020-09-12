@@ -1,0 +1,86 @@
+{
+    "teams": [
+        {
+            "name": "",
+            "players": [
+                {
+                    "name": "Fran",
+                    "number": 10,
+                    "shots": [
+                    ],
+                    "statistics": {
+                        "assists": 0,
+                        "blocks": 0,
+                        "defensiveRebounds": 0,
+                        "offensiveRebounds": 0,
+                        "points": 0,
+                        "shotsNum": 0,
+                        "shotsScored": 0,
+                        "steals": 0,
+                        "turnovers": 0
+                    },
+                    "surname": "Jovic"
+                },
+                {
+                    "name": "Ivan",
+                    "number": 5,
+                    "shots": [
+                    ],
+                    "statistics": {
+                        "assists": 0,
+                        "blocks": 0,
+                        "defensiveRebounds": 0,
+                        "offensiveRebounds": 0,
+                        "points": 0,
+                        "shotsNum": 0,
+                        "shotsScored": 0,
+                        "steals": 0,
+                        "turnovers": 0
+                    },
+                    "surname": "Zebec"
+                }
+            ]
+        },
+        {
+            "name": "",
+            "players": [
+                {
+                    "name": "Marko",
+                    "number": 7,
+                    "shots": [
+                    ],
+                    "statistics": {
+                        "assists": 0,
+                        "blocks": 0,
+                        "defensiveRebounds": 0,
+                        "offensiveRebounds": 0,
+                        "points": 0,
+                        "shotsNum": 0,
+                        "shotsScored": 0,
+                        "steals": 0,
+                        "turnovers": 0
+                    },
+                    "surname": "Matoc"
+                },
+                {
+                    "name": "Duje",
+                    "number": 4,
+                    "shots": [
+                    ],
+                    "statistics": {
+                        "assists": 0,
+                        "blocks": 0,
+                        "defensiveRebounds": 0,
+                        "offensiveRebounds": 0,
+                        "points": 0,
+                        "shotsNum": 0,
+                        "shotsScored": 0,
+                        "steals": 0,
+                        "turnovers": 0
+                    },
+                    "surname": "Strukan"
+                }
+            ]
+        }
+    ]
+}
