@@ -15,19 +15,18 @@ Item {
     property string categoryName: "Category"
     property string categoryVal
     property alias textValue: categoryValueText.text
-
     Row {
         id: rowLayout
         anchors.fill: parent
         transformOrigin: Item.Center
-
+        anchors.topMargin: 8
         //anchors.fill: parent
         //Layout.fillWidth: true
         Item {
             height: parent.height
             width: parent.width / 3
             Text {
-                anchors.horizontalCenter: parent.horizontalCenter
+                anchors.centerIn: parent
                 id: categoryNameText
                 text: categoryName
                 font.pixelSize: 16
@@ -39,7 +38,7 @@ Item {
             width: parent.width / 3
             height: parent.height
             Text {
-                anchors.horizontalCenter: parent.horizontalCenter
+                anchors.centerIn: parent
                 id: categoryValueText
                 //text: mainModel.playerStatistics[categoryVal]
                 font.pixelSize: 16
@@ -53,6 +52,7 @@ Item {
             Row {
                 id: controlsRow
                 anchors.right: parent.right
+                anchors.verticalCenter: parent.verticalCenter
                 RoundButton {
                     id: increaseButton
                     text: "+"
@@ -66,7 +66,13 @@ Item {
             }
         }
     }
+    Rectangle{
+        implicitWidth: parent.width
+        implicitHeight: 1
+        color: Material.color(Material.Grey)
+    }
 }
+
 
 /*##^##
 Designer {

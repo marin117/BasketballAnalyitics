@@ -40,6 +40,7 @@ ApplicationWindow {
 
         Row {
             PlayerListView{
+                leftMargin: 5
                 id: playerListView
                 onSelectedPlayerChanged: basketballCourtView.repaintCanvas()
                 width: parent.width / 2
