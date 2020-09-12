@@ -25,6 +25,8 @@ MainModel::MainModel(QObject *parent) : QObject(parent)
 
 //    teams[0]->setPlayerList(pl1);
 //    teams[1]->setPlayerList(pl2);
+//    playerModel->setPlayerList(pl1);
+//    onSelectedPlayerChanged(0);
 
 }
 
