@@ -2,6 +2,7 @@ import QtQuick 2.14
 import QtQuick.Controls 2.14
 import QtQuick.Controls 2.4 as ButtonControls
 import QtQuick.Controls.Material 2.12
+import QtQuick.Dialogs 1.3
 
 ApplicationWindow {
 
@@ -16,6 +17,19 @@ ApplicationWindow {
     signal selectedTeamChanged(int index)
 
     property string timeString
+
+    FileDialog {
+        id: fileDialog
+        title: "Please choose a file"
+        folder: "tmp"
+        onAccepted: {
+            fileDialog.close();
+        }
+        onRejected: {
+            console.log("Canceled")
+            Qt.quit()
+        }
+    }
 
     Timer {
         interval: 36000; running: true; repeat: true
@@ -113,9 +127,7 @@ ApplicationWindow {
             MenuItem {
                 text: "Import"
                 onTriggered: {
-                    mainModel.importTeams();
-                    playerListView.setToFirst();
-                    selectedTeamChanged(0);
+                    fileDialog.open();
                 }
             }
             MenuItem {
@@ -125,8 +137,17 @@ ApplicationWindow {
                 }
             }
         }
+        Connections {
+            target: fileDialog
+            function onAccepted(){
+                console.log(fileDialog.fileUrls)
+                fileDialog.close();
+                mainModel.importTeams(fileDialog.fileUrl);
+                playerListView.setToFirst();
+                selectedTeamChanged(0);
+            }
+        }
     }
-
 
 
     function changeTeam(pos){

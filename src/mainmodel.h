@@ -34,7 +34,7 @@ public:
     Statistics *selectedTeamStatistics();
 
     Q_INVOKABLE void exportTeams(const QString& filename);
-    Q_INVOKABLE void importTeams();
+    Q_INVOKABLE void importTeams(const QUrl &url);
 
 
 public slots:

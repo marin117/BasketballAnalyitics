@@ -12,22 +12,22 @@ MainModel::MainModel(QObject *parent) : QObject(parent)
     playerModel = new PlayerListModel(this);
     connect(this, SIGNAL(refreshList()), playerModel, SLOT(onRefresh()));
 
-    teams[0] = new Team(this);
-    teams[1] = new Team(this);
+//    teams[0] = new Team(this);
+//    teams[1] = new Team(this);
 
-    QList<Player *> pl1;
-    QList<Player *> pl2;
+//    QList<Player *> pl1;
+//    QList<Player *> pl2;
 
 
-    pl1.append(new Player("Fran", "Jovic", 10, this));
-    pl1.append(new Player("Ivan", "Zebec", 5, this));
-    pl2.append(new Player("Marko", "Matoc", 7, this));
-    pl2.append(new Player("Duje", "Strukan", 4, this));
+//    pl1.append(new Player("Fran", "Jovic", 10, this));
+//    pl1.append(new Player("Ivan", "Zebec", 5, this));
+//    pl2.append(new Player("Marko", "Matoc", 7, this));
+//    pl2.append(new Player("Duje", "Strukan", 4, this));
 
-    teams[0]->setPlayerList(pl1);
-    teams[1]->setPlayerList(pl2);
-    playerModel->setPlayerList(pl1);
-    onSelectedPlayerChanged(0);
+//    teams[0]->setPlayerList(pl1);
+//    teams[1]->setPlayerList(pl2);
+//    playerModel->setPlayerList(pl1);
+//    onSelectedPlayerChanged(0);
 }
 
 PlayerListModel* MainModel::getPlayerModel()
@@ -209,11 +209,12 @@ void MainModel::exportTeams(const QString& filename)
     saveFile.write(QJsonDocument(json).toJson());
 }
 
-void MainModel::importTeams()
+void MainModel::importTeams(const QUrl &url)
 {
-    QFile loadFile(QStringLiteral("import.json"));
+    QFile loadFile(url.toLocalFile());
 
     if (!loadFile.open(QIODevice::ReadOnly)) {
+        qDebug() << loadFile.errorString();
         qWarning("Couldn't open save file.");
         return;
     }
