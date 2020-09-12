@@ -1,6 +1,7 @@
 import QtQuick 2.4
 import QtQuick.Controls 2.4
 import QtQuick.Layouts 1.11
+import QtQuick.Controls.Material 2.12
 
 Item {
     id: statisticElement
@@ -29,7 +30,9 @@ Item {
                 anchors.horizontalCenter: parent.horizontalCenter
                 id: categoryNameText
                 text: categoryName
-                font.pixelSize: 12
+                font.pixelSize: 16
+                font.family: "Roboto"
+                color: Material.color(Material.Grey)
             }
         }
         Item {
@@ -39,7 +42,9 @@ Item {
                 anchors.horizontalCenter: parent.horizontalCenter
                 id: categoryValueText
                 //text: mainModel.playerStatistics[categoryVal]
-                font.pixelSize: 12
+                font.pixelSize: 16
+                font.family: "Roboto"
+                color: Material.color(Material.Grey)
             }
         }
         Item {
