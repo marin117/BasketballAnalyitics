@@ -17,6 +17,7 @@ Item {
                 categoryName: "Points"
                 categoryVal: "points"
                 textValue: mainModel.playerStatistics[categoryVal]
+                controlRowVisible: false
             }
 
             StatisticCategory {
@@ -38,18 +39,18 @@ Item {
 
             StatisticCategory {
                 id: freeThrowsMadeCategory
-                categoryName: "Free Throws Made"
+                categoryName: "FTM"
                 categoryVal: "freeThrowsMade"
                 textValue: mainModel.playerStatistics[categoryVal]
                 onTextValueChanged: {
-                    freeThrows.textValue = mainModel.playerStatistics.freeThrows;
+                    freeThrows.textValue = mainModel.playerStatistics.freeThrowsMade;
                     pointsCategory.textValue = mainModel.playerStatistics.points;
                 }
             }
 
             StatisticCategory {
                 id: freeThrows
-                categoryName: "Free Throws"
+                categoryName: "FTA"
                 categoryVal: "freeThrows"
                 textValue: mainModel.playerStatistics[categoryVal]
             }

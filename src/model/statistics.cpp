@@ -111,10 +111,17 @@ int Statistics::getFreeThrowsMade() const
 
 void Statistics::setFreeThrowsMade(int value)
 {
+    if(value < freeThrowsMade){
+        setFreeThrows(freeThrows - 1);
+        setPoints(points - 1);
+    }
+    else {
+        setFreeThrows(freeThrows + 1);
+        setPoints(points + 1);
+    }
     freeThrowsMade = value;
-    setFreeThrows(freeThrows + 1);
-    setPoints(points + 1);
     emit freeThrowsMadeChanged();
+    emit pointsChanged();
 }
 
 int Statistics::getFreeThrows() const
