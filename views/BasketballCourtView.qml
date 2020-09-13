@@ -13,6 +13,7 @@ Item {
     property int imageScaleX: 400
     property int imageScaleY: 300
 
+
     Shot {
         id: newShot
         x: 0
@@ -30,6 +31,13 @@ Item {
         isFaul : false
         isTransition : false
         isThreePoints: false
+    }
+
+    Component {
+        id: shotDialogComp
+        ShotDialog {
+            id: shotDialog
+        }
     }
 
     Canvas {
@@ -65,11 +73,16 @@ Item {
             if(mainModel.getSelectedPlayer() !== null){
                 for(var i=0; i< mainModel.selectedShots.length; i++){
                     ctx.beginPath();
-                    if(mainModel.selectedShots[i].isMiss === true)
+                    if(mainModel.selectedShots[i].isMiss === true){
                         ctx.strokeStyle = Qt.rgba(1,0,0,1);
-                    else
+                        ctx.fillStyle = Qt.rgba(1,0,0,1);
+                    }
+                    else{
                         ctx.strokeStyle = Qt.rgba(0,0.7,0,1);
+                        ctx.fillStyle = Qt.rgba(0,0.7,0,1);
+                    }
                     ctx.ellipse(mainModel.selectedShots[i].x * width/imageScaleX,  mainModel.selectedShots[i].y * height/imageScaleY, 10, 10);
+                    ctx.fill();
                     ctx.stroke();
                 }
             }
@@ -78,11 +91,22 @@ Item {
             id: canvasMouseArea
             anchors.centerIn: parent
             anchors.fill: parent
-            onClicked: {
+            acceptedButtons: Qt.LeftButton | Qt.RightButton | Qt.MiddleButton
+            onPressed:  {
                 if(mainModel.getSelectedPlayer() !== null){
                     shotDlgLoader.active = false;
                     shotDlgLoader.active = true;
+
+                    if (canvasMouseArea.pressedButtons & Qt.RightButton) {
+                        shotDlgLoader.item.isMiss = true;
+                    } else if (canvasMouseArea.pressedButtons & Qt.LeftButton) {
+                        shotDlgLoader.item.isMiss = false;
+                    }
+                    if(canvasMouseArea.pressedButtons & Qt.MiddleButton){
+                        shotDlgLoader.item.isThree = true;
+                    }
                     shotDlgLoader.item.open();
+
                     shotDlgLoader.item.accepted.connect(function(){
                         newShot.x = mouseX * imageScaleX / width;
                         newShot.y = mouseY * imageScaleY /height;
@@ -102,8 +126,8 @@ Item {
 
     Loader{
         id: shotDlgLoader
-        source: "ShotDialog.qml"
-        active: false
+        sourceComponent: shotDialogComp
+        active: true
         //x: (parent.width - width) / 2
         y: parent.height / 2
 

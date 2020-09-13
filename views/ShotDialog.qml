@@ -29,88 +29,88 @@ Dialog {
             columns: 3
             CheckBox {
                 id: isMissCheck
-                checked: false
+                checked: isMiss
                 text: "Miss"
                 tristate: false
             }
 
             CheckBox {
                 id: isContestedCheck
-                checked: false
+                checked: isContested
                 text: "Contested"
                 tristate: false
             }
 
             CheckBox {
                 id: isThreeCheck
-                checked: false
+                checked: isThree
                 text: "For three"
                 tristate: false
             }
 
             CheckBox {
                 id: isOffhandCheck
-                checked: false
+                checked: isOffhand
                 text: "Off hand"
                 tristate: false
             }
             CheckBox {
                 id: isOffTheDribbleCheck
-                checked: false
+                checked: isOffTheDribble
                 text: "Off the dribble"
                 tristate: false
             }
             CheckBox {
                 id: isCatchAndShootCheck
-                checked: false
+                checked: isCatchAndShoot
                 text: "Catch and Shoot"
                 tristate: false
             }
             CheckBox {
                 id: isPickAndRollCheck
-                checked: false
+                checked: isPickAndRoll
                 text: "Pick and Roll"
                 tristate: false
             }
             CheckBox {
                 id: isPickAndPopCheck
-                checked: false
+                checked: isPickAndPop
                 text: "Pick and Pop"
                 tristate: false
             }
             CheckBox {
                 id: isPostCheck
-                checked: false
+                checked: isPost
                 text: "Post"
                 tristate: false
             }
             CheckBox {
                 id: isMismatchCheck
-                checked: false
+                checked: isMismatch
                 text: "Missmatch"
                 tristate: false
             }
             CheckBox {
                 id: isIsoCheck
-                checked: false
+                checked: isIso
                 text: "Isolation"
                 tristate: false
             }
             CheckBox {
                 id: isLayupCheck
-                checked: false
+                checked: isLayup
                 text: "Layup"
                 tristate: false
             }
             CheckBox {
                 id: isFaulCheck
-                checked: false
+                checked: isFaul
                 text: "Faul"
                 tristate: false
             }
             CheckBox {
                 id: isTransitionCheck
-                checked: false
+                checked: isTransition
                 text: "Transition"
                 tristate: false
             }
