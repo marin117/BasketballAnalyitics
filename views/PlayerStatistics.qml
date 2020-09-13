@@ -43,16 +43,25 @@ Item {
                 categoryVal: "freeThrowsMade"
                 textValue: mainModel.playerStatistics[categoryVal]
                 onTextValueChanged: {
-                    freeThrows.textValue = mainModel.playerStatistics.freeThrowsMade;
+                    freeThrowsCategory.textValue = mainModel.playerStatistics.freeThrows;
                     pointsCategory.textValue = mainModel.playerStatistics.points;
+                    freeThrowsCategory.decreaseButton.enabled = true;
                 }
             }
 
             StatisticCategory {
-                id: freeThrows
+                id: freeThrowsCategory
                 categoryName: "FTA"
                 categoryVal: "freeThrows"
                 textValue: mainModel.playerStatistics[categoryVal]
+                onTextValueChanged: {
+                    if(mainModel.playerStatistics[categoryVal] < mainModel.playerStatistics.freeThrowsMade){
+                        freeThrowsMadeCategory.textValue = mainModel.playerStatistics.freeThrowsMade;
+                        pointsCategory.textValue = mainModel.playerStatistics.points;
+                    }
+                    if(mainModel.playerStatistics[categoryVal] === 0)
+                        freeThrowsMadeCategory.decreaseButton.enabled = false;
+                }
             }
 
             StatisticCategory {
