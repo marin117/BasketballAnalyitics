@@ -95,6 +95,7 @@ void MainModel::copyShot(Shot *newShot, Shot *shot){
     newShot->isTransition = shot->isTransition;
     newShot->isThreePoints = shot->isThreePoints;
     newShot->isContested = shot->isContested;
+    newShot->isClutch = shot->isClutch;
 }
 
 void MainModel::onWidthChanged(const int &width, const int &prevWidth)

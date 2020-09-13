@@ -56,6 +56,9 @@ void Shot::readFromJson(const QJsonObject &json)
     if (json.contains("isTransition") && json["isTransition"].isBool()) {
         isTransition = json["isTransition"].toBool();
     }
+    if (json.contains("isClutch") && json["isClutch"].isBool()) {
+        isClutch = json["isClutch"].toBool();
+    }
 }
 
 void Shot::writeToJson(QJsonObject &json)
@@ -76,4 +79,5 @@ void Shot::writeToJson(QJsonObject &json)
     json["isLayup"] = isLayup;
     json["isFaul"] = isFaul;
     json["isTransition"] = isTransition;
+    json["isClutch"] = isClutch;
 }

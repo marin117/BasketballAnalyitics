@@ -31,6 +31,7 @@ Item {
         isFaul : false
         isTransition : false
         isThreePoints: false
+        isClutch: false
     }
 
     Component {
@@ -148,6 +149,7 @@ Item {
         newShot.isLayup = shotDlgLoader.item.isLayup;
         newShot.isFaul = shotDlgLoader.item.isFaul;
         newShot.isTransition = shotDlgLoader.item.isTransition;
+        newShot.isClutch = shotDlgLoader.item.isClutch;
     }
 }
 

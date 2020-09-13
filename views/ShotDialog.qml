@@ -20,6 +20,7 @@ Dialog {
     property bool isLayup : false
     property bool isFaul : false
     property bool isTransition : false
+    property bool isClutch: false
 
     anchors.centerIn: parent
 
@@ -114,6 +115,13 @@ Dialog {
                 text: "Transition"
                 tristate: false
             }
+
+            CheckBox {
+                id: isClutchCheck
+                checked: isClutch
+                text: "Clutch"
+                tristate: false
+            }
         }
     }
 
@@ -134,6 +142,7 @@ Dialog {
         isLayup = isLayupCheck.checkState;
         isFaul = isFaulCheck.checkState;
         isTransition = isTransitionCheck.checkState;
+        isClutch = isClutchCheck.checkState;
     }
     onRejected: {
         console.log("Cancel clicked");
