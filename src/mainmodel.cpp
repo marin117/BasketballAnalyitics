@@ -62,7 +62,6 @@ void MainModel::onShotAdded(Shot* shot)
     copyShot(newShot, shot);
     selectedPlayer->addShot(newShot);
 
-    selectedPlayerStatistics()->setShotsNum(selectedPlayer->getShots()->size());
     selectedTeamStatistics()->setShotsNum(selectedTeamStatistics()->getShotsNum() + 1);
 
     if(!shot->isMiss){
@@ -70,9 +69,22 @@ void MainModel::onShotAdded(Shot* shot)
             selectedTeamStatistics()->setPoints(selectedTeamStatistics()->getPoints() + 2);
         else
             selectedTeamStatistics()->setPoints(selectedTeamStatistics()->getPoints() + 3);
-        selectedPlayerStatistics()->setShotsScored(selectedPlayerStatistics()->getShotsScored() + 1);
         selectedTeamStatistics()->setShotsScored(selectedTeamStatistics()->getShotsScored() + 1);
     }
+    emit teamStatisticsChanged();
+    emit playerStatisticsChanged();
+}
+
+void MainModel::onShotUndo(){
+    auto shot = selectedPlayer->getShots()->last();
+    if(!shot->isMiss){
+        if(!shot->isThreePoints)
+            selectedTeamStatistics()->setPoints(selectedTeamStatistics()->getPoints() - 2);
+        else
+            selectedTeamStatistics()->setPoints(selectedTeamStatistics()->getPoints() - 3);
+        selectedTeamStatistics()->setShotsScored(selectedTeamStatistics()->getShotsScored() - 1);
+    }
+    selectedPlayer->popShot();
     emit teamStatisticsChanged();
     emit playerStatisticsChanged();
 }

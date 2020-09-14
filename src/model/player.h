@@ -24,6 +24,7 @@ public:
     void setNumber(int value);
 
     void addShot(Shot* shot);
+    void popShot();
 
     QList<Shot *>* getShots();
     void setShots(const QList<Shot *> &value);

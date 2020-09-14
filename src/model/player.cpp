@@ -66,13 +66,30 @@ void Player::setStatistics(Statistics *value)
 
 void Player::addShot(Shot *shot)
 {
-    shots.push_back(shot);
+    shots.append(shot);
+    statistics->setShotsNum(shots.size());
+
     if (!shot->isMiss){
         if(!shot->isThreePoints)
             statistics->setPoints(statistics->getPoints() + 2);
         else
             statistics->setPoints(statistics->getPoints() + 3);
+        statistics->setShotsScored(statistics->getShotsScored() + 1);
     }
+}
+
+void Player::popShot(){
+    auto shot = shots.last();
+    statistics->setShotsNum(shots.size() - 1);
+    if (!shot->isMiss){
+        if(!shot->isThreePoints)
+            statistics->setPoints(statistics->getPoints() - 2);
+        else
+            statistics->setPoints(statistics->getPoints() - 3);
+        statistics->setShotsScored(statistics->getShotsScored() - 1);
+    }
+    delete shot;
+    shots.removeLast();
 }
 
 

@@ -112,7 +112,7 @@ ApplicationWindow {
 
     ButtonControls.RoundButton{
         id: menuButton
-        text: "+"
+        text: "\u2630"
         anchors.left: parent.left
         anchors.bottom: parent.bottom
         radius: 10
@@ -124,6 +124,14 @@ ApplicationWindow {
         Menu {
             id: menuImportExport
             title: "File"
+            MenuItem {
+                text: "Undo"
+                onTriggered: {
+                    mainModel.onShotUndo();
+                    basketballCourtView.repaintCanvas();
+                }
+            }
+
             MenuItem {
                 text: "Import"
                 onTriggered: {

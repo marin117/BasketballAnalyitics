@@ -40,6 +40,7 @@ public:
 public slots:
     void onSelectedPlayerChanged(const int& pos);
     void onShotAdded(Shot* shot);
+    void onShotUndo();
     void onWidthChanged(const int& width, const int& prevWidth);
     void onHeightChanged(const int& height, const int& prevHeight);
     void onSelectedTeamChanged(const int& index);
