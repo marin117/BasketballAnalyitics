@@ -102,6 +102,14 @@ void Player::readFromJson(const QJsonObject &json)
     if(json.contains("number") && json["number"].isDouble())
         number = json["number"].toInt();
 
+    if(json.contains("statistics") && json["statistics"].isObject()){
+        QJsonObject statsJson = json["statistics"].toObject();
+        auto stats = new PlayerStatistics(this);
+        stats->readFromJson(statsJson);
+        this->statistics = stats;
+    }
+
+
     if(json.contains("shots") && json["shots"].isArray()){
         QJsonArray shotsArray = json["shots"].toArray();
         shots.reserve(shotsArray.size());

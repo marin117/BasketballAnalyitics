@@ -141,8 +141,41 @@ void Statistics::setFreeThrows(int value)
 }
 
 
-void Statistics::readFromJson(const QJsonObject &)
+void Statistics::readFromJson(const QJsonObject &json)
 {
+    if(json.contains("points") && json["points"].isDouble()){
+        points = json["points"].toInt();
+    }
+    if(json.contains("shotsScored") && json["shotsScored"].isDouble()){
+        shotsScored = json["shotsScored"].toInt();
+    }
+    if(json.contains("shotsNum") && json["shotsNum"].isDouble()){
+        shotsNum = json["shotsNum"].toInt();
+    }
+    if(json.contains("offensiveRebounds") && json["offensiveRebounds"].isDouble()){
+        offensiveRebounds = json["offensiveRebounds"].toInt();
+    }
+    if(json.contains("defensiveRebounds") && json["defensiveRebounds"].isDouble()){
+        defensiveRebounds = json["defensiveRebounds"].toInt();
+    }
+    if(json.contains("steals") && json["steals"].isDouble()){
+        steals = json["steals"].toInt();
+    }
+    if(json.contains("assists") && json["assists"].isDouble()){
+        assists = json["assists"].toInt();
+    }
+    if(json.contains("blocks") && json["blocks"].isDouble()){
+        blocks = json["blocks"].toInt();
+    }
+    if(json.contains("turnovers") && json["turnovers"].isDouble()){
+        turnovers = json["turnovers"].toInt();
+    }
+    if(json.contains("freeThrows") && json["freeThrows"].isDouble()){
+        freeThrows = json["freeThrows"].toInt();
+    }
+    if(json.contains("freeThrowsMade") && json["freeThrowsMade"].isDouble()){
+        freeThrowsMade = json["freeThrowsMade"].toInt();
+    }
 }
 
 void Statistics::writeToJson(QJsonObject &json)
