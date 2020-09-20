@@ -9,8 +9,8 @@ ApplicationWindow {
     Material.theme: Material.Dark
 
     visible: true
-    width: 640
-    height: 480
+    width: 1200
+    height: 780
     title: qsTr("Pick&Scope")
     objectName: "mainWindow"
 
