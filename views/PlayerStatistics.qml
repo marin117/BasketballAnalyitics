@@ -9,6 +9,7 @@ Item {
     ScrollViewCtl.ScrollView{
         id: playerStatisticsScrollView
         anchors.fill: parent
+        clip : true
         Column {
             id: playerStatisticsColumn
             width: Math.max(implicitWidth, playerStatisticsScrollView.availableWidth)
@@ -45,7 +46,8 @@ Item {
                 onTextValueChanged: {
                     freeThrowsCategory.textValue = mainModel.playerStatistics.freeThrows;
                     pointsCategory.textValue = mainModel.playerStatistics.points;
-                    freeThrowsCategory.decreaseButton.enabled = true;
+                    if(mainModel.playerStatistics.freeThrows)
+                        freeThrowsCategory.decreaseButton.enabled = true;
                 }
             }
 

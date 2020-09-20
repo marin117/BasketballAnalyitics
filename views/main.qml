@@ -69,17 +69,26 @@ ApplicationWindow {
                 leftMargin: 5
                 id: playerListView
                 onSelectedPlayerChanged: basketballCourtView.repaintCanvas()
-                width: parent.width / 2
+                width: parent.width * 0.6
                 height:  parent.height
                 onPlayerDoubleClicked: {
                     console.log("double click");
                     swipeView.setCurrentIndex(Tabs.TabIndexes.PlayerStatisticTab);
                 }
             }
-            BasketballCourtView{
-                id: basketballCourtView
-                width: parent.width / 2
+            Column {
+                width: parent.width * 0.4
                 height:  parent.height
+                BasketballCourtView{
+                    id: basketballCourtView
+                    width: parent.width
+                    height:  parent.height * 0.65
+                }
+                PlayerStatistics {
+                    width: parent.width
+                    height:  parent.height * 0.35
+                    id: mainPlayerStatistics
+                }
             }
         }
 
