@@ -140,6 +140,17 @@ void Statistics::setFreeThrows(int value)
 
 }
 
+int Statistics::getFouls() const
+{
+    return fouls;
+}
+
+void Statistics::setFouls(int value)
+{
+    fouls = value;
+    emit foulsChanged();
+}
+
 
 void Statistics::readFromJson(const QJsonObject &json)
 {
@@ -176,6 +187,9 @@ void Statistics::readFromJson(const QJsonObject &json)
     if(json.contains("freeThrowsMade") && json["freeThrowsMade"].isDouble()){
         freeThrowsMade = json["freeThrowsMade"].toInt();
     }
+    if(json.contains("fouls") && json["fouls"].isDouble()){
+        fouls = json["fouls"].toInt();
+    }
 }
 
 void Statistics::writeToJson(QJsonObject &json)
@@ -190,5 +204,10 @@ void Statistics::writeToJson(QJsonObject &json)
     json["blocks"] = blocks;
     json["turnovers"] = turnovers;
     json["freeThrowsMade"] = freeThrowsMade;
-    json["freeThrows"] = freeThrows;    
+    json["freeThrows"] = freeThrows;
+    json["fouls"] = fouls;
+    json["rebounds"] = offensiveRebounds + defensiveRebounds;
+    if(freeThrows > 0) json["FTpct"] = freeThrowsMade / freeThrows;
+    else json["FTpct"] = 0;
 }
+

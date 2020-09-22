@@ -76,6 +76,8 @@ void MainModel::onShotAdded(Shot* shot)
 }
 
 void MainModel::onShotUndo(){
+    if(selectedPlayer->getShots()->isEmpty())
+        return;
     auto shot = selectedPlayer->getShots()->last();
     if(!shot->isMiss){
         if(!shot->isThreePoints)
@@ -108,6 +110,7 @@ void MainModel::copyShot(Shot *newShot, Shot *shot){
     newShot->isThreePoints = shot->isThreePoints;
     newShot->isContested = shot->isContested;
     newShot->isClutch = shot->isClutch;
+    newShot->isDunk = shot->isDunk;
 }
 
 void MainModel::onWidthChanged(const int &width, const int &prevWidth)

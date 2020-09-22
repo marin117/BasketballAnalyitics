@@ -79,6 +79,8 @@ void Player::addShot(Shot *shot)
 }
 
 void Player::popShot(){
+    if(shots.isEmpty())
+        return;
     auto shot = shots.last();
     statistics->setShotsNum(shots.size() - 1);
     if (!shot->isMiss){

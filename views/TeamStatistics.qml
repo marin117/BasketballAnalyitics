@@ -113,6 +113,15 @@ Item {
                 controlRowVisible: false
                 textValue: mainModel.teamStatistics[categoryVal]
             }
+
+            StatisticCategory {
+                id: foulsCategory
+                categoryName: "Fouls"
+                categoryVal: "fouls"
+                isTeam: true
+                controlRowVisible: false
+                textValue: mainModel.teamStatistics[categoryVal]
+            }
         }
         onWidthChanged: {
             teamStatisticsColumn.width = parent.width;

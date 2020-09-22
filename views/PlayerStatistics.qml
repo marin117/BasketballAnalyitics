@@ -104,13 +104,21 @@ Item {
                 categoryName: "Blocks"
                 categoryVal: "blocks"
                 textValue: mainModel.playerStatistics[categoryVal]
-
             }
 
             StatisticCategory {
                 id: turnoversCategory
                 categoryName: "Turnovers"
                 categoryVal: "turnovers"
+                textValue: mainModel.playerStatistics[categoryVal]
+
+            }
+
+
+            StatisticCategory {
+                id: foulsCategory
+                categoryName: "Fouls"
+                categoryVal: "fouls"
                 textValue: mainModel.playerStatistics[categoryVal]
 
             }

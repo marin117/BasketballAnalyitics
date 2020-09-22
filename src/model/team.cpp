@@ -44,6 +44,13 @@ void Team::readFromJson(const QJsonObject &json)
     if(json.contains("name") && json["name"].isString())
         name = json["name"].toString();
 
+    if(json.contains("statistics") && json["statistics"].isObject()){
+        QJsonObject statsJson = json["statistics"].toObject();
+        auto stats = new TeamStatistics(this);
+        stats->readFromJson(statsJson);
+        this->statistics = stats;
+    }
+
     if(json.contains("players") && json["players"].isArray()){
         QJsonArray playersArray = json["players"].toArray();
         playerList.reserve(playersArray.size());
@@ -62,6 +69,10 @@ void Team::writeToJson(QJsonObject &json)
     QJsonArray playersArray;
 
     json["name"] = name;
+
+    QJsonObject statisticsJson;
+    statistics->writeToJson(statisticsJson);
+    json["statistics"] = statisticsJson;
 
     for(auto player : playerList){
         QJsonObject playerJson;

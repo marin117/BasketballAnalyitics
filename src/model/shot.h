@@ -22,6 +22,7 @@ class Shot : public BaseModel
     Q_PROPERTY(bool isFaul MEMBER isFaul)
     Q_PROPERTY(bool isTransition MEMBER isTransition)
     Q_PROPERTY(bool isClutch MEMBER isClutch)
+    Q_PROPERTY(bool isDunk MEMBER isDunk)
 
     Q_PROPERTY(int x MEMBER x)
     Q_PROPERTY(int y MEMBER y)
@@ -44,6 +45,7 @@ public:
     bool isFaul = false;
     bool isTransition = false;
     bool isClutch = false;
+    bool isDunk = false;
 
     // BaseModel interface
 public:

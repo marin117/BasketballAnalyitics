@@ -32,6 +32,7 @@ Item {
         isTransition : false
         isThreePoints: false
         isClutch: false
+        isDunk: false
     }
 
     Component {
@@ -150,6 +151,7 @@ Item {
         newShot.isFaul = shotDlgLoader.item.isFaul;
         newShot.isTransition = shotDlgLoader.item.isTransition;
         newShot.isClutch = shotDlgLoader.item.isClutch;
+        newShot.isDunk = shotDlgLoader.item.isDunk;
     }
 }
 
