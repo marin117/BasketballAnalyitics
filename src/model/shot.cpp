@@ -62,6 +62,13 @@ void Shot::readFromJson(const QJsonObject &json)
     if (json.contains("isDunk") && json["isDunk"].isBool()) {
         isDunk = json["isDunk"].toBool();
     }
+    if (json.contains("isFloater") && json["isFloater"].isBool()) {
+        isFloater = json["isFloater"].toBool();
+    }
+
+    if (json.contains("isEurostep") && json["isEurostep"].isBool()) {
+        isEurostep = json["isEurostep"].toBool();
+    }
 }
 
 void Shot::writeToJson(QJsonObject &json)
@@ -84,4 +91,7 @@ void Shot::writeToJson(QJsonObject &json)
     json["isTransition"] = isTransition;
     json["isClutch"] = isClutch;
     json["isDunk"] = isDunk;
+    json["isFloater"] = isFloater;
+    json["isEurostep"] = isEurostep;
+
 }

@@ -33,6 +33,8 @@ Item {
         isThreePoints: false
         isClutch: false
         isDunk: false
+        isFloater: false
+        isEurostep: false
     }
 
     Component {
@@ -152,6 +154,8 @@ Item {
         newShot.isTransition = shotDlgLoader.item.isTransition;
         newShot.isClutch = shotDlgLoader.item.isClutch;
         newShot.isDunk = shotDlgLoader.item.isDunk;
+        newShot.isFloater = shotDlgLoader.item.isFloater;
+        newShot.isEurostep = shotDlgLoader.item.isEurostep;
     }
 }
 

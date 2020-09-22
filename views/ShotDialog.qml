@@ -22,6 +22,8 @@ Dialog {
     property bool isTransition : false
     property bool isClutch: false
     property bool isDunk: false
+    property bool isFloater: false
+    property bool isEurostep: false
 
     anchors.centerIn: parent
 
@@ -113,6 +115,20 @@ Dialog {
             }
 
             CheckBox {
+                id: isFloaterCheck
+                checked: isFloater
+                text: "Floater"
+                tristate: false
+            }
+
+            CheckBox {
+                id: isEurostepCheck
+                checked: isEurostep
+                text: "Eurostep"
+                tristate: false
+            }
+
+            CheckBox {
                 id: isFaulCheck
                 checked: isFaul
                 text: "Faul"
@@ -153,6 +169,8 @@ Dialog {
         isTransition = isTransitionCheck.checkState;
         isClutch = isClutchCheck.checkState;
         isDunk = isDunkCheck.checkState;
+        isFloater = isFloaterCheck.checkState;
+        isEurostep = isEurostepCheck.checkState;
     }
     onRejected: {
         console.log("Cancel clicked");
