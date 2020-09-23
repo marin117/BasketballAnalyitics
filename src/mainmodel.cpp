@@ -113,6 +113,8 @@ void MainModel::copyShot(Shot *newShot, Shot *shot){
     newShot->isDunk = shot->isDunk;
     newShot->isFloater = shot->isFloater;
     newShot->isEurostep = shot->isEurostep;
+    newShot->isPutback = shot->isPutback;
+    newShot->isSecondChance = shot->isSecondChance;
 }
 
 void MainModel::onWidthChanged(const int &width, const int &prevWidth)

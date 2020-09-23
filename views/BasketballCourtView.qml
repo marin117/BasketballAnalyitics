@@ -35,6 +35,8 @@ Item {
         isDunk: false
         isFloater: false
         isEurostep: false
+        isPutback: false
+        isSecondChance: false
     }
 
     Component {
@@ -156,6 +158,8 @@ Item {
         newShot.isDunk = shotDlgLoader.item.isDunk;
         newShot.isFloater = shotDlgLoader.item.isFloater;
         newShot.isEurostep = shotDlgLoader.item.isEurostep;
+        newShot.isPutback = shotDlgLoader.item.isPutback;
+        newShot.isSecondChance = shotDlgLoader.item.isSecondChance;
     }
 }
 

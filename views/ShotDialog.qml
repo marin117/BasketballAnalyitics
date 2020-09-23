@@ -24,6 +24,8 @@ Dialog {
     property bool isDunk: false
     property bool isFloater: false
     property bool isEurostep: false
+    property bool isPutback: false
+    property bool isSecondChance: false
 
     anchors.centerIn: parent
 
@@ -129,6 +131,20 @@ Dialog {
             }
 
             CheckBox {
+                id: isPutbackCheck
+                checked: isPutback
+                text: "Putback"
+                tristate: false
+            }
+
+            CheckBox {
+                id: isSecondChanceCheck
+                checked: isSecondChance
+                text: "Second chance"
+                tristate: false
+            }
+
+            CheckBox {
                 id: isFaulCheck
                 checked: isFaul
                 text: "Faul"
@@ -171,6 +187,8 @@ Dialog {
         isDunk = isDunkCheck.checkState;
         isFloater = isFloaterCheck.checkState;
         isEurostep = isEurostepCheck.checkState;
+        isPutback = isPutbackCheck.checkState;
+        isSecondChance = isSecondChanceCheck.checkState;
     }
     onRejected: {
         console.log("Cancel clicked");

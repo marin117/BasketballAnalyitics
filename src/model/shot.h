@@ -25,6 +25,8 @@ class Shot : public BaseModel
     Q_PROPERTY(bool isDunk MEMBER isDunk)
     Q_PROPERTY(bool isFloater MEMBER isFloater)
     Q_PROPERTY(bool isEurostep MEMBER isEurostep)
+    Q_PROPERTY(bool isPutback MEMBER isPutback)
+    Q_PROPERTY(bool isSecondChance MEMBER isSecondChance)
 
 
     Q_PROPERTY(int x MEMBER x)
@@ -51,7 +53,8 @@ public:
     bool isDunk = false;
     bool isFloater = false;
     bool isEurostep = false;
-
+    bool isPutback = false;
+    bool isSecondChance = false;
 
     // BaseModel interface
 public:
