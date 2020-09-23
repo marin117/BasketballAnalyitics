@@ -56,12 +56,14 @@ Item {
                 RoundButton {
                     id: increaseButton
                     text: "+"
+                    focusPolicy: Qt.NoFocus
                 }
 
                 RoundButton {
                     id: decreaseButton
                     text: "-"
                     enabled: categoryVal > 0
+                    focusPolicy: Qt.NoFocus
                 }
             }
         }

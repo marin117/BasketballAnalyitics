@@ -30,6 +30,7 @@ StatisticCategoryForm {
             else
                 textValue = mainModel.teamStatistics[categoryVal];
         }
+
     }
 
     Connections {
