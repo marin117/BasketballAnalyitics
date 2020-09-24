@@ -65,18 +65,38 @@ ApplicationWindow {
         interactive: currentIndex
 
         Row {
-            PlayerListView{
-                leftMargin: 5
-                id: playerListView
-                onSelectedPlayerChanged: basketballCourtView.repaintCanvas()
+            Column {
                 width: parent.width * 0.6
                 height:  parent.height
-                onPlayerDoubleClicked: {
-                    console.log("double click");
-                    swipeView.setCurrentIndex(Tabs.TabIndexes.PlayerStatisticTab);
+                PlayerListView{
+                    id: playerListView
+                    leftMargin: 5
+                    onSelectedPlayerChanged: basketballCourtView.repaintCanvas()
+                    width: parent.width
+                    height:  parent.height * 0.65
+                    onPlayerDoubleClicked: {
+                        console.log("double click");
+                        swipeView.setCurrentIndex(Tabs.TabIndexes.PlayerStatisticTab);
+                    }
+                }
+                Flickable {
+                    id: flickableTextArea
+                    height: parent.height * 0.4 - footer.height
+                    width: parent.width
+                    leftMargin: 5
+                    rightMargin: 5
+                    TextArea.flickable: TextArea {
+                        color: "black"
+                        wrapMode: TextArea.Wrap
+                        background: Rectangle {
+                            color: "white"
+                        }
+                    }
+
+                    ScrollBar.vertical: ScrollBar {}
                 }
             }
-            Column {
+        Column {
                 width: parent.width * 0.4
                 height:  parent.height
                 BasketballCourtView{
@@ -125,8 +145,8 @@ ApplicationWindow {
         anchors.left: parent.left
         anchors.bottom: parent.bottom
         radius: 10
+        Material.foreground: Material.Pink
         onClicked: {
-
             menuImportExport.open();
         }
 

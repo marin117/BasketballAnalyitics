@@ -9,7 +9,7 @@ ListView {
     id: playerList
     model: mainModel.getPlayerModel()
     highlight: Rectangle {
-        color: Material.color(Material.Grey)
+        color: Material.color(Material.Blue, Material.Blue)
         radius: 5
     }
     objectName: "playerListObject"
@@ -25,21 +25,21 @@ ListView {
             RowLayout{
                 height: 40
                 Label {
-                    font.pixelSize: 16
+                    font.pixelSize: 18
                     font.family: "Roboto"
-                    color: Material.color(Material.Pink)
+                    color: Material.color(Material.Pink, Material.Pink)
                     text: model.number
                 }
                 Label {
-                    font.pixelSize: 16
+                    font.pixelSize: 18
                     font.family: "Roboto"
-                    color: Material.color(Material.Pink)
+                    color: Material.color(Material.Pink, Material.Pink)
                     text: model.name
                 }
                 Label {
-                    font.pixelSize: 16
+                    font.pixelSize: 18
                     font.family: "Roboto"
-                    color: Material.color(Material.Pink)
+                    color: Material.color(Material.Pink, Material.Pink)
                     text: model.surname
                 }
             }

@@ -79,6 +79,8 @@ void MainModel::onShotUndo(){
     if(selectedPlayer->getShots()->isEmpty())
         return;
     auto shot = selectedPlayer->getShots()->last();
+    selectedTeamStatistics()->setShotsNum(selectedTeamStatistics()->getShotsNum() - 1);
+
     if(!shot->isMiss){
         if(!shot->isThreePoints)
             selectedTeamStatistics()->setPoints(selectedTeamStatistics()->getPoints() - 2);
