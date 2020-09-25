@@ -112,8 +112,12 @@ ApplicationWindow {
                     }
 
                     ComboBox {
+                        id: quarterComboBox
                         width: parent.width * 0.9
                         model: [ "1", "2", "3", "4" ]
+                        onCurrentIndexChanged: {
+                            mainModel.selectedQuarter = currentIndex;
+                        }
                     }
                 }
                 BasketballCourtView{

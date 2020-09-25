@@ -32,12 +32,15 @@ public:
     Statistics *getStatistics() const;
     void setStatistics(Statistics *value);
 
+    QVector<Statistics *> getQuarterStatistics() const;
+
 private:
     QString name = "";
     QString surname = "";
     int number = 0;
     QList<Shot *> shots;
     Statistics *statistics;
+    QVector<Statistics *> quarterStatistics;
 
 
     // BaseModel interface

@@ -61,6 +61,7 @@ void MainModel::onShotAdded(Shot* shot)
     copyShot(newShot, shot);
     selectedPlayer->addShot(newShot);
     selectedTeamStatistics()->addPoints(shot);
+    playerSelectedQuarterStatistics()->addPoints(shot);
 
     emit teamStatisticsChanged();
     emit playerStatisticsChanged();
@@ -73,6 +74,7 @@ void MainModel::onShotUndo(){
 
     selectedTeamStatistics()->popPoints(shot);
     selectedPlayer->popShot();
+    playerSelectedQuarterStatistics()->popPoints(shot);
     emit teamStatisticsChanged();
     emit playerStatisticsChanged();
 }
@@ -80,6 +82,7 @@ void MainModel::onShotUndo(){
 void MainModel::copyShot(Shot *newShot, Shot *shot){
     newShot->x = shot->x;
     newShot->y = shot->y;
+    newShot->quarter = selectedQuarter;
 
     newShot->isMiss = shot->isMiss;
     newShot->isOffhand = shot->isOffhand;
@@ -101,6 +104,16 @@ void MainModel::copyShot(Shot *newShot, Shot *shot){
     newShot->isEurostep = shot->isEurostep;
     newShot->isPutback = shot->isPutback;
     newShot->isSecondChance = shot->isSecondChance;
+}
+
+int MainModel::getSelectedQuarter() const
+{
+    return selectedQuarter;
+}
+
+void MainModel::setSelectedQuarter(int value)
+{
+    selectedQuarter = value;
 }
 
 void MainModel::onWidthChanged(const int &width, const int &prevWidth)
@@ -187,6 +200,14 @@ Statistics *MainModel::selectedTeamStatistics()
     return new Statistics(this);
 }
 
+Statistics *MainModel::playerSelectedQuarterStatistics()
+{
+    if(selectedPlayer && selectedQuarter < selectedPlayer->getQuarterStatistics().size())
+        return selectedPlayer->getQuarterStatistics()[selectedQuarter];
+    return new Statistics(this);
+}
+
+
 void MainModel::exportTeams(const QString& filename)
 {
     if (!QDir("tmp").exists()){
@@ -245,8 +266,6 @@ void MainModel::importTeams(const QUrl &url)
 
     onSelectedPlayerChanged(0);
 }
-
-
 
 
 

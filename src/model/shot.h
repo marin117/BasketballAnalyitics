@@ -28,16 +28,14 @@ class Shot : public BaseModel
     Q_PROPERTY(bool isPutback MEMBER isPutback)
     Q_PROPERTY(bool isSecondChance MEMBER isSecondChance)
 
-
     Q_PROPERTY(int x MEMBER x)
     Q_PROPERTY(int y MEMBER y)
+    Q_PROPERTY(int quarter MEMBER quarter)
 public:
     explicit Shot(QObject *parent = nullptr);
     bool isMiss = false;
     bool isContested = false;
     bool isThreePoints = false;
-    int x;
-    int y;
     bool isOffhand = false;
     bool isOffTheDribble = false;
     bool isCatchAndShoot = false;
@@ -55,6 +53,10 @@ public:
     bool isEurostep = false;
     bool isPutback = false;
     bool isSecondChance = false;
+
+    int x;
+    int y;
+    int quarter = 0;
 
     // BaseModel interface
 public:

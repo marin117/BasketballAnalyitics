@@ -2,15 +2,25 @@
 #include "playerstatistics.h"
 #include <QJsonArray>
 
+#define QUARTER 4
+
 Player::Player(QObject *parent) : BaseModel(parent)
 {
     statistics = new PlayerStatistics(this);
+    quarterStatistics.reserve(QUARTER);
+    for(int i = 0; i < QUARTER; i++){
+        quarterStatistics.append(new Statistics(this));
+    }
 }
 
 Player::Player(const QString &name, const QString &surname,const int &number, QObject *parent) : BaseModel(parent),
     name(name), surname(surname), number(number)
 {
     statistics = new PlayerStatistics(this);
+    quarterStatistics.reserve(QUARTER);
+    for(int i = 0; i < QUARTER; i++){
+        quarterStatistics.append(new Statistics(this));
+    }
 }
 
 QString Player::getName() const
@@ -61,6 +71,11 @@ Statistics *Player::getStatistics() const
 void Player::setStatistics(Statistics *value)
 {
     statistics = value;
+}
+
+QVector<Statistics *> Player::getQuarterStatistics() const
+{
+    return quarterStatistics;
 }
 
 
@@ -126,4 +141,12 @@ void Player::writeToJson(QJsonObject &json)
         shotsArray.append(shotJson);
     }
     json["shots"] = shotsArray;
+
+    QJsonArray quarterStatisticsArray;
+    for(auto s : quarterStatistics){
+        QJsonObject qStatisicsJson;
+        s->writeToJson(qStatisicsJson);
+        quarterStatisticsArray.append(qStatisicsJson);
+    }
+    json["quarterStatistics"] = quarterStatisticsArray;
 }

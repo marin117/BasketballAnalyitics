@@ -13,6 +13,11 @@ void Shot::readFromJson(const QJsonObject &json)
     if (json.contains("y") && json["y"].isDouble()){
         y = json["y"].toInt();
     }
+
+    if (json.contains("quarter") && json["quarter"].isDouble()){
+        quarter = json["quarter"].toInt();
+    }
+
     if (json.contains("isContested") && json["isContested"].isBool()){
         isContested = json["isContested"].toBool();
     }
@@ -83,6 +88,8 @@ void Shot::writeToJson(QJsonObject &json)
 {
     json["x"] = x;
     json["y"] = y;
+    json["quarter"] = quarter;
+
     json["isContested"] = isContested;
     json["isMiss"] = isMiss;
     json["isThreePoints"] = isThreePoints;

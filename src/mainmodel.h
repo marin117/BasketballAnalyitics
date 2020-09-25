@@ -11,9 +11,11 @@ class PlayerStatistics;
 class MainModel : public QObject
 {
     Q_OBJECT
-    Q_PROPERTY(QQmlListProperty<Shot> selectedShots READ selectedShots())
-    Q_PROPERTY(Statistics* playerStatistics READ selectedPlayerStatistics() NOTIFY playerStatisticsChanged)
-    Q_PROPERTY(Statistics* teamStatistics READ selectedTeamStatistics() NOTIFY teamStatisticsChanged)
+    Q_PROPERTY(QQmlListProperty<Shot> selectedShots READ selectedShots)
+    Q_PROPERTY(Statistics* playerStatistics READ selectedPlayerStatistics NOTIFY playerStatisticsChanged)
+    Q_PROPERTY(Statistics* teamStatistics READ selectedTeamStatistics NOTIFY teamStatisticsChanged)
+    Q_PROPERTY(Statistics* playerQuarterStatistics READ playerSelectedQuarterStatistics NOTIFY playerQuarterStatisticsChanged)
+    Q_PROPERTY(int selectedQuarter READ getSelectedQuarter WRITE setSelectedQuarter NOTIFY selectedQuarterChanged)
 public:
     explicit MainModel(QObject *parent = nullptr);
 
@@ -32,10 +34,14 @@ public:
 
     Statistics *selectedPlayerStatistics();
     Statistics *selectedTeamStatistics();
+    Statistics *playerSelectedQuarterStatistics();
 
     Q_INVOKABLE void exportTeams(const QString& filename);
     Q_INVOKABLE void importTeams(const QUrl &url);
 
+
+    int getSelectedQuarter() const;
+    void setSelectedQuarter(int value);
 
 public slots:
     void onSelectedPlayerChanged(const int& pos);
@@ -50,6 +56,8 @@ signals:
     void refreshList();
     void playerStatisticsChanged();
     Q_INVOKABLE void teamStatisticsChanged();
+    void selectedQuarterChanged();
+    void playerQuarterStatisticsChanged();
 
 private:
     void copyShot(Shot *newShot, Shot *shot);
@@ -58,6 +66,7 @@ private:
     Player *selectedPlayer = nullptr;
     Team* teams[2] = {nullptr, nullptr};
     int selectedTeamIndex = 0;
+    int selectedQuarter = 0;
 
 };
 

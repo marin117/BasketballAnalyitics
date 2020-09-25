@@ -8,6 +8,7 @@ StatisticCategoryForm {
         function onClicked() {
             mainModel.playerStatistics[categoryVal] += 1;
             mainModel.teamStatistics[categoryVal] += 1;
+            mainModel.playerQuarterStatistics[categoryVal] += 1;
             decreaseButton.enabled = true;
             if(!isTeam)
                 textValue = mainModel.playerStatistics[categoryVal];
@@ -22,6 +23,7 @@ StatisticCategoryForm {
         function onClicked(){
             mainModel.playerStatistics[categoryVal] -= 1;
             mainModel.teamStatistics[categoryVal] -= 1;
+            mainModel.playerQuarterStatistics[categoryVal] -= 1;
             if (mainModel.playerStatistics[categoryVal] <= 0){
                 decreaseButton.enabled = false;
             }
