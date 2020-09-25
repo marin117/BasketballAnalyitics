@@ -65,9 +65,11 @@ ApplicationWindow {
         interactive: currentIndex
 
         Row {
+            spacing: 10
             Column {
-                width: parent.width * 0.6
+                width: parent.width * 0.58
                 height:  parent.height
+                spacing: 5
                 PlayerListView{
                     id: playerListView
                     leftMargin: 5
@@ -96,13 +98,28 @@ ApplicationWindow {
                     ScrollBar.vertical: ScrollBar {}
                 }
             }
-        Column {
+
+            Column {
                 width: parent.width * 0.4
                 height:  parent.height
+                spacing: 5
+                Row {
+                    width: parent.width
+                    Label {
+                        width: parent.width * 0.1
+                        anchors.verticalCenter: parent.verticalCenter
+                        text: "Q:"
+                    }
+
+                    ComboBox {
+                        width: parent.width * 0.9
+                        model: [ "1", "2", "3", "4" ]
+                    }
+                }
                 BasketballCourtView{
                     id: basketballCourtView
                     width: parent.width
-                    height:  parent.height * 0.65
+                    height:  parent.height * 0.6
                 }
                 PlayerStatistics {
                     width: parent.width
