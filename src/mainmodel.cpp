@@ -51,7 +51,6 @@ void MainModel::onSelectedPlayerChanged(const int &pos)
     if(!playerModel->getPlayerList().size())
         return;
     setSelectedPlayer(playerModel->getPlayerAt(pos));
-    qDebug() << selectedPlayer->getName();
     emit selectedPlayerChanged();
 }
 
@@ -61,16 +60,8 @@ void MainModel::onShotAdded(Shot* shot)
 
     copyShot(newShot, shot);
     selectedPlayer->addShot(newShot);
+    selectedTeamStatistics()->addPoints(shot);
 
-    selectedTeamStatistics()->setShotsNum(selectedTeamStatistics()->getShotsNum() + 1);
-
-    if(!shot->isMiss){
-        if(!shot->isThreePoints)
-            selectedTeamStatistics()->setPoints(selectedTeamStatistics()->getPoints() + 2);
-        else
-            selectedTeamStatistics()->setPoints(selectedTeamStatistics()->getPoints() + 3);
-        selectedTeamStatistics()->setShotsScored(selectedTeamStatistics()->getShotsScored() + 1);
-    }
     emit teamStatisticsChanged();
     emit playerStatisticsChanged();
 }
@@ -79,15 +70,8 @@ void MainModel::onShotUndo(){
     if(selectedPlayer->getShots()->isEmpty())
         return;
     auto shot = selectedPlayer->getShots()->last();
-    selectedTeamStatistics()->setShotsNum(selectedTeamStatistics()->getShotsNum() - 1);
 
-    if(!shot->isMiss){
-        if(!shot->isThreePoints)
-            selectedTeamStatistics()->setPoints(selectedTeamStatistics()->getPoints() - 2);
-        else
-            selectedTeamStatistics()->setPoints(selectedTeamStatistics()->getPoints() - 3);
-        selectedTeamStatistics()->setShotsScored(selectedTeamStatistics()->getShotsScored() - 1);
-    }
+    selectedTeamStatistics()->popPoints(shot);
     selectedPlayer->popShot();
     emit teamStatisticsChanged();
     emit playerStatisticsChanged();

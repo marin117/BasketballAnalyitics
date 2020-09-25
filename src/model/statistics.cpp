@@ -1,4 +1,5 @@
 #include "statistics.h"
+#include "shot.h"
 
 Statistics::Statistics(QObject *parent) : BaseModel(parent)
 {
@@ -151,6 +152,66 @@ void Statistics::setFouls(int value)
     emit foulsChanged();
 }
 
+int Statistics::getThreePointsMade() const
+{
+    return threePointsMade;
+}
+
+void Statistics::setThreePointsMade(int value)
+{
+    threePointsMade = value;
+    emit threePointsMadeChanged();
+}
+
+int Statistics::getThreePointsNum() const
+{
+    return threePointsNum;
+}
+
+void Statistics::setThreePointsNum(int value)
+{
+    threePointsNum = value;
+    emit threePointsNumChanged();
+}
+
+void Statistics::addPoints(const Shot *shot)
+{
+    setShotsNum(shotsNum + 1);
+
+    if (!shot->isMiss){
+        if(!shot->isThreePoints)
+            setPoints(points + 2);
+        else{
+            setPoints(points + 3);
+            setThreePointsMade(threePointsMade + 1);
+            setThreePointsNum(threePointsNum + 1);
+        }
+        setShotsScored(getShotsScored() + 1);
+    }
+    else{
+        if(shot->isThreePoints)
+            setThreePointsNum(threePointsNum + 1);
+    }
+}
+
+void Statistics::popPoints(const Shot *shot)
+{
+    setShotsNum(shotsNum - 1);
+    if (!shot->isMiss){
+        if(!shot->isThreePoints)
+            setPoints(points - 2);
+        else{
+            setPoints(points - 3);
+            setThreePointsNum(threePointsNum - 1);
+            setThreePointsNum(threePointsNum - 1);
+        }
+        setShotsScored(shotsScored - 1);
+    }
+    else{
+        if(shot->isThreePoints)
+            setThreePointsNum(threePointsNum - 1);
+    }
+}
 
 void Statistics::readFromJson(const QJsonObject &json)
 {
@@ -190,6 +251,12 @@ void Statistics::readFromJson(const QJsonObject &json)
     if(json.contains("fouls") && json["fouls"].isDouble()){
         fouls = json["fouls"].toInt();
     }
+    if(json.contains("threePointsMade") && json["threePointsMade"].isDouble()){
+        threePointsMade = json["threePointsMade"].toInt();
+    }
+    if(json.contains("threePointsNum") && json["threePointsNum"].isDouble()){
+        threePointsNum = json["threePointsNum"].toInt();
+    }
 }
 
 void Statistics::writeToJson(QJsonObject &json)
@@ -209,5 +276,9 @@ void Statistics::writeToJson(QJsonObject &json)
     json["rebounds"] = offensiveRebounds + defensiveRebounds;
     if(freeThrows > 0) json["FTpct"] = freeThrowsMade / freeThrows;
     else json["FTpct"] = 0;
+    json["threePointsNum"] = threePointsNum;
+    json["threePointsMade"] = threePointsMade;
 }
+
+
 

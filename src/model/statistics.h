@@ -4,6 +4,7 @@
 #include <QObject>
 #include "basemodel.h"
 
+class Shot;
 class Statistics : public BaseModel
 {
     Q_OBJECT
@@ -66,6 +67,15 @@ public:
     void writeToJson(QJsonObject &) override;
 
 
+    int getThreePointsMade() const;
+    void setThreePointsMade(int value);
+
+    int getThreePointsNum() const;
+    void setThreePointsNum(int value);
+
+    void addPoints(const Shot* shot);
+    void popPoints(const Shot* shot);
+
 signals:
     void pointsChanged();
     void shotsScoredChanged();
@@ -79,6 +89,8 @@ signals:
     void freeThrowsChanged();
     void freeThrowsMadeChanged();
     void foulsChanged();
+    void threePointsMadeChanged();
+    void threePointsNumChanged();
 
 protected:
     int points = 0;
@@ -93,6 +105,8 @@ protected:
     int freeThrows = 0;
     int freeThrowsMade = 0;
     int fouls = 0;
+    int threePointsMade = 0;
+    int threePointsNum = 0;
 };
 
 #endif // STATISITCS_H
