@@ -208,7 +208,7 @@ Statistics *MainModel::playerSelectedQuarterStatistics()
 }
 
 
-void MainModel::exportTeams(const QString& filename)
+void MainModel::exportData(const QString& filename)
 {
     if (!QDir("tmp").exists()){
         QDir().mkdir("tmp");
@@ -236,7 +236,7 @@ void MainModel::exportTeams(const QString& filename)
     saveFile.write(QJsonDocument(json).toJson());
 }
 
-void MainModel::importTeams(const QUrl &url)
+void MainModel::importData(const QUrl &url)
 {
     QFile loadFile(url.toLocalFile());
 

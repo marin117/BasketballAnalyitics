@@ -36,8 +36,8 @@ public:
     Statistics *selectedTeamStatistics();
     Statistics *playerSelectedQuarterStatistics();
 
-    Q_INVOKABLE void exportTeams(const QString& filename);
-    Q_INVOKABLE void importTeams(const QUrl &url);
+    Q_INVOKABLE void exportData(const QString& filename);
+    Q_INVOKABLE void importData(const QUrl &url);
 
 
     int getSelectedQuarter() const;

@@ -191,7 +191,7 @@ ApplicationWindow {
             MenuItem {
                 text: "Export"
                 onTriggered: {
-                    mainModel.exportTeams("export.json");
+                    mainModel.exportData("export.json");
                 }
             }
         }
@@ -200,7 +200,7 @@ ApplicationWindow {
             function onAccepted(){
                 console.log(fileDialog.fileUrls)
                 fileDialog.close();
-                mainModel.importTeams(fileDialog.fileUrl);
+                mainModel.importData(fileDialog.fileUrl);
                 playerListView.setToFirst();
                 selectedTeamChanged(0);
             }
