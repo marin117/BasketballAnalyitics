@@ -111,6 +111,16 @@ void Player::readFromJson(const QJsonObject &json)
         this->statistics = stats;
     }
 
+    if(json.contains("quarterStatistics") && json["quarterStatistics"].isArray()){
+        QJsonArray quarterStatisticsArray = json["quarterStatistics"].toArray();
+        quarterStatistics.reserve(quarterStatisticsArray.size());
+        for(int i = 0; i < quarterStatisticsArray.size(); i++){
+            QJsonObject s = quarterStatisticsArray[i].toObject();
+            auto qStatistics = new Statistics(this);
+            qStatistics->readFromJson(s);
+            quarterStatistics[i] = qStatistics;
+        }
+    }
 
     if(json.contains("shots") && json["shots"].isArray()){
         QJsonArray shotsArray = json["shots"].toArray();
