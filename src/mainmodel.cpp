@@ -35,17 +35,6 @@ PlayerListModel* MainModel::getPlayerModel()
     return playerModel;
 }
 
-
-QString MainModel::getSelectedPlayerName()
-{
-    return selectedPlayer->getName();
-}
-
-QList<Shot *> MainModel::getSelectedPlayerShots()
-{
-    return *selectedPlayer->getShots();
-}
-
 void MainModel::onSelectedPlayerChanged(const int &pos)
 {
     if(!playerModel->getPlayerList().size())

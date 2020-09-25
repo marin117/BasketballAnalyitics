@@ -12,18 +12,22 @@ class MainModel : public QObject
 {
     Q_OBJECT
     Q_PROPERTY(QQmlListProperty<Shot> selectedShots READ selectedShots)
+
     Q_PROPERTY(Statistics* playerStatistics READ selectedPlayerStatistics NOTIFY playerStatisticsChanged)
     Q_PROPERTY(Statistics* teamStatistics READ selectedTeamStatistics NOTIFY teamStatisticsChanged)
     Q_PROPERTY(Statistics* playerQuarterStatistics READ playerSelectedQuarterStatistics NOTIFY playerQuarterStatisticsChanged)
+
+    Q_PROPERTY(PlayerListModel* playerModel READ getPlayerModel NOTIFY playerModelChanged)
+
+    Q_PROPERTY(Player* selectedPlayer READ getSelectedPlayer NOTIFY selectedPlayerChanged)
+
     Q_PROPERTY(int selectedQuarter READ getSelectedQuarter WRITE setSelectedQuarter NOTIFY selectedQuarterChanged)
 public:
     explicit MainModel(QObject *parent = nullptr);
 
-    Q_INVOKABLE PlayerListModel* getPlayerModel();
+    PlayerListModel* getPlayerModel();
 
-    Q_INVOKABLE QString getSelectedPlayerName();
-    Q_INVOKABLE QList<Shot *> getSelectedPlayerShots();
-    Q_INVOKABLE Player *getSelectedPlayer() const;
+    Player *getSelectedPlayer() const;
     void setSelectedPlayer(Player *value);
 
     QQmlListProperty<Shot> selectedShots();
@@ -58,6 +62,7 @@ signals:
     Q_INVOKABLE void teamStatisticsChanged();
     void selectedQuarterChanged();
     void playerQuarterStatisticsChanged();
+    void playerModelChanged();
 
 private:
     void copyShot(Shot *newShot, Shot *shot);

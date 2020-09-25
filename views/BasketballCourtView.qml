@@ -76,7 +76,7 @@ Item {
             var ctx = getContext("2d");
             ctx.reset();
             ctx.lineWidth = 2;
-            if(mainModel.getSelectedPlayer() !== null){
+            if(mainModel.selectedPlayer !== null){
                 for(var i=0; i< mainModel.selectedShots.length; i++){
                     ctx.beginPath();
                     if(mainModel.selectedShots[i].isMiss === true){
@@ -99,7 +99,7 @@ Item {
             anchors.fill: parent
             acceptedButtons: Qt.LeftButton | Qt.RightButton | Qt.MiddleButton
             onPressed:  {
-                if(mainModel.getSelectedPlayer() !== null){
+                if(mainModel.selectedPlayer !== null){
                     shotDlgLoader.active = false;
                     shotDlgLoader.active = true;
 

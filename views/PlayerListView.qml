@@ -7,7 +7,7 @@ import QtQuick.Controls.Material 2.3
 
 ListView {
     id: playerList
-    model: mainModel.getPlayerModel()
+    model: mainModel.playerModel
     highlight: Rectangle {
         color: Material.color(Material.Blue, Material.Blue)
         radius: 5
