@@ -93,6 +93,7 @@ void MainModel::copyShot(Shot *newShot, Shot *shot){
     newShot->isEurostep = shot->isEurostep;
     newShot->isPutback = shot->isPutback;
     newShot->isSecondChance = shot->isSecondChance;
+    newShot->isOffTurnover = shot->isOffTurnover;
 }
 
 QString MainModel::getNotes() const

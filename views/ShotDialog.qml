@@ -26,6 +26,7 @@ Dialog {
     property bool isEurostep: false
     property bool isPutback: false
     property bool isSecondChance: false
+    property bool isOffTurnover: false
 
     anchors.centerIn: parent
 
@@ -38,6 +39,8 @@ Dialog {
                 checked: isMiss
                 text: "Miss"
                 tristate: false
+                onCheckStateChanged: isMiss = checkState;
+
             }
 
             CheckBox {
@@ -45,6 +48,8 @@ Dialog {
                 checked: isContested
                 text: "Contested"
                 tristate: false
+                onCheckStateChanged: isContested = checkState;
+
             }
 
             CheckBox {
@@ -52,6 +57,8 @@ Dialog {
                 checked: isThree
                 text: "For three"
                 tristate: false
+                onCheckStateChanged: isThree = checkState;
+
             }
 
             CheckBox {
@@ -59,54 +66,72 @@ Dialog {
                 checked: isOffhand
                 text: "Off hand"
                 tristate: false
+                onCheckStateChanged: isOffhand = checkState;
+
             }
             CheckBox {
                 id: isOffTheDribbleCheck
                 checked: isOffTheDribble
                 text: "Off the dribble"
                 tristate: false
+                onCheckStateChanged: isOffTheDribble = checkState;
+
             }
             CheckBox {
                 id: isCatchAndShootCheck
                 checked: isCatchAndShoot
                 text: "Catch and Shoot"
                 tristate: false
+                onCheckStateChanged: isCatchAndShoot = checkState;
+
             }
             CheckBox {
                 id: isPickAndRollCheck
                 checked: isPickAndRoll
                 text: "Pick and Roll"
                 tristate: false
+                onCheckStateChanged: isPickAndRoll = checkState;
+
             }
             CheckBox {
                 id: isPickAndPopCheck
                 checked: isPickAndPop
                 text: "Pick and Pop"
                 tristate: false
+                onCheckStateChanged: isPickAndPop = checkState;
+
             }
             CheckBox {
                 id: isPostCheck
                 checked: isPost
                 text: "Post"
                 tristate: false
+                onCheckStateChanged: isPost = checkState;
+
             }
             CheckBox {
                 id: isMismatchCheck
                 checked: isMismatch
                 text: "Missmatch"
                 tristate: false
+                onCheckStateChanged: isMismatch = checkState;
+
             }
             CheckBox {
                 id: isIsoCheck
                 checked: isIso
                 text: "Isolation"
                 tristate: false
+                onCheckStateChanged: isIso = checkState;
+
             }
             CheckBox {
                 id: isLayupCheck
                 checked: isLayup
                 text: "Layup"
                 tristate: false
+                onCheckStateChanged: isLayup = checkState;
+
             }
 
             CheckBox {
@@ -114,6 +139,8 @@ Dialog {
                 checked: isDunk
                 text: "Dunk"
                 tristate: false
+                onCheckStateChanged: isDunk = checkState;
+
             }
 
             CheckBox {
@@ -121,6 +148,8 @@ Dialog {
                 checked: isFloater
                 text: "Floater"
                 tristate: false
+                onCheckStateChanged: isFloater = checkState;
+
             }
 
             CheckBox {
@@ -128,6 +157,8 @@ Dialog {
                 checked: isEurostep
                 text: "Eurostep"
                 tristate: false
+                onCheckStateChanged: isEurostep = checkState;
+
             }
 
             CheckBox {
@@ -135,6 +166,7 @@ Dialog {
                 checked: isPutback
                 text: "Putback"
                 tristate: false
+                onCheckStateChanged: isPutback = checkState;
             }
 
             CheckBox {
@@ -142,6 +174,7 @@ Dialog {
                 checked: isSecondChance
                 text: "Second chance"
                 tristate: false
+                onCheckStateChanged: isSecondChance = checkState;
             }
 
             CheckBox {
@@ -149,12 +182,14 @@ Dialog {
                 checked: isFaul
                 text: "Faul"
                 tristate: false
+                onCheckStateChanged: isFaul = checkState;
             }
             CheckBox {
                 id: isTransitionCheck
                 checked: isTransition
                 text: "Transition"
                 tristate: false
+                onCheckStateChanged: isTransition = checkState;
             }
 
             CheckBox {
@@ -162,36 +197,16 @@ Dialog {
                 checked: isClutch
                 text: "Clutch"
                 tristate: false
+                onCheckStateChanged: isClutch = checkState;
+            }
+            CheckBox {
+                id: isOffTurnoverCheck
+                checked: isOffTurnover
+                text: "Off Turnover"
+                tristate: false
+                onCheckStateChanged: isOffTurnover = checkState;
             }
         }
-    }
-
-
-    onAccepted: {
-        console.log("Ok clicked");
-        isMiss = isMissCheck.checkState;
-        isContested = isContestedCheck.checkState;
-        isThree = isThreeCheck.checkState;
-        isOffhand = isOffhandCheck.checkState;
-        isOffTheDribble = isOffTheDribbleCheck.checkState;
-        isCatchAndShoot = isCatchAndShootCheck.checkState;
-        isPickAndRoll = isPickAndRollCheck.checkState;
-        isPickAndPop = isPickAndPopCheck.checkState;
-        isPost = isPostCheck.checkState;
-        isMismatch = isMismatchCheck.checkState;
-        isIso = isIsoCheck.checkState;
-        isLayup = isLayupCheck.checkState;
-        isFaul = isFaulCheck.checkState;
-        isTransition = isTransitionCheck.checkState;
-        isClutch = isClutchCheck.checkState;
-        isDunk = isDunkCheck.checkState;
-        isFloater = isFloaterCheck.checkState;
-        isEurostep = isEurostepCheck.checkState;
-        isPutback = isPutbackCheck.checkState;
-        isSecondChance = isSecondChanceCheck.checkState;
-    }
-    onRejected: {
-        console.log("Cancel clicked");
     }
 }
 

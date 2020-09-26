@@ -82,6 +82,10 @@ void Shot::readFromJson(const QJsonObject &json)
     if (json.contains("isSecondChance") && json["isSecondChance"].isBool()) {
         isSecondChance = json["isSecondChance"].toBool();
     }
+
+    if(json.contains("isOffTurnover") && json["isOffTurnover"].isBool()){
+        isOffTurnover = json["isOffTurnover"].toBool();
+    }
 }
 
 void Shot::writeToJson(QJsonObject &json)
@@ -108,6 +112,7 @@ void Shot::writeToJson(QJsonObject &json)
     json["isDunk"] = isDunk;
     json["isFloater"] = isFloater;
     json["isEurostep"] = isEurostep;
-    json["isSecondChance"] = isSecondChance;
     json["isPutback"] = isPutback;
+    json["isSecondChance"] = isSecondChance;
+    json["isOffTurnover"] = isOffTurnover;
 }

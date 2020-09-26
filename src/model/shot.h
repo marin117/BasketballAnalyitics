@@ -27,6 +27,7 @@ class Shot : public BaseModel
     Q_PROPERTY(bool isEurostep MEMBER isEurostep)
     Q_PROPERTY(bool isPutback MEMBER isPutback)
     Q_PROPERTY(bool isSecondChance MEMBER isSecondChance)
+    Q_PROPERTY(bool isOffTurnover MEMBER isOffTurnover)
 
     Q_PROPERTY(int x MEMBER x)
     Q_PROPERTY(int y MEMBER y)
@@ -53,6 +54,7 @@ public:
     bool isEurostep = false;
     bool isPutback = false;
     bool isSecondChance = false;
+    bool isOffTurnover = false;
 
     int x;
     int y;

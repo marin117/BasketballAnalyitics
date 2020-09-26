@@ -37,6 +37,7 @@ Item {
         isEurostep: false
         isPutback: false
         isSecondChance: false
+        isOffTurnover: false
     }
 
     Component {
@@ -160,6 +161,7 @@ Item {
         newShot.isEurostep = shotDlgLoader.item.isEurostep;
         newShot.isPutback = shotDlgLoader.item.isPutback;
         newShot.isSecondChance = shotDlgLoader.item.isSecondChance;
+        newShot.isOffTurnover = shotDlgLoader.item.isOffTurnover;
     }
 }
 
