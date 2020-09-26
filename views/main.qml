@@ -32,12 +32,12 @@ ApplicationWindow {
     }
 
     Timer {
-        interval: 36000; running: true; repeat: true
+        interval: 1; running: true; repeat: true
         onTriggered: {
             var currentTime = new Date();
             timeString = currentTime.toLocaleTimeString(locale, "hh:mm:ss");
             console.log("export" + timeString + ".json");
-            mainModel.exportTeams("export" + timeString + ".json");
+            mainModel.exportData("export" + timeString + ".json");
         }
     }
 
