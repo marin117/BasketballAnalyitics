@@ -22,6 +22,8 @@ class MainModel : public QObject
     Q_PROPERTY(Player* selectedPlayer READ getSelectedPlayer NOTIFY selectedPlayerChanged)
 
     Q_PROPERTY(int selectedQuarter READ getSelectedQuarter WRITE setSelectedQuarter NOTIFY selectedQuarterChanged)
+    Q_PROPERTY(QString notes READ getNotes WRITE setNotes NOTIFY notesChanged)
+
 public:
     explicit MainModel(QObject *parent = nullptr);
 
@@ -47,6 +49,9 @@ public:
     int getSelectedQuarter() const;
     void setSelectedQuarter(int value);
 
+    QString getNotes() const;
+    void setNotes(const QString &value);
+
 public slots:
     void onSelectedPlayerChanged(const int& pos);
     void onShotAdded(Shot* shot);
@@ -63,6 +68,7 @@ signals:
     void selectedQuarterChanged();
     void playerQuarterStatisticsChanged();
     void playerModelChanged();
+    void notesChanged();
 
 private:
     void copyShot(Shot *newShot, Shot *shot);
@@ -72,6 +78,8 @@ private:
     Team* teams[2] = {nullptr, nullptr};
     int selectedTeamIndex = 0;
     int selectedQuarter = 0;
+
+    QString notes;
 
 };
 

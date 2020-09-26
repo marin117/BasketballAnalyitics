@@ -95,6 +95,16 @@ void MainModel::copyShot(Shot *newShot, Shot *shot){
     newShot->isSecondChance = shot->isSecondChance;
 }
 
+QString MainModel::getNotes() const
+{
+    return notes;
+}
+
+void MainModel::setNotes(const QString &value)
+{
+    notes = value;
+}
+
 int MainModel::getSelectedQuarter() const
 {
     return selectedQuarter;
@@ -222,6 +232,8 @@ void MainModel::exportData(const QString& filename)
         return;
     }
 
+    json["notes"] = notes;
+
     saveFile.write(QJsonDocument(json).toJson());
 }
 
@@ -253,6 +265,10 @@ void MainModel::importData(const QUrl &url)
     if(playerModel->getPlayerList().size())
         setSelectedPlayer(playerModel->getPlayerAt(0));
 
+    if(loadObj.contains("notes") && loadObj["notes"].isString()){
+        notes = loadObj["notes"].toString();
+        emit notesChanged();
+    }
     onSelectedPlayerChanged(0);
 }
 

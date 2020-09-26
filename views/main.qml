@@ -88,8 +88,11 @@ ApplicationWindow {
                     leftMargin: 5
                     rightMargin: 5
                     TextArea.flickable: TextArea {
+                        id: notesArea
                         color: "black"
                         wrapMode: TextArea.Wrap
+                        placeholderText: "Enter notes here...."
+                        placeholderTextColor: Material.color(Material.Grey)
                         background: Rectangle {
                             color: "white"
                         }
@@ -191,6 +194,7 @@ ApplicationWindow {
             MenuItem {
                 text: "Export"
                 onTriggered: {
+                    mainModel.notes = notesArea.text;
                     mainModel.exportData("export.json");
                 }
             }
@@ -203,6 +207,13 @@ ApplicationWindow {
                 mainModel.importData(fileDialog.fileUrl);
                 playerListView.setToFirst();
                 selectedTeamChanged(0);
+            }
+        }
+
+        Connections {
+            target: mainModel
+            function onNotesChanged(){
+                notesArea.text = mainModel.notes;
             }
         }
     }
