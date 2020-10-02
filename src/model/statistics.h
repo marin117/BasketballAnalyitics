@@ -20,6 +20,8 @@ class Statistics : public BaseModel
     Q_PROPERTY(int freeThrows READ getFreeThrows WRITE setFreeThrows NOTIFY freeThrowsChanged)
     Q_PROPERTY(int freeThrowsMade READ getFreeThrowsMade WRITE setFreeThrowsMade NOTIFY freeThrowsMadeChanged)
     Q_PROPERTY(int fouls READ getFouls WRITE setFouls NOTIFY foulsChanged)
+    Q_PROPERTY(int threePointsMade READ getThreePointsMade WRITE setThreePointsMade NOTIFY threePointsMadeChanged)
+    Q_PROPERTY(int threePointsNum READ getThreePointsNum WRITE setThreePointsNum NOTIFY threePointsNumChanged)
 
 
 public:

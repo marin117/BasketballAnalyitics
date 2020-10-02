@@ -116,6 +116,7 @@ ApplicationWindow {
                         model: [ "1", "2", "3", "4" ]
                         onCurrentIndexChanged: {
                             mainModel.selectedQuarter = currentIndex;
+                            quarterCourtView.repaintCanvas();
                         }
                     }
                 }
@@ -142,6 +143,15 @@ ApplicationWindow {
 
         }
 
+        Item {
+            BasketballCourtView {
+                id: quarterCourtView
+                width: parent.width * 0.75
+                height: parent.height * 0.9
+                enabled: false
+                anchors.centerIn: parent
+            }
+        }
     }
 
     footer: TabBar {
@@ -156,6 +166,9 @@ ApplicationWindow {
         }
         TabButton {
             text: qsTr("Team Statistics")
+        }
+        TabButton{
+            text: qsTr("Quarter Shot Chart")
         }
     }
 
@@ -210,6 +223,13 @@ ApplicationWindow {
             target: mainModel
             function onNotesChanged(){
                 notesArea.text = mainModel.notes;
+            }
+        }
+
+        Connections{
+            target: basketballCourtView
+            function onShotAdded(){
+                quarterCourtView.repaintCanvas();
             }
         }
     }

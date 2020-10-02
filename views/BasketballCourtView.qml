@@ -12,6 +12,8 @@ Item {
 
     property int imageScaleX: 400
     property int imageScaleY: 300
+    property bool enabled: true
+    property int quarter: 1
 
 
     Shot {
@@ -88,9 +90,11 @@ Item {
                         ctx.strokeStyle = Qt.rgba(0,0.7,0,1);
                         ctx.fillStyle = Qt.rgba(0,0.7,0,1);
                     }
-                    ctx.ellipse(mainModel.selectedShots[i].x * width/imageScaleX,  mainModel.selectedShots[i].y * height/imageScaleY, 10, 10);
-                    ctx.fill();
-                    ctx.stroke();
+                    if(courtRoot.enabled || mainModel.selectedShots[i].quarter === mainModel.selectedQuarter){
+                        ctx.ellipse(mainModel.selectedShots[i].x * width/imageScaleX,  mainModel.selectedShots[i].y * height/imageScaleY, 10, 10);
+                        ctx.fill();
+                        ctx.stroke();
+                    }
                 }
             }
         }
@@ -99,6 +103,7 @@ Item {
             anchors.centerIn: parent
             anchors.fill: parent
             acceptedButtons: Qt.LeftButton | Qt.RightButton | Qt.MiddleButton
+            enabled: courtRoot.enabled
             onPressed:  {
                 if(mainModel.selectedPlayer !== null){
                     shotDlgLoader.active = false;

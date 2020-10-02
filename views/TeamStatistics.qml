@@ -40,6 +40,24 @@ Item {
             }
 
             StatisticCategory {
+                id: threePointsNumCategory
+                categoryName: "3PTA"
+                categoryVal: "threePointsNum"
+                controlRowVisible: false
+                isTeam: true
+                textValue: mainModel.playerStatistics[categoryVal]
+            }
+
+            StatisticCategory {
+                id: threePointsMadeCategory
+                categoryName: "3PTM"
+                categoryVal: "threePointsMade"
+                controlRowVisible: false
+                isTeam: true
+                textValue: mainModel.playerStatistics[categoryVal]
+            }
+
+            StatisticCategory {
                 id: freeThrowsMadeCategory
                 categoryName: "Free Throws Made"
                 categoryVal: "freeThrowsMade"

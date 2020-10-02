@@ -202,14 +202,15 @@ void Statistics::popPoints(const Shot *shot)
             setPoints(points - 2);
         else{
             setPoints(points - 3);
-            setThreePointsNum(threePointsNum - 1);
+            setThreePointsMade(threePointsMade - 1);
             setThreePointsNum(threePointsNum - 1);
         }
         setShotsScored(shotsScored - 1);
     }
     else{
-        if(shot->isThreePoints)
+        if(shot->isThreePoints){
             setThreePointsNum(threePointsNum - 1);
+        }
     }
 }
 
