@@ -63,7 +63,8 @@ void MainModel::onShotUndo(){
 
     selectedTeamStatistics()->popPoints(shot);
     selectedPlayer->popShot();
-    playerSelectedQuarterStatistics()->popPoints(shot);
+    auto &shotQuarterStatistics = selectedPlayer->getQuarterStatistics().at(shot->quarter);
+    shotQuarterStatistics->popPoints(shot);
     emit teamStatisticsChanged();
     emit playerStatisticsChanged();
 }
