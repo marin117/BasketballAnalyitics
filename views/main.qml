@@ -25,14 +25,10 @@ ApplicationWindow {
         onAccepted: {
             fileDialog.close();
         }
-        onRejected: {
-            console.log("Canceled")
-            Qt.quit()
-        }
     }
 
     Timer {
-        interval: 1; running: true; repeat: true
+        interval: 60000; running: true; repeat: true
         onTriggered: {
             var currentTime = new Date();
             timeString = currentTime.toLocaleTimeString(locale, "hh:mm:ss");
