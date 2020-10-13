@@ -40,14 +40,14 @@ ApplicationWindow {
     header: TabBar{
         id: headerTab
         TabButton {
-            text: qsTr("Team 1")
+            text: mainModel.team1Name
             onClicked: {
                 changeTeam(0);
             }
         }
 
         TabButton {
-            text: qsTr("Team 2")
+            text: mainModel.team2Name
             onClicked: {
                 changeTeam(1);
             }
@@ -69,7 +69,10 @@ ApplicationWindow {
                 PlayerListView{
                     id: playerListView
                     leftMargin: 5
-                    onSelectedPlayerChanged: basketballCourtView.repaintCanvas()
+                    onSelectedPlayerChanged: {
+                        basketballCourtView.repaintCanvas();
+                        quarterCourtView.repaintCanvas();
+                    }
                     width: parent.width
                     height:  parent.height * 0.65
                     onPlayerDoubleClicked: {

@@ -107,6 +107,22 @@ void MainModel::setNotes(const QString &value)
     notes = value;
 }
 
+QString MainModel::getTeam1Name() const
+{
+    if(!teams[0] || teams[0]->getName().isEmpty())
+        return "Team 1";
+    return teams[0]->getName();
+
+}
+
+
+QString MainModel::getTeam2Name() const
+{
+    if(!teams[1] || teams[1]->getName().isEmpty())
+        return "Team 2";
+    return teams[1]->getName();
+}
+
 int MainModel::getSelectedQuarter() const
 {
     return selectedQuarter;
@@ -272,6 +288,8 @@ void MainModel::importData(const QUrl &url)
         emit notesChanged();
     }
     onSelectedPlayerChanged(0);
+    team1NameChanged();
+    team2NameChanged();
 }
 
 
