@@ -10,6 +10,8 @@ class Player;
 class Team : public BaseModel
 {
     Q_OBJECT
+    Q_PROPERTY(QString name READ getName WRITE setName NOTIFY nameChanged)
+    Q_PROPERTY(Statistics *statistics READ getStatistics WRITE setStatistics NOTIFY statisticsChanged)
 public:
     explicit Team(QObject *parent = nullptr);
 
@@ -24,9 +26,11 @@ public:
     void setStatistics(Statistics *value);
 
 signals:
+    void nameChanged();
+    void statisticsChanged();
 
 private:
-    QString name;
+    QString name = "Team";
     QList<Player *> playerList;
     Statistics *statistics;
 

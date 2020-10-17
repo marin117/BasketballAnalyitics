@@ -26,6 +26,7 @@ QString Team::getName() const
 void Team::setName(const QString &value)
 {
     name = value;
+    emit nameChanged();
 }
 
 Statistics *Team::getStatistics() const
@@ -36,6 +37,7 @@ Statistics *Team::getStatistics() const
 void Team::setStatistics(Statistics *value)
 {
     statistics = value;
+    emit statisticsChanged();
 }
 
 
@@ -62,6 +64,7 @@ void Team::readFromJson(const QJsonObject &json)
         }
 
     }
+    emit statisticsChanged();
 }
 
 void Team::writeToJson(QJsonObject &json)

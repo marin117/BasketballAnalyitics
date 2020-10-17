@@ -40,14 +40,14 @@ ApplicationWindow {
     header: TabBar{
         id: headerTab
         TabButton {
-            text: mainModel.team1Name
+            text: mainModel.team1.name + " : " + mainModel.team1.statistics.points
             onClicked: {
                 changeTeam(0);
             }
         }
 
         TabButton {
-            text: mainModel.team2Name
+            text: mainModel.team2.name + " : " + mainModel.team2.statistics.points
             onClicked: {
                 changeTeam(1);
             }
