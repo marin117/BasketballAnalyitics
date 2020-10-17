@@ -22,15 +22,6 @@ Item {
             }
 
             StatisticCategory {
-                id: shotsNumCategory
-                categoryName: "FGA"
-                categoryVal: "shotsNum"
-                isTeam: true
-                controlRowVisible: false
-                textValue: mainModel.teamStatistics[categoryVal]
-            }
-
-            StatisticCategory {
                 id: shotsScoredCategory
                 categoryName: "FGM"
                 categoryVal: "shotsScored"
@@ -40,18 +31,27 @@ Item {
             }
 
             StatisticCategory {
-                id: threePointsNumCategory
-                categoryName: "3PTA"
-                categoryVal: "threePointsNum"
-                controlRowVisible: false
+                id: shotsNumCategory
+                categoryName: "FGA"
+                categoryVal: "shotsNum"
                 isTeam: true
-                textValue: mainModel.playerStatistics[categoryVal]
+                controlRowVisible: false
+                textValue: mainModel.teamStatistics[categoryVal]
             }
 
             StatisticCategory {
                 id: threePointsMadeCategory
                 categoryName: "3PTM"
                 categoryVal: "threePointsMade"
+                controlRowVisible: false
+                isTeam: true
+                textValue: mainModel.playerStatistics[categoryVal]
+            }
+
+            StatisticCategory {
+                id: threePointsNumCategory
+                categoryName: "3PTA"
+                categoryVal: "threePointsNum"
                 controlRowVisible: false
                 isTeam: true
                 textValue: mainModel.playerStatistics[categoryVal]

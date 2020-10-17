@@ -86,6 +86,7 @@ ApplicationWindow {
                     width: parent.width
                     leftMargin: 5
                     rightMargin: 5
+                    clip: true
                     TextArea.flickable: TextArea {
                         id: notesArea
                         color: "black"

@@ -22,6 +22,14 @@ Item {
             }
 
             StatisticCategory {
+                id: shotsScoredCategory
+                categoryName: "FGM"
+                categoryVal: "shotsScored"
+                controlRowVisible: false
+                textValue: mainModel.playerStatistics[categoryVal]
+            }
+
+            StatisticCategory {
                 id: shotsNumCategory
                 categoryName: "FGA"
                 categoryVal: "shotsNum"
@@ -31,9 +39,9 @@ Item {
             }
 
             StatisticCategory {
-                id: shotsScoredCategory
-                categoryName: "FGM"
-                categoryVal: "shotsScored"
+                id: threePointsMadeCategory
+                categoryName: "3PTM"
+                categoryVal: "threePointsMade"
                 controlRowVisible: false
                 textValue: mainModel.playerStatistics[categoryVal]
             }
@@ -42,14 +50,6 @@ Item {
                 id: threePointsNumCategory
                 categoryName: "3PTA"
                 categoryVal: "threePointsNum"
-                controlRowVisible: false
-                textValue: mainModel.playerStatistics[categoryVal]
-            }
-
-            StatisticCategory {
-                id: threePointsMadeCategory
-                categoryName: "3PTM"
-                categoryVal: "threePointsMade"
                 controlRowVisible: false
                 textValue: mainModel.playerStatistics[categoryVal]
             }
