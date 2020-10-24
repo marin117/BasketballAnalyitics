@@ -15,7 +15,7 @@ Item {
     property bool enabled: true
     property int quarter: 1
     property bool isClutchSelected: false
-
+    property string filter : ""
 
     Shot {
         id: newShot
@@ -82,20 +82,7 @@ Item {
             ctx.lineWidth = 2;
             if(mainModel.selectedPlayer !== null){
                 for(var i=0; i< mainModel.selectedShots.length; i++){
-                    ctx.beginPath();
-                    if(mainModel.selectedShots[i].isMiss === true){
-                        ctx.strokeStyle = Qt.rgba(1,0,0,1);
-                        ctx.fillStyle = Qt.rgba(1,0,0,1);
-                    }
-                    else{
-                        ctx.strokeStyle = Qt.rgba(0,0.7,0,1);
-                        ctx.fillStyle = Qt.rgba(0,0.7,0,1);
-                    }
-                    if(courtRoot.enabled || mainModel.selectedShots[i].quarter === mainModel.selectedQuarter){
-                        ctx.ellipse(mainModel.selectedShots[i].x * width/imageScaleX,  mainModel.selectedShots[i].y * height/imageScaleY, 10, 10);
-                        ctx.fill();
-                        ctx.stroke();
-                    }
+                    drawShot(ctx, mainModel.selectedShots[i]);
                 }
             }
         }
@@ -136,6 +123,24 @@ Item {
         basketballCourtCanvas.requestPaint();
     }
 
+    function drawShot(ctx, shot){
+        ctx.beginPath();
+        if(shot[filter] || filter === ""){
+            if(shot.isMiss === true){
+                ctx.strokeStyle = Qt.rgba(1,0,0,1);
+                ctx.fillStyle = Qt.rgba(1,0,0,1);
+            }
+            else{
+                ctx.strokeStyle = Qt.rgba(0,0.7,0,1);
+                ctx.fillStyle = Qt.rgba(0,0.7,0,1);
+            }
+            if(courtRoot.enabled || shot.quarter === mainModel.selectedQuarter){
+                ctx.ellipse(shot.x * width/imageScaleX,  shot.y * height/imageScaleY, 10, 10);
+                ctx.fill();
+                ctx.stroke();
+            }
+        }
+    }
 
     Loader{
         id: shotDlgLoader
