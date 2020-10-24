@@ -116,11 +116,22 @@ ApplicationWindow {
 
                     ComboBox {
                         id: quarterComboBox
-                        width: parent.width * 0.9
+                        width: parent.width * 0.65
                         model: [ "1", "2", "3", "4" ]
                         onCurrentIndexChanged: {
                             mainModel.selectedQuarter = currentIndex;
                             quarterCourtView.repaintCanvas();
+                        }
+                    }
+
+                    CheckBox {
+                        id: clucthCheckbox
+                        tristate: false
+                        checked: false
+                        text: "Clutch"
+                        enabled: quarterComboBox.currentIndex == 3
+                        onCheckedChanged: {
+                            basketballCourtView.isClutchSelected = checked;
                         }
                     }
                 }
@@ -154,6 +165,7 @@ ApplicationWindow {
                 height: parent.height * 0.9
                 enabled: false
                 anchors.centerIn: parent
+                isClutchSelected: clucthCheckbox.checked
             }
         }
     }

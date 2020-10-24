@@ -14,6 +14,7 @@ Item {
     property int imageScaleY: 300
     property bool enabled: true
     property int quarter: 1
+    property bool isClutchSelected: false
 
 
     Shot {
@@ -33,7 +34,7 @@ Item {
         isFaul : false
         isTransition : false
         isThreePoints: false
-        isClutch: false
+        isClutch: isClutchSelected
         isDunk: false
         isFloater: false
         isEurostep: false
@@ -160,7 +161,7 @@ Item {
         newShot.isLayup = shotDlgLoader.item.isLayup;
         newShot.isFaul = shotDlgLoader.item.isFaul;
         newShot.isTransition = shotDlgLoader.item.isTransition;
-        newShot.isClutch = shotDlgLoader.item.isClutch;
+        newShot.isClutch = isClutchSelected;
         newShot.isDunk = shotDlgLoader.item.isDunk;
         newShot.isFloater = shotDlgLoader.item.isFloater;
         newShot.isEurostep = shotDlgLoader.item.isEurostep;

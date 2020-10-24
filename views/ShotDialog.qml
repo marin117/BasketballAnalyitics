@@ -20,7 +20,6 @@ Dialog {
     property bool isLayup : false
     property bool isFaul : false
     property bool isTransition : false
-    property bool isClutch: false
     property bool isDunk: false
     property bool isFloater: false
     property bool isEurostep: false
@@ -192,13 +191,6 @@ Dialog {
                 onCheckStateChanged: isTransition = checkState;
             }
 
-            CheckBox {
-                id: isClutchCheck
-                checked: isClutch
-                text: "Clutch"
-                tristate: false
-                onCheckStateChanged: isClutch = checkState;
-            }
             CheckBox {
                 id: isOffTurnoverCheck
                 checked: isOffTurnover
