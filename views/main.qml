@@ -177,7 +177,7 @@ ApplicationWindow {
             text: qsTr("Team Statistics")
         }
         TabButton{
-            text: qsTr("Quarter Shot Chart")
+            text: qsTr("Report")
         }
     }
 
