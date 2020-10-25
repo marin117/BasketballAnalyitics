@@ -16,7 +16,8 @@ public:
     enum {
         NameRole = Qt::UserRole + 1,
         SurnameRole,
-        NumberRole
+        NumberRole,
+        TextRole
     };
 
     // Header:
@@ -45,7 +46,7 @@ public:
     QList<Player *> getPlayerList() const;
     void setPlayerList(const QList<Player *> &value);
 
-    Player *getPlayerAt(const int& pos);
+    Q_INVOKABLE Player *getPlayerAt(const int& pos);
 
 public slots:
     void onRefresh();

@@ -28,19 +28,7 @@ ListView {
                     font.pixelSize: 18
                     font.family: "Roboto"
                     color: Material.color(Material.Pink, Material.Pink)
-                    text: model.number
-                }
-                Label {
-                    font.pixelSize: 18
-                    font.family: "Roboto"
-                    color: Material.color(Material.Pink, Material.Pink)
-                    text: model.name
-                }
-                Label {
-                    font.pixelSize: 18
-                    font.family: "Roboto"
-                    color: Material.color(Material.Pink, Material.Pink)
-                    text: model.surname
+                    text: model.text
                 }
             }
             MouseArea {

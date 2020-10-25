@@ -10,6 +10,7 @@
         <file>views/StatisticCategory.qml</file>
         <file>views/StatisticCategoryForm.ui.qml</file>
         <file>views/TeamStatistics.qml</file>
+        <file>views/ReportTab.qml</file>
     </qresource>
     <qresource prefix="/res">
         <file>res/halfcourt_4k.png</file>

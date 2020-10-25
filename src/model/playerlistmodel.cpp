@@ -39,6 +39,8 @@ QVariant PlayerListModel::data(const QModelIndex &index, int role) const
         return player->getSurname();
     case NumberRole:
         return player->getNumber();
+    case TextRole:
+        return QString("%1 %2 %3").arg(player->getNumber()).arg(player->getName()).arg(player->getSurname());
     default:
         break;
     }
@@ -130,5 +132,6 @@ QHash<int, QByteArray> PlayerListModel::roleNames() const
     roles[NameRole] = "name" ;
     roles[SurnameRole] = "surname";
     roles[NumberRole] = "number";
+    roles[TextRole] = "text";
     return roles;
 }

@@ -175,31 +175,6 @@ void MainModel::setSelectedPlayer(Player *value)
     selectedPlayer = value;
 }
 
-QQmlListProperty<Shot> MainModel::selectedShots()
-{
-    return QQmlListProperty<Shot>(this, selectedPlayer->getShots());
-}
-
-int MainModel::shotsCount() const
-{
-    return selectedPlayer->getShots()->size();
-}
-
-Shot *MainModel::shotAt(int i) const
-{
-    return selectedPlayer->getShots()->at(i);
-}
-
-
-int MainModel::shotsCount(QQmlListProperty<Shot>* list) {
-    return reinterpret_cast< MainModel* >(list->data)->shotsCount();
-}
-
-Shot* MainModel::shotAt(QQmlListProperty<Shot>* list, int i)
-{
-    return reinterpret_cast< MainModel* >(list->data)->shotAt(i);
-}
-
 Statistics *MainModel::selectedPlayerStatistics()
 {
     if(selectedPlayer)

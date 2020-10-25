@@ -11,7 +11,6 @@ class PlayerStatistics;
 class MainModel : public QObject
 {
     Q_OBJECT
-    Q_PROPERTY(QQmlListProperty<Shot> selectedShots READ selectedShots)
 
     Q_PROPERTY(Statistics* playerStatistics READ selectedPlayerStatistics NOTIFY playerStatisticsChanged)
     Q_PROPERTY(Statistics* teamStatistics READ selectedTeamStatistics NOTIFY teamStatisticsChanged)
@@ -34,12 +33,6 @@ public:
 
     Player *getSelectedPlayer() const;
     void setSelectedPlayer(Player *value);
-
-    QQmlListProperty<Shot> selectedShots();
-    int shotsCount() const;
-     Shot *shotAt(int i) const;
-    static int shotsCount(QQmlListProperty<Shot>*);
-    static Shot* shotAt(QQmlListProperty<Shot>*, int i);
 
     Statistics *selectedPlayerStatistics();
     Statistics *selectedTeamStatistics();

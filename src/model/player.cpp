@@ -58,6 +58,11 @@ QList<Shot *>* Player::getShots()
     return &shots;
 }
 
+QList<Shot *> Player::getShotsCopy()
+{
+    return shots;
+}
+
 void Player::setShots(const QList<Shot *> &value)
 {
     shots = value;
@@ -83,6 +88,7 @@ void Player::addShot(Shot *shot)
 {
     shots.append(shot);
     statistics->addPoints(shot);
+    emit shotsChanged();
 }
 
 void Player::popShot(){
@@ -159,4 +165,30 @@ void Player::writeToJson(QJsonObject &json)
         quarterStatisticsArray.append(qStatisicsJson);
     }
     json["quarterStatistics"] = quarterStatisticsArray;
+}
+
+QQmlListProperty<Shot> Player::shotsList
+()
+{
+    return QQmlListProperty<Shot>(this, &shots);
+}
+
+int Player::shotsCount() const
+{
+    return shots.size();
+}
+
+Shot *Player::shotAt(int i) const
+{
+    return shots.at(i);
+}
+
+
+int Player::shotsCount(QQmlListProperty<Shot>* list) {
+    return reinterpret_cast< Player* >(list->data)->shotsCount();
+}
+
+Shot* Player::shotAt(QQmlListProperty<Shot>* list, int i)
+{
+    return reinterpret_cast< Player* >(list->data)->shotAt(i);
 }

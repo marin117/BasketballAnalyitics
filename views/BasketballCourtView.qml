@@ -13,9 +13,10 @@ Item {
     property int imageScaleX: 400
     property int imageScaleY: 300
     property bool enabled: true
-    property int quarter: 1
+    property int quarter: mainModel.selectedQuarter
     property bool isClutchSelected: false
     property string filter : ""
+    property var shots: mainModel.selectedPlayer.shots
 
     Shot {
         id: newShot
@@ -81,8 +82,8 @@ Item {
             ctx.reset();
             ctx.lineWidth = 2;
             if(mainModel.selectedPlayer !== null){
-                for(var i=0; i< mainModel.selectedShots.length; i++){
-                    drawShot(ctx, mainModel.selectedShots[i]);
+                for(var i=0; i< shots.length; i++){
+                    drawShot(ctx, shots[i]);
                 }
             }
         }
@@ -134,7 +135,7 @@ Item {
                 ctx.strokeStyle = Qt.rgba(0,0.7,0,1);
                 ctx.fillStyle = Qt.rgba(0,0.7,0,1);
             }
-            if(courtRoot.enabled || shot.quarter === mainModel.selectedQuarter){
+            if(courtRoot.enabled || shot.quarter === quarter){
                 ctx.ellipse(shot.x * width/imageScaleX,  shot.y * height/imageScaleY, 10, 10);
                 ctx.fill();
                 ctx.stroke();

@@ -158,15 +158,8 @@ ApplicationWindow {
 
         }
 
-        Item {
-            BasketballCourtView {
-                id: quarterCourtView
-                width: parent.width * 0.75
-                height: parent.height * 0.9
-                enabled: false
-                anchors.centerIn: parent
-                isClutchSelected: clucthCheckbox.checked
-            }
+        ReportTab {
+            id: reportTab
         }
     }
 
@@ -245,7 +238,6 @@ ApplicationWindow {
         Connections{
             target: basketballCourtView
             function onShotAdded(){
-                quarterCourtView.repaintCanvas();
             }
         }
     }

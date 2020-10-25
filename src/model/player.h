@@ -4,6 +4,7 @@
 #include <vector>
 #include "shot.h"
 #include <QObject>
+#include <QQmlListProperty>
 #include "basemodel.h"
 
 class Statistics;
@@ -11,6 +12,7 @@ class Statistics;
 class Player : public BaseModel
 {
     Q_OBJECT
+    Q_PROPERTY(QQmlListProperty<Shot> shots READ shotsList NOTIFY shotsChanged)
 public:
     explicit Player(QObject *parent = nullptr);
     explicit Player(const QString &name, const QString &surname,const int &number, QObject *parent = nullptr);
@@ -27,12 +29,20 @@ public:
     void popShot();
 
     QList<Shot *>* getShots();
+    QList<Shot*> getShotsCopy();
     void setShots(const QList<Shot *> &value);
 
     Statistics *getStatistics() const;
     void setStatistics(Statistics *value);
 
     QVector<Statistics *> getQuarterStatistics() const;
+
+    QQmlListProperty<Shot> shotsList();
+    int shotsCount() const;
+     Shot *shotAt(int i) const;
+
+signals:
+    void shotsChanged();
 
 private:
     QString name = "";
@@ -42,6 +52,8 @@ private:
     Statistics *statistics;
     QVector<Statistics *> quarterStatistics;
 
+    static int shotsCount(QQmlListProperty<Shot>*);
+    static Shot* shotAt(QQmlListProperty<Shot>*, int i);
 
     // BaseModel interface
 public:
