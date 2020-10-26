@@ -2,7 +2,7 @@
 #include "playerstatistics.h"
 #include <QJsonArray>
 
-#define QUARTER 4
+#define QUARTER 5
 
 Player::Player(QObject *parent) : BaseModel(parent)
 {
