@@ -1,6 +1,8 @@
 import QtQuick 2.4
+import QtQuick.Controls.Material 2.12
 
 StatisticCategoryForm {
+    rootColor: Material.color(Material.Grey)
     implicitWidth: parent.width
     property bool isTeam : false
     Connections {
@@ -65,5 +67,4 @@ StatisticCategoryForm {
         property: "text"
         value: if (isTeam) mainModel.teamStatistics[categoryVal]
     }
-
 }

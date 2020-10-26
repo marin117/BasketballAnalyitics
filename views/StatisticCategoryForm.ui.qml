@@ -1,7 +1,6 @@
 import QtQuick 2.4
 import QtQuick.Controls 2.4
 import QtQuick.Layouts 1.11
-import QtQuick.Controls.Material 2.12
 
 Item {
     id: statisticElement
@@ -15,6 +14,8 @@ Item {
     property string categoryName: "Category"
     property string categoryVal
     property alias textValue: categoryValueText.text
+
+    property var rootColor: "grey"
     Row {
         id: rowLayout
         anchors.fill: parent
@@ -31,7 +32,7 @@ Item {
                 text: categoryName
                 font.pixelSize: 16
                 font.family: "Roboto"
-                color: Material.color(Material.Grey)
+                color: rootColor
             }
         }
         Item {
@@ -43,7 +44,7 @@ Item {
                 //text: mainModel.playerStatistics[categoryVal]
                 font.pixelSize: 16
                 font.family: "Roboto"
-                color: Material.color(Material.Grey)
+                color: rootColor
             }
         }
         Item {
@@ -68,17 +69,15 @@ Item {
             }
         }
     }
-    Rectangle{
+    Rectangle {
         implicitWidth: parent.width
         implicitHeight: 1
-        color: Material.color(Material.Grey)
+        color: rootColor
     }
 }
 
-
 /*##^##
 Designer {
-    D{i:1;anchors_width:360}
+    D{i:0;autoSize:true;height:480;width:640}
 }
 ##^##*/
-
