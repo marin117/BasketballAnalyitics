@@ -251,5 +251,6 @@ ApplicationWindow {
         selectedTeamChanged(pos);
         playerListView.setToFirst();
         basketballCourtView.repaintCanvas();
+        reportTab.updateCourt();
     }
 }
