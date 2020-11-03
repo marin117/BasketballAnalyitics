@@ -135,7 +135,7 @@ Item {
                 ctx.strokeStyle = Qt.rgba(0,0.7,0,1);
                 ctx.fillStyle = Qt.rgba(0,0.7,0,1);
             }
-            if(courtRoot.enabled || shot.quarter === quarter){
+            if(courtRoot.enabled || shot.quarter === quarter || quarter < 0){
                 ctx.ellipse(shot.x * width/imageScaleX,  shot.y * height/imageScaleY, 10, 10);
                 ctx.fill();
                 ctx.stroke();

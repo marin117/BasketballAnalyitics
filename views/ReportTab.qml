@@ -17,10 +17,9 @@ Item {
             ComboBox {
                 id: quarterReportComboBox
                 width: parent.width * 0.2
-                model: ["", "1", "2", "3", "4" ]
+                model: ["", "1", "2", "3", "4", "Overtime" ]
                 onCurrentIndexChanged: {
-                    if(currentIndex > 0)
-                        reportCourtView.quarter = currentIndex - 1;
+                    reportCourtView.quarter = currentIndex - 1 ;
                     reportCourtView.repaintCanvas();
                 }
             }
@@ -28,16 +27,16 @@ Item {
             Label {
                 width: parent.width * 0.05
                 anchors.verticalCenter: parent.verticalCenter
-                text: "Players:"
+                text: "Property:"
             }
             ComboBox {
-                id: playerCombobox
+                id: propertyCombobox
                 textRole: "text"
-                currentIndex: -1
+                currentIndex: 0
                 width: parent.width * 0.6
-                model: mainModel.playerModel
+                model: ["", "..."]
                 onCurrentIndexChanged: {
-                    updateCourtView();
+                    reportCourtView.repaintCanvas();
                 }
             }
         }
@@ -51,14 +50,14 @@ Item {
                 anchors.centerIn: parent
                 enabled: false
                 isClutchSelected: false
-                quarter: quarterReportComboBox.currentIndex
+                quarter: quarterReportComboBox.currentIndex - 1
             }
         }
-    }
-    function updateCourtView(){
-        if(playerCombobox.currentIndex > -1){
-            reportCourtView.shots = mainModel.playerModel.getPlayerAt(playerCombobox.currentIndex).shots;
-            reportCourtView.repaintCanvas();
+        PlayerStatistics{
+            width: parent.width
+            height:  parent.height * 0.6
+            controlVisible: false
+            quarter: quarterReportComboBox.currentIndex - 1
         }
     }
 }

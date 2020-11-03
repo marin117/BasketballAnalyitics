@@ -78,7 +78,7 @@ void Player::setStatistics(Statistics *value)
     statistics = value;
 }
 
-QVector<Statistics *> Player::getQuarterStatistics() const
+QList<Statistics *> Player::getQuarterStatistics() const
 {
     return quarterStatistics;
 }
@@ -183,6 +183,21 @@ Shot *Player::shotAt(int i) const
     return shots.at(i);
 }
 
+QQmlListProperty<Statistics> Player::quarterStatisticsList()
+{
+    return QQmlListProperty<Statistics>(this, &quarterStatistics);
+}
+
+int Player::statisticsCount() const
+{
+    return quarterStatistics.size();
+}
+
+Statistics *Player::statisticsAt(int i) const
+{
+    return quarterStatistics.at(i);
+}
+
 
 int Player::shotsCount(QQmlListProperty<Shot>* list) {
     return reinterpret_cast< Player* >(list->data)->shotsCount();
@@ -191,4 +206,15 @@ int Player::shotsCount(QQmlListProperty<Shot>* list) {
 Shot* Player::shotAt(QQmlListProperty<Shot>* list, int i)
 {
     return reinterpret_cast< Player* >(list->data)->shotAt(i);
+}
+
+int Player::statisticsCount(QQmlListProperty<Statistics> *list)
+{
+    return reinterpret_cast< Player* >(list->data)->statisticsCount();
+}
+
+Statistics *Player::statisticsAt(QQmlListProperty<Statistics> *list, int i)
+{
+    return reinterpret_cast< Player* >(list->data)->statisticsAt(i);
+
 }
