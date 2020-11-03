@@ -71,7 +71,6 @@ ApplicationWindow {
                     leftMargin: 5
                     onSelectedPlayerChanged: {
                         basketballCourtView.repaintCanvas();
-                        quarterCourtView.repaintCanvas();
                     }
                     width: parent.width
                     height:  parent.height * 0.65
@@ -159,6 +158,11 @@ ApplicationWindow {
 
         ReportTab {
             id: reportTab
+        }
+
+        onCurrentIndexChanged: {
+            if(currentIndex == 3)
+                reportTab.updateCourt();
         }
     }
 
