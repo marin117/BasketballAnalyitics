@@ -29,14 +29,12 @@ Item {
                 anchors.verticalCenter: parent.verticalCenter
                 text: "Property:"
             }
-            ComboBox {
-                id: propertyCombobox
-                textRole: "text"
-                currentIndex: 0
+            // insert combobox here
+            CheckboxCombo{
+                height: parent.height
                 width: parent.width * 0.6
-                model: ["", "..."]
-                onCurrentIndexChanged: {
-                    reportCourtView.repaintCanvas();
+                onSelectionChanged: {
+                    reportCourtView.filters = selected;
                 }
             }
         }
@@ -51,6 +49,7 @@ Item {
                 enabled: false
                 isClutchSelected: false
                 quarter: quarterReportComboBox.currentIndex - 1
+                filters: []
             }
         }
         PlayerStatistics{

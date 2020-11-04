@@ -15,7 +15,7 @@ Item {
     property bool enabled: true
     property int quarter: mainModel.selectedQuarter
     property bool isClutchSelected: false
-    property string filter : ""
+    property var filters : []
     property var shots: mainModel.selectedPlayer.shots
 
     Shot {
@@ -83,7 +83,14 @@ Item {
             ctx.lineWidth = 2;
             if(mainModel.selectedPlayer !== null){
                 for(var i=0; i< shots.length; i++){
-                    drawShot(ctx, shots[i]);
+                    if(filters.length > 0){
+                        for(var j=0; j < filters.length; j++){
+                            drawShot(ctx, shots[i], filters[j]);
+                        }
+                    }
+                    else{
+                        drawShot(ctx, shots[i], "");
+                    }
                 }
             }
         }
@@ -124,7 +131,7 @@ Item {
         basketballCourtCanvas.requestPaint();
     }
 
-    function drawShot(ctx, shot){
+    function drawShot(ctx, shot, filter){
         ctx.beginPath();
         if(shot[filter] || filter === ""){
             if(shot.isMiss === true){
@@ -174,6 +181,10 @@ Item {
         newShot.isPutback = shotDlgLoader.item.isPutback;
         newShot.isSecondChance = shotDlgLoader.item.isSecondChance;
         newShot.isOffTurnover = shotDlgLoader.item.isOffTurnover;
+    }
+    onFiltersChanged: {
+        console.log(filters);
+        repaintCanvas();
     }
 }
 
