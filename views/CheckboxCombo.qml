@@ -23,7 +23,7 @@ Item{
                     selected.splice(pos, 1);
                 }
                 selectionChanged();
-                textVal += model.name + " ";
+                textVal = selected.toString();
             }
         }
         onCurrentIndexChanged: {
