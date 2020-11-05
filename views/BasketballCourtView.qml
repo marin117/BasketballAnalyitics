@@ -83,14 +83,19 @@ Item {
             ctx.lineWidth = 2;
             if(mainModel.selectedPlayer !== null){
                 for(var i=0; i< shots.length; i++){
+                    var shouldDraw = true;
                     if(filters.length > 0){
                         for(var j=0; j < filters.length; j++){
-                            drawShot(ctx, shots[i], filters[j]);
+                            if(shots[i][filters[j]] === false && shots[i][filters[j]] !== undefined)
+                                shouldDraw = false;
+                            // this is just temporary for special cases, need to rewrite if more special cases occures
+                            if(filters[j] === '!isThreePoints' && shots[i]['isThreePoints'])
+                                shouldDraw = false;
+                            if(filters[j] === '!isContested' && shots[i]['isContested'])
+                                shouldDraw = false;
                         }
                     }
-                    else{
-                        drawShot(ctx, shots[i], "");
-                    }
+                    if(shouldDraw)  drawShot(ctx, shots[i]);
                 }
             }
         }
@@ -133,21 +138,20 @@ Item {
 
     function drawShot(ctx, shot, filter){
         ctx.beginPath();
-        if(shot[filter] || filter === ""){
-            if(shot.isMiss === true){
-                ctx.strokeStyle = Qt.rgba(1,0,0,1);
-                ctx.fillStyle = Qt.rgba(1,0,0,1);
-            }
-            else{
-                ctx.strokeStyle = Qt.rgba(0,0.7,0,1);
-                ctx.fillStyle = Qt.rgba(0,0.7,0,1);
-            }
-            if(courtRoot.enabled || shot.quarter === quarter || quarter < 0){
-                ctx.ellipse(shot.x * width/imageScaleX,  shot.y * height/imageScaleY, 10, 10);
-                ctx.fill();
-                ctx.stroke();
-            }
+        if(shot.isMiss === true){
+            ctx.strokeStyle = Qt.rgba(1,0,0,1);
+            ctx.fillStyle = Qt.rgba(1,0,0,1);
         }
+        else{
+            ctx.strokeStyle = Qt.rgba(0,0.7,0,1);
+            ctx.fillStyle = Qt.rgba(0,0.7,0,1);
+        }
+        if(courtRoot.enabled || shot.quarter === quarter || quarter < 0){
+            ctx.ellipse(shot.x * width/imageScaleX,  shot.y * height/imageScaleY, 10, 10);
+            ctx.fill();
+            ctx.stroke();
+        }
+
     }
 
     Loader{

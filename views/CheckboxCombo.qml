@@ -33,8 +33,10 @@ Item{
 
     ListModel{
         id: propertyModel
-        ListElement { name: "ThreePoints"; value:"isThreePoints" }
+        ListElement { name: "Two Points"; value:"!isThreePoints" }
+        ListElement { name: "Three Points"; value:"isThreePoints" }
         ListElement { name: "Contested"; value:"isContested" }
+        ListElement { name: "Uncontested"; value:"!isContested" }
         ListElement { name: "Offhand"; value:"isOffhand" }
         ListElement { name: "OffTheDribble"; value:"isOffTheDribble" }
         ListElement { name: "CatchAndShoot"; value:"isCatchAndShoot" }
