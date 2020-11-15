@@ -158,7 +158,7 @@ Item {
         id: shotDlgLoader
         sourceComponent: shotDialogComp
         active: true
-        //x: (parent.width - width) / 2
+//        x: parent.width  / 2
         y: parent.height / 2
 
     }
