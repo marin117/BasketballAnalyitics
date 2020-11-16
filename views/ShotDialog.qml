@@ -1,5 +1,7 @@
 import QtQuick 2.14
 import QtQuick.Controls 2.14
+import QtQuick.Layouts 1.12
+import Shot 0.1
 
 Dialog {
     id: shotDialog
@@ -7,438 +9,120 @@ Dialog {
     standardButtons: Dialog.Ok | Dialog.Cancel
     modal: true
     clip: true
-    contentWidth: dialogSwipeView.implicitWidth + 50
-    contentHeight: dialogSwipeView.implicitHeight
 
-    property bool isMiss : false
-    property bool isContested: false
-    property bool isThree: false
-    property bool isOffhand : false
-    property bool isOffTheDribble : false
-    property bool isCatchAndShoot : false
-    property bool isPickAndRoll : false
-    property bool isPickAndPop : false
-    property bool isPost : false
-    property bool isMismatch : false
-    property bool isIso : false
-    property bool isLayup : false
-    property bool isFaul : false
-    property bool isTransition : false
-    property bool isDunk: false
-    property bool isFloater: false
-    property bool isEurostep: false
-    property bool isPutback: false
-    property bool isSecondChance: false
-    property bool isOffTurnover: false
+//    property bool isMiss : false
+//    property bool isContested: false
+//    property bool isThree: false
+//    property bool isOffhand : false
+//    property bool isOffTheDribble : false
+//    property bool isCatchAndShoot : false
+//    property bool isPickAndRoll : false
+//    property bool isPickAndPop : false
+//    property bool isPost : false
+//    property bool isMismatch : false
+//    property bool isIso : false
+//    property bool isLayup : false
+//    property bool isFaul : false
+//    property bool isTransition : false
+//    property bool isDunk: false
+//    property bool isFloater: false
+//    property bool isEurostep: false
+//    property bool isPutback: false
+//    property bool isSecondChance: false
+//    property bool isOffTurnover: false
+
+    property var shot: paramShot
+
+    Shot {
+        id: paramShot
+    }
 
     anchors.centerIn: parent
 
-//    ScrollView{
-//        anchors.fill: parent
-//        Grid {
-//            columns: 3
-//            CheckBox {
-//                id: isMissCheck
-//                checked: isMiss
-//                text: "Miss"
-//                tristate: false
-//                onCheckStateChanged: isMiss = checkState;
-
-//            }
-
-//            CheckBox {
-//                id: isContestedCheck
-//                checked: isContested
-//                text: "Contested"
-//                tristate: false
-//                onCheckStateChanged: isContested = checkState;
-
-//            }
-
-//            CheckBox {
-//                id: isThreeCheck
-//                checked: isThree
-//                text: "For three"
-//                tristate: false
-//                onCheckStateChanged: isThree = checkState;
-
-//            }
-
-//            CheckBox {
-//                id: isOffhandCheck
-//                checked: isOffhand
-//                text: "Off hand"
-//                tristate: false
-//                onCheckStateChanged: isOffhand = checkState;
-
-//            }
-//            CheckBox {
-//                id: isOffTheDribbleCheck
-//                checked: isOffTheDribble
-//                text: "Off the dribble"
-//                tristate: false
-//                onCheckStateChanged: isOffTheDribble = checkState;
-
-//            }
-//            CheckBox {
-//                id: isCatchAndShootCheck
-//                checked: isCatchAndShoot
-//                text: "Catch and Shoot"
-//                tristate: false
-//                onCheckStateChanged: isCatchAndShoot = checkState;
-
-//            }
-//            CheckBox {
-//                id: isPickAndRollCheck
-//                checked: isPickAndRoll
-//                text: "Pick and Roll"
-//                tristate: false
-//                onCheckStateChanged: isPickAndRoll = checkState;
-
-//            }
-//            CheckBox {
-//                id: isPickAndPopCheck
-//                checked: isPickAndPop
-//                text: "Pick and Pop"
-//                tristate: false
-//                onCheckStateChanged: isPickAndPop = checkState;
-
-//            }
-//            CheckBox {
-//                id: isPostCheck
-//                checked: isPost
-//                text: "Post"
-//                tristate: false
-//                onCheckStateChanged: isPost = checkState;
-
-//            }
-//            CheckBox {
-//                id: isMismatchCheck
-//                checked: isMismatch
-//                text: "Missmatch"
-//                tristate: false
-//                onCheckStateChanged: isMismatch = checkState;
-
-//            }
-//            CheckBox {
-//                id: isIsoCheck
-//                checked: isIso
-//                text: "Isolation"
-//                tristate: false
-//                onCheckStateChanged: isIso = checkState;
-
-//            }
-//            CheckBox {
-//                id: isLayupCheck
-//                checked: isLayup
-//                text: "Layup"
-//                tristate: false
-//                onCheckStateChanged: isLayup = checkState;
-
-//            }
-
-//            CheckBox {
-//                id: isDunkCheck
-//                checked: isDunk
-//                text: "Dunk"
-//                tristate: false
-//                onCheckStateChanged: isDunk = checkState;
-
-//            }
-
-//            CheckBox {
-//                id: isFloaterCheck
-//                checked: isFloater
-//                text: "Floater"
-//                tristate: false
-//                onCheckStateChanged: isFloater = checkState;
-
-//            }
-
-//            CheckBox {
-//                id: isEurostepCheck
-//                checked: isEurostep
-//                text: "Eurostep"
-//                tristate: false
-//                onCheckStateChanged: isEurostep = checkState;
-
-//            }
-
-//            CheckBox {
-//                id: isPutbackCheck
-//                checked: isPutback
-//                text: "Putback"
-//                tristate: false
-//                onCheckStateChanged: isPutback = checkState;
-//            }
-
-//            CheckBox {
-//                id: isSecondChanceCheck
-//                checked: isSecondChance
-//                text: "Second chance"
-//                tristate: false
-//                onCheckStateChanged: isSecondChance = checkState;
-//            }
-
-//            CheckBox {
-//                id: isFaulCheck
-//                checked: isFaul
-//                text: "Faul"
-//                tristate: false
-//                onCheckStateChanged: isFaul = checkState;
-//            }
-//            CheckBox {
-//                id: isTransitionCheck
-//                checked: isTransition
-//                text: "Transition"
-//                tristate: false
-//                onCheckStateChanged: isTransition = checkState;
-//            }
-
-//            CheckBox {
-//                id: isOffTurnoverCheck
-//                checked: isOffTurnover
-//                text: "Off Turnover"
-//                tristate: false
-//                onCheckStateChanged: isOffTurnover = checkState;
-//            }
-//        }
-//    }
-
-    SwipeView {
-        id: dialogSwipeView
-        currentIndex: tabBar.currentIndex
+    contentItem: Item {
         anchors.fill: parent
-        clip: true
-        Grid {
-            columns: 3
-            CheckBox {
-                id: isMissGeneralCheck
-                checked: isMiss
-                text: "Miss"
-                tristate: false
-                onCheckStateChanged: isMiss = checkState;
-
+        Column{
+            width: parent.width
+            height: parent.height * 0.8
+            anchors.centerIn: parent
+            Grid {
+                columns: 3
+                rows: 4
+                Repeater {
+                    model: propModel
+                    delegate: CheckBox {
+                        text: name
+                    }
+                }
             }
 
-            CheckBox {
-                id: isContestedGeneralCheck
-                checked: isContested
-                text: "Contested"
-                tristate: false
-                onCheckStateChanged: isContested = checkState;
-
+            Grid {
+                columns: 3
+                rows: 4
+                Repeater {
+                    model: shotProp
+                    delegate: CheckBox {
+                        text: name
+                    }
+                }
             }
 
-            CheckBox {
-                id: isPutbackGeneralCheck
-                checked: isPutback
-                text: "Putback"
-                tristate: false
-                onCheckStateChanged: isPutback = checkState;
+            Grid {
+                columns: 3
+                rows: 4
+                Repeater {
+                    model: pickProp
+                    delegate: CheckBox {
+                        text: name
+                    }
+                }
             }
 
-            CheckBox {
-                id: isOffhandGeneralCheck
-                checked: isOffhand
-                text: "Off hand"
-                tristate: false
-                onCheckStateChanged: isOffhand = checkState;
-
+            Grid {
+                columns: 3
+                rows: 4
+                Repeater {
+                    model: cutProp
+                    delegate: CheckBox {
+                        text: name
+                    }
+                }
             }
-
-            CheckBox {
-                id: isIsoGeneralCheck
-                checked: isIso
-                text: "Isolation"
-                tristate: false
-                onCheckStateChanged: isIso = checkState;
-
-            }
-
-
-            CheckBox {
-                id: isDunkGeneralCheck
-                checked: isDunk
-                text: "Dunk"
-                tristate: false
-                onCheckStateChanged: isDunk = checkState;
-
-            }
-
-            CheckBox {
-                id: isMismatchGeneralCheck
-                checked: isMismatch
-                text: "Missmatch"
-                tristate: false
-                onCheckStateChanged: isMismatch = checkState;
-
-            }
-
-            CheckBox {
-                id: isSecondChanceGeneralCheck
-                checked: isSecondChance
-                text: "Second chance"
-                tristate: false
-                onCheckStateChanged: isSecondChance = checkState;
-            }
-
-            CheckBox {
-                id: isFaulGeneralCheck
-                checked: isFaul
-                text: "Faul"
-                tristate: false
-                onCheckStateChanged: isFaul = checkState;
-            }
-            CheckBox {
-                id: isTransitionGeneralCheck
-                checked: isTransition
-                text: "Transition"
-                tristate: false
-                onCheckStateChanged: isTransition = checkState;
-            }
-
-            CheckBox {
-                id: isOffTurnoverGeneralCheck
-                checked: isOffTurnover
-                text: "Off Turnover"
-                tristate: false
-                onCheckStateChanged: isOffTurnover = checkState;
-            }
-        }
-
-        Grid {
-            // shot
-            columns: 3
-            CheckBox {
-                id: isThreeShotCheck
-                checked: isThree
-                text: "For three"
-                tristate: false
-                onCheckStateChanged: isThree = checkState;
-
-            }
-
-            CheckBox {
-                id: isOffTheDribbleShotCheck
-                checked: isOffTheDribble
-                text: "Off the dribble"
-                tristate: false
-                onCheckStateChanged: isOffTheDribble = checkState;
-
-            }
-
-            CheckBox {
-                id: isCatchAndShootShotCheck
-                checked: isCatchAndShoot
-                text: "Catch and Shoot"
-                tristate: false
-                onCheckStateChanged: isCatchAndShoot = checkState;
-
-            }
-
-        }
-
-
-        Grid {
-            // drive
-            columns: 3
-            CheckBox {
-                id: isOffTheDribbleDriveCheck
-                checked: isOffTheDribble
-                text: "Off the dribble"
-                tristate: false
-                onCheckStateChanged: isOffTheDribble = checkState;
-            }
-
-        }
-
-
-        Grid {
-            // cut
-            columns: 3
-            CheckBox {
-                id: isLayupCutCheck
-                checked: isLayup
-                text: "Layup"
-                tristate: false
-                onCheckStateChanged: isLayup = checkState;
-
-            }
-            CheckBox {
-                id: isFloaterCutCheck
-                checked: isFloater
-                text: "Floater"
-                tristate: false
-                onCheckStateChanged: isFloater = checkState;
-
-            }
-            CheckBox {
-                id: isEurostepCutCheck
-                checked: isEurostep
-                text: "Eurostep"
-                tristate: false
-                onCheckStateChanged: isEurostep = checkState;
-            }
-
-        }
-
-
-        Grid {
-            // pick
-            columns: 3
-            CheckBox {
-                id: isPickAndRollPickCheck
-                checked: isPickAndRoll
-                text: "Pick and Roll"
-                tristate: false
-                onCheckStateChanged: isPickAndRoll = checkState;
-
-            }
-            CheckBox {
-                id: isPickAndPopPickCheck
-                checked: isPickAndPop
-                text: "Pick and Pop"
-                tristate: false
-                onCheckStateChanged: isPickAndPop = checkState;
-
-            }
-
-
-        }
-
-
-        Grid {
-            // post
-            columns: 3
-
         }
     }
 
-    header: TabBar {
-        id: tabBar
-        currentIndex: dialogSwipeView.currentIndex
-        TabButton {
-            text: qsTr("General")
-        }
-        TabButton {
-            text: qsTr("Shot")
-        }
-        TabButton {
-            text: qsTr("Drive")
-        }
-        TabButton{
-            text: qsTr("Cut")
-        }
-        TabButton{
-            text: qsTr("Pick")
-        }
-        TabButton{
-            text: qsTr("Post")
-        }
-
+    ListModel{
+        id: propModel
+        ListElement { name: "Miss"; value:"isMiss"; type: "general"  }
+        ListElement { name: "Contested"; value:"isContested"; type: "general"  }
+        ListElement { name: "Offhand"; value:"isOffhand"; type: "general" }
+        ListElement { name: "Post"; value:"isPost"; type: "general" }
+        ListElement { name: "Mismatch"; value:"isMismatch"; type: "general" }
+        ListElement { name: "Iso"; value:"isIso"; type: "general"}
+        ListElement { name: "Faul"; value:"isFaul"; type:"general" }
+        ListElement { name: "Transition"; value:"isTransition"; type:"general" }
+        ListElement { name: "Dunk"; value:"isDunk"; type:"general" }
+        ListElement { name: "Putback"; value:"isPutback"; type: "general" }
+        ListElement { name: "SecondChance"; value:"isSecondChance"; type: "general" }
+        ListElement { name: "OffTurnover"; value:"isOffTurnover"; type: "general" }
+    }
+    ListModel{
+        id: shotProp
+        ListElement { name: "Three Points"; value:"isThreePoints"; type: "shot" }
+        ListElement { name: "OffTheDribble"; value:"isOffTheDribble"; type: "shot" }
+        ListElement { name: "CatchAndShoot"; value:"isCatchAndShoot"; type: "shot" }
     }
 
-
+    ListModel{
+        id: pickProp
+        ListElement { name: "PickAndRoll"; value:"isPickAndRoll"; type: "pick" }
+        ListElement { name: "PickAndPop"; value:"isPickAndPop"; type: "pick" }
+    }
+    ListModel{
+        id: cutProp
+        ListElement { name: "Layup"; value:"isLayup"; type: "cut" }
+        ListElement { name: "Floater"; value:"isFloater"; type: "cut" }
+        ListElement { name: "Eurostep"; value:"isEurostep"; type: "cut" }
+    }
 }
 

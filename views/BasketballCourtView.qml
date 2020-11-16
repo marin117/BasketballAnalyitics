@@ -111,9 +111,9 @@ Item {
                     shotDlgLoader.active = true;
 
                     if (canvasMouseArea.pressedButtons & Qt.RightButton) {
-                        shotDlgLoader.item.isMiss = true;
+//                        shotDlgLoader.item.isMiss = true;
                     } else if (canvasMouseArea.pressedButtons & Qt.LeftButton) {
-                        shotDlgLoader.item.isMiss = false;
+//                        shotDlgLoader.item.isMiss = false;
                     }
                     if(canvasMouseArea.pressedButtons & Qt.MiddleButton){
                         shotDlgLoader.item.isThree = true;
@@ -164,27 +164,27 @@ Item {
     }
 
     function shotProperties() {
-        newShot.isMiss = shotDlgLoader.item.isMiss;
-        newShot.isThreePoints = shotDlgLoader.item.isThree;
-        newShot.isContested = shotDlgLoader.item.isContested;
-        newShot.isOffhand = shotDlgLoader.item.isOffhand;
-        newShot.isOffTheDribble = shotDlgLoader.item.isOffTheDribble;
-        newShot.isCatchAndShoot = shotDlgLoader.item.isCatchAndShoot;
-        newShot.isPickAndRoll = shotDlgLoader.item.isPickAndRoll;
-        newShot.isPickAndPop = shotDlgLoader.item.isPickAndPop;
-        newShot.isPost = shotDlgLoader.item.isPost;
-        newShot.isMismatch = shotDlgLoader.item.isMismatch;
-        newShot.isIso = shotDlgLoader.item.isIso;
-        newShot.isLayup = shotDlgLoader.item.isLayup;
-        newShot.isFaul = shotDlgLoader.item.isFaul;
-        newShot.isTransition = shotDlgLoader.item.isTransition;
-        newShot.isClutch = isClutchSelected;
-        newShot.isDunk = shotDlgLoader.item.isDunk;
-        newShot.isFloater = shotDlgLoader.item.isFloater;
-        newShot.isEurostep = shotDlgLoader.item.isEurostep;
-        newShot.isPutback = shotDlgLoader.item.isPutback;
-        newShot.isSecondChance = shotDlgLoader.item.isSecondChance;
-        newShot.isOffTurnover = shotDlgLoader.item.isOffTurnover;
+//        newShot.isMiss = shotDlgLoader.item.isMiss;
+//        newShot.isThreePoints = shotDlgLoader.item.isThree;
+//        newShot.isContested = shotDlgLoader.item.isContested;
+//        newShot.isOffhand = shotDlgLoader.item.isOffhand;
+//        newShot.isOffTheDribble = shotDlgLoader.item.isOffTheDribble;
+//        newShot.isCatchAndShoot = shotDlgLoader.item.isCatchAndShoot;
+//        newShot.isPickAndRoll = shotDlgLoader.item.isPickAndRoll;
+//        newShot.isPickAndPop = shotDlgLoader.item.isPickAndPop;
+//        newShot.isPost = shotDlgLoader.item.isPost;
+//        newShot.isMismatch = shotDlgLoader.item.isMismatch;
+//        newShot.isIso = shotDlgLoader.item.isIso;
+//        newShot.isLayup = shotDlgLoader.item.isLayup;
+//        newShot.isFaul = shotDlgLoader.item.isFaul;
+//        newShot.isTransition = shotDlgLoader.item.isTransition;
+//        newShot.isClutch = isClutchSelected;
+//        newShot.isDunk = shotDlgLoader.item.isDunk;
+//        newShot.isFloater = shotDlgLoader.item.isFloater;
+//        newShot.isEurostep = shotDlgLoader.item.isEurostep;
+//        newShot.isPutback = shotDlgLoader.item.isPutback;
+//        newShot.isSecondChance = shotDlgLoader.item.isSecondChance;
+//        newShot.isOffTurnover = shotDlgLoader.item.isOffTurnover;
     }
     onFiltersChanged: {
         console.log(filters);
