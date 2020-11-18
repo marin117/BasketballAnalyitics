@@ -109,6 +109,7 @@ void MainModel::copyShot(Shot *newShot, Shot *shot){
     newShot->isScreenAssisted = shot->isScreenAssisted;
     newShot->isAssisted = shot->isAssisted;
     newShot->isBlocked = shot->isBlocked;
+    newShot->isShot = shot->isShot;
 }
 
 QString MainModel::getNotes() const

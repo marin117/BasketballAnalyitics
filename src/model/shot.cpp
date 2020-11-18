@@ -127,6 +127,9 @@ void Shot::readFromJson(const QJsonObject &json)
     if(json.contains("isBlocked") && json["isBlocked"].isBool()){
         isBlocked = json["isBlocked"].toBool();
     }
+    if(json.contains("isShot") && json["isShot"].isBool()){
+        isShot = json["isShot"].toBool();
+    }
 }
 
 void Shot::writeToJson(QJsonObject &json)
@@ -168,4 +171,5 @@ void Shot::writeToJson(QJsonObject &json)
     json["isScreenAssisted"] = isScreenAssisted;
     json["isAssisted"] = isAssisted;
     json["isBlocked"] = isBlocked;
-}
+    json["isShot"] = isShot;
+ }
