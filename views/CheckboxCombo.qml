@@ -15,10 +15,15 @@ Item{
         delegate:
             CheckBox{
             text: model.name
+            checked: model.on
             onCheckedChanged: {
-                if(checked)
-                    selected.push(model.value);
+                if(checked){
+                    model.on = true;
+                    if(!selected.includes(value))
+                        selected.push(model.value);
+                }
                 else{
+                    model.on = false;
                     var pos = selected.indexOf(value);
                     selected.splice(pos, 1);
                 }
@@ -33,27 +38,34 @@ Item{
 
     ListModel{
         id: propertyModel
-        ListElement { name: "Two Points"; value:"!isThreePoints" }
-        ListElement { name: "Three Points"; value:"isThreePoints" }
-        ListElement { name: "Contested"; value:"isContested" }
-        ListElement { name: "Uncontested"; value:"!isContested" }
-        ListElement { name: "Offhand"; value:"isOffhand" }
-        ListElement { name: "OffTheDribble"; value:"isOffTheDribble" }
-        ListElement { name: "CatchAndShoot"; value:"isCatchAndShoot" }
-        ListElement { name: "PickAndRoll"; value:"isPickAndRoll" }
-        ListElement { name: "PickAndPop"; value:"isPickAndPop" }
-        ListElement { name: "Post"; value:"isPost" }
-        ListElement { name: "Mismatch"; value:"isMismatch" }
-        ListElement { name: "Iso"; value:"isIso" }
-        ListElement { name: "Layup"; value:"isLayup" }
-        ListElement { name: "Faul"; value:"isFaul" }
-        ListElement { name: "Transition"; value:"isTransition" }
-        ListElement { name: "Clutch"; value:"isClutch" }
-        ListElement { name: "Dunk"; value:"isDunk" }
-        ListElement { name: "Floater"; value:"isFloater" }
-        ListElement { name: "Eurostep"; value:"isEurostep" }
-        ListElement { name: "Putback"; value:"isPutback" }
-        ListElement { name: "SecondChance"; value:"isSecondChance" }
-        ListElement { name: "OffTurnover"; value:"isOffTurnover" }
+        ListElement { name: "Two Points"; value:"!isThreePoints"; type: "shot"; on: false }
+        ListElement { name: "Three Points"; value:"isThreePoints"; type: "shot"; on: false }
+        ListElement { name: "Contested"; value:"isContested"; type: "general"; on: false }
+        ListElement { name: "Uncontested"; value:"!isContested"; type: "general"; on: false }
+        ListElement { name: "Offhand"; value:"isOffhand"; type: "general"; on: false }
+        ListElement { name: "Post"; value:"isPost"; type: "general"; on: false }
+        ListElement { name: "Mismatch"; value:"isMismatch"; type: "general"; on: false }
+        ListElement { name: "Iso"; value:"isIso"; type: "general; on: fals"}
+        ListElement { name: "Faul"; value:"isFaul"; type:"general"; on: false }
+        ListElement { name: "Transition"; value:"isTransition"; type:"general"; on: false }
+        ListElement { name: "Dunk"; value:"isDunk"; type:"general"; on: false }
+        ListElement { name: "Putback"; value:"isPutback"; type: "general"; on: false }
+        ListElement { name: "SecondChance"; value:"isSecondChance"; type: "general"; on: false }
+        ListElement { name: "OffTurnover"; value:"isOffTurnover"; type: "general"; on: false }
+        ListElement { name: "Drive"; value: "isDrive"; type: "general"; on: false }
+        ListElement { name: "OffTheDribble"; value:"isOffTheDribble"; type: "shot"; on: false }
+        ListElement { name: "CatchAndShoot"; value:"isCatchAndShoot"; type: "shot"; on: false }
+        ListElement { name: "Fadeaway"; value:"isFadeaway"; type: "shot"; on: false }
+        ListElement { name: "Stepback"; value:"isStepback"; type: "shot"; on: false }
+        ListElement { name: "PickAndRoll"; value:"isPickAndRoll"; type: "pick"; on: false }
+        ListElement { name: "PickAndPop"; value:"isPickAndPop"; type: "pick"; on: false }
+        ListElement { name: "Layup"; value:"isLayup"; type: "cut"; on: false }
+        ListElement { name: "Floater"; value:"isFloater"; type: "cut"; on: false }
+        ListElement { name: "Eurostep"; value:"isEurostep"; type: "cut"; on: false }
+        ListElement { name: "Reverse"; value: "isReverse"; type: "cut"; on: false }
+        ListElement{ name: "Roll"; value: "isRoll"; type: "post"; on: false }
+        ListElement{ name: "UpAndUnder"; value: "isUpAndUnder"; type: "post"; on: false }
+        ListElement{ name: "Hookshot"; value: "isHookshot"; type: "post"; on: false }
+        ListElement{ name: "Turnaround"; value: "isTurnaround"; type: "post"; on: false }
     }
 }
