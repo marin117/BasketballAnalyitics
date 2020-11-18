@@ -145,6 +145,8 @@ Item {
         shot = shotDlgLoader.item.shot;
         shot.x = x;
         shot.y = y;
+        console.log(isClutchSelected);
+        shot.isClutch = isClutchSelected;
     }
     onFiltersChanged: {
         console.log(filters);
