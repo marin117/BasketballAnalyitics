@@ -28,6 +28,19 @@ class Shot : public BaseModel
     Q_PROPERTY(bool isPutback MEMBER isPutback NOTIFY isPutbackChanged )
     Q_PROPERTY(bool isSecondChance MEMBER isSecondChance NOTIFY isSecondChanceChanged )
     Q_PROPERTY(bool isOffTurnover MEMBER isOffTurnover NOTIFY isOffTurnoverChanged )
+    Q_PROPERTY(bool isFadeaway MEMBER isFadeaway NOTIFY isFadeawayChanged)
+    Q_PROPERTY(bool isStepback MEMBER isStepback NOTIFY isStepbackChanged)
+    Q_PROPERTY(bool isDrive MEMBER isDrive NOTIFY isDriveChanged )
+    Q_PROPERTY(bool isReverse MEMBER isReverse NOTIFY isReverseChanged )
+    Q_PROPERTY(bool isRoll MEMBER isRoll NOTIFY isRollChanged )
+    Q_PROPERTY(bool isUpAndUnder MEMBER isUpAndUnder NOTIFY isUpAndUnderChanged )
+    Q_PROPERTY(bool isHookshot MEMBER isHookshot NOTIFY isHookshotChanged )
+    Q_PROPERTY(bool isTurnaround MEMBER isTurnaround NOTIFY isTurnaroundChanged )
+    Q_PROPERTY(bool isCut MEMBER isCut NOTIFY isCutChanged )
+    Q_PROPERTY(bool isScreenAssisted MEMBER isScreenAssisted NOTIFY isScreenAssistedChanged )
+    Q_PROPERTY(bool isAssisted MEMBER isAssisted NOTIFY isAssistedChanged )
+    Q_PROPERTY(bool isBlocked MEMBER isBlocked NOTIFY isBlockedChanged )
+
 
     Q_PROPERTY(int x MEMBER x)
     Q_PROPERTY(int y MEMBER y)
@@ -55,6 +68,18 @@ public:
     bool isPutback = false;
     bool isSecondChance = false;
     bool isOffTurnover = false;
+    bool isFadeaway = false;
+    bool isStepback = false;
+    bool isDrive = false;
+    bool isReverse = false;
+    bool isRoll = false;
+    bool isUpAndUnder = false;
+    bool isHookshot = false;
+    bool isTurnaround = false;
+    bool isCut = false;
+    bool isScreenAssisted = false;
+    bool isAssisted = false;
+    bool isBlocked = false;
 
     int x;
     int y;
@@ -83,6 +108,19 @@ signals:
     void isPutbackChanged();
     void isSecondChanceChanged();
     void isOffTurnoverChanged();
+    void isFadeawayChanged();
+    void isStepbackChanged();
+    void isDriveChanged();
+    void isReverseChanged();
+    void isRollChanged();
+    void isUpAndUnderChanged();
+    void isHookshotChanged();
+    void isTurnaroundChanged();
+    void isCutChanged();
+    void isScreenAssistedChanged();
+    void isAssistedChanged();
+    void isBlockedChanged();
+
 
 public:
     void readFromJson(const QJsonObject &) override;

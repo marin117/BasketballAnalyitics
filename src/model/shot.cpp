@@ -5,6 +5,7 @@ Shot::Shot(QObject *parent) : BaseModel(parent)
 
 }
 
+
 void Shot::readFromJson(const QJsonObject &json)
 {
     if (json.contains("x") && json["x"].isDouble()){
@@ -86,6 +87,46 @@ void Shot::readFromJson(const QJsonObject &json)
     if(json.contains("isOffTurnover") && json["isOffTurnover"].isBool()){
         isOffTurnover = json["isOffTurnover"].toBool();
     }
+
+    if(json.contains("isFadeaway") && json["isFadeaway"].isBool()){
+        isFadeaway = json["isFadeaway"].toBool();
+    }
+
+    if(json.contains("isStepback") && json["isStepback"].isBool()){
+        isStepback = json["isStepback"].toBool();
+    }
+
+    if(json.contains("isDrive") && json["isDrive"].isBool()){
+        isDrive = json["isDrive"].toBool();
+    }
+    if(json.contains("isReverse") && json["isReverse"].isBool()){
+        isReverse = json["isReverse"].toBool();
+    }
+    if(json.contains("isRoll") && json["isRoll"].isBool()){
+        isRoll = json["isRoll"].toBool();
+    }
+    if(json.contains("isUpAndUnder") && json["isUpAndUnder"].isBool()){
+        isUpAndUnder = json["isUpAndUnder"].toBool();
+    }
+    if(json.contains("isHookshot") && json["isHookshot"].isBool()){
+        isHookshot = json["isHookshot"].toBool();
+    }
+    if(json.contains("isTurnaround") && json["isTurnaround"].isBool()){
+        isTurnaround = json["isTurnaround"].toBool();
+    }
+    if(json.contains("isCut") && json["isCut"].isBool()){
+        isCut = json["isCut"].toBool();
+    }
+
+    if(json.contains("isScreenAssisted") && json["isScreenAssisted"].isBool()){
+        isScreenAssisted = json["isScreenAssisted"].toBool();
+    }
+    if(json.contains("isAssisted") && json["isAssisted"].isBool()){
+        isAssisted = json["isAssisted"].toBool();
+    }
+    if(json.contains("isBlocked") && json["isBlocked"].isBool()){
+        isBlocked = json["isBlocked"].toBool();
+    }
 }
 
 void Shot::writeToJson(QJsonObject &json)
@@ -115,4 +156,16 @@ void Shot::writeToJson(QJsonObject &json)
     json["isPutback"] = isPutback;
     json["isSecondChance"] = isSecondChance;
     json["isOffTurnover"] = isOffTurnover;
+    json["isFadeaway"] = isFadeaway;
+    json["isStepback"] = isStepback;
+    json["isDrive"] = isDrive;
+    json["isReverse"] = isReverse;
+    json["isRoll"] = isRoll;
+    json["isUpAndUnder"] = isUpAndUnder;
+    json["isHookshot"] = isHookshot;
+    json["isTurnaround"] = isTurnaround;
+    json["isCut"] = isCut;
+    json["isScreenAssisted"] = isScreenAssisted;
+    json["isAssisted"] = isAssisted;
+    json["isBlocked"] = isBlocked;
 }

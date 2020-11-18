@@ -53,6 +53,10 @@ Item{
         ListElement { name: "SecondChance"; value:"isSecondChance"; type: "general"; on: false }
         ListElement { name: "OffTurnover"; value:"isOffTurnover"; type: "general"; on: false }
         ListElement { name: "Drive"; value: "isDrive"; type: "general"; on: false }
+        ListElement { name: "Cut"; value: "isCut"; type: "general" }
+        ListElement { name: "ScreenAssited"; value: "isScreenAssisted"; type: "pick" }
+        ListElement { name: "Assisted"; value: "isAssisted"; type: "general" }
+        ListElement { name: "Blocked"; value: "isBlocked"; type: "general" }
         ListElement { name: "OffTheDribble"; value:"isOffTheDribble"; type: "shot"; on: false }
         ListElement { name: "CatchAndShoot"; value:"isCatchAndShoot"; type: "shot"; on: false }
         ListElement { name: "Fadeaway"; value:"isFadeaway"; type: "shot"; on: false }
@@ -63,9 +67,9 @@ Item{
         ListElement { name: "Floater"; value:"isFloater"; type: "cut"; on: false }
         ListElement { name: "Eurostep"; value:"isEurostep"; type: "cut"; on: false }
         ListElement { name: "Reverse"; value: "isReverse"; type: "cut"; on: false }
-        ListElement{ name: "Roll"; value: "isRoll"; type: "post"; on: false }
-        ListElement{ name: "UpAndUnder"; value: "isUpAndUnder"; type: "post"; on: false }
-        ListElement{ name: "Hookshot"; value: "isHookshot"; type: "post"; on: false }
-        ListElement{ name: "Turnaround"; value: "isTurnaround"; type: "post"; on: false }
+        ListElement { name: "Roll"; value: "isRoll"; type: "post"; on: false }
+        ListElement { name: "UpAndUnder"; value: "isUpAndUnder"; type: "post"; on: false }
+        ListElement { name: "Hookshot"; value: "isHookshot"; type: "post"; on: false }
+        ListElement { name: "Turnaround"; value: "isTurnaround"; type: "post"; on: false }
     }
 }

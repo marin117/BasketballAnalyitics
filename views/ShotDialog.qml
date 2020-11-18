@@ -48,7 +48,7 @@ Dialog {
         anchors.fill: parent
         Column{
             id: grids
-            width: shotDialog.width * 0.9
+            width: shotDialog.width * 0.92
             height: shotDialog.height
             Grid{
                 columns: 3
@@ -155,6 +155,9 @@ Dialog {
         ListElement { name: "SecondChance"; value:"isSecondChance"; type: "general" }
         ListElement { name: "OffTurnover"; value:"isOffTurnover"; type: "general" }
         ListElement { name: "Drive"; value: "isDrive"; type: "general" }
+        ListElement { name: "Cut"; value: "isCut"; type: "general" }
+        ListElement{ name: "Assisted"; value: "isAssisted"; type: "general" }
+        ListElement{ name: "Blocked"; value: "isBlocked"; type: "general" }
     }
     ListModel{
         id: shotProp
@@ -169,6 +172,7 @@ Dialog {
         id: pickProp
         ListElement { name: "PickAndRoll"; value:"isPickAndRoll"; type: "pick" }
         ListElement { name: "PickAndPop"; value:"isPickAndPop"; type: "pick" }
+        ListElement{ name: "ScreenAssited"; value: "isScreenAssisted"; type: "pick" }
     }
     ListModel{
         id: cutProp

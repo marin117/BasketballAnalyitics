@@ -97,6 +97,18 @@ void MainModel::copyShot(Shot *newShot, Shot *shot){
     newShot->isPutback = shot->isPutback;
     newShot->isSecondChance = shot->isSecondChance;
     newShot->isOffTurnover = shot->isOffTurnover;
+    newShot->isFadeaway = shot->isFadeaway;
+    newShot->isStepback = shot->isStepback;
+    newShot->isDrive = shot->isDrive;
+    newShot->isReverse = shot->isReverse;
+    newShot->isRoll = shot->isRoll;
+    newShot->isUpAndUnder = shot->isUpAndUnder;
+    newShot->isHookshot = shot->isHookshot;
+    newShot->isTurnaround = shot->isTurnaround;
+    newShot->isCut = shot->isCut;
+    newShot->isScreenAssisted = shot->isScreenAssisted;
+    newShot->isAssisted = shot->isAssisted;
+    newShot->isBlocked = shot->isBlocked;
 }
 
 QString MainModel::getNotes() const
