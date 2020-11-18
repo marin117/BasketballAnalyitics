@@ -57,6 +57,7 @@ Item{
         ListElement { name: "ScreenAssited"; value: "isScreenAssisted"; type: "pick" }
         ListElement { name: "Assisted"; value: "isAssisted"; type: "general" }
         ListElement { name: "Blocked"; value: "isBlocked"; type: "general" }
+        ListElement { name: "Shot"; value:"isShot"; type: "general"; on: false }
         ListElement { name: "OffTheDribble"; value:"isOffTheDribble"; type: "shot"; on: false }
         ListElement { name: "CatchAndShoot"; value:"isCatchAndShoot"; type: "shot"; on: false }
         ListElement { name: "Fadeaway"; value:"isFadeaway"; type: "shot"; on: false }

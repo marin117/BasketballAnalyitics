@@ -40,6 +40,7 @@ class Shot : public BaseModel
     Q_PROPERTY(bool isScreenAssisted MEMBER isScreenAssisted NOTIFY isScreenAssistedChanged )
     Q_PROPERTY(bool isAssisted MEMBER isAssisted NOTIFY isAssistedChanged )
     Q_PROPERTY(bool isBlocked MEMBER isBlocked NOTIFY isBlockedChanged )
+    Q_PROPERTY(bool isShot MEMBER isShot NOTIFY isShotChanged )
 
 
     Q_PROPERTY(int x MEMBER x)
@@ -80,6 +81,7 @@ public:
     bool isScreenAssisted = false;
     bool isAssisted = false;
     bool isBlocked = false;
+    bool isShot = false;
 
     int x;
     int y;
@@ -120,6 +122,7 @@ signals:
     void isScreenAssistedChanged();
     void isAssistedChanged();
     void isBlockedChanged();
+    void isShotChanged();
 
 
 public:

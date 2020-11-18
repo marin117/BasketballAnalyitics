@@ -10,29 +10,6 @@ Dialog {
     modal: true
     clip: true
 
-//    contentWidth: scroll.contentWidth
-//    contentHeight: scroll.contentHeight
-//    property bool isMiss : false
-//    property bool isContested: false
-//    property bool isThree: false
-//    property bool isOffhand : false
-//    property bool isOffTheDribble : false
-//    property bool isCatchAndShoot : false
-//    property bool isPickAndRoll : false
-//    property bool isPickAndPop : false
-//    property bool isPost : false
-//    property bool isMismatch : false
-//    property bool isIso : false
-//    property bool isLayup : false
-//    property bool isFaul : false
-//    property bool isTransition : false
-//    property bool isDunk: false
-//    property bool isFloater: false
-//    property bool isEurostep: false
-//    property bool isPutback: false
-//    property bool isSecondChance: false
-//    property bool isOffTurnover: false
-
     property var shot: paramShot
 
     Shot {
@@ -143,9 +120,12 @@ Dialog {
     ListModel{
         id: propModel
         ListElement { name: "Miss"; value:"isMiss"; type: "general"  }
+        ListElement { name: "Shot"; value: "isShot"; type: "general" }
+        ListElement { name: "Drive"; value: "isDrive"; type: "general" }
+        ListElement { name: "Post"; value:"isPost"; type: "general" }
+        ListElement { name: "Cut"; value: "isCut"; type: "general" }
         ListElement { name: "Contested"; value:"isContested"; type: "general"  }
         ListElement { name: "Offhand"; value:"isOffhand"; type: "general" }
-        ListElement { name: "Post"; value:"isPost"; type: "general" }
         ListElement { name: "Mismatch"; value:"isMismatch"; type: "general" }
         ListElement { name: "Iso"; value:"isIso"; type: "general"}
         ListElement { name: "Faul"; value:"isFaul"; type:"general" }
@@ -154,10 +134,8 @@ Dialog {
         ListElement { name: "Putback"; value:"isPutback"; type: "general" }
         ListElement { name: "SecondChance"; value:"isSecondChance"; type: "general" }
         ListElement { name: "OffTurnover"; value:"isOffTurnover"; type: "general" }
-        ListElement { name: "Drive"; value: "isDrive"; type: "general" }
-        ListElement { name: "Cut"; value: "isCut"; type: "general" }
-        ListElement{ name: "Assisted"; value: "isAssisted"; type: "general" }
-        ListElement{ name: "Blocked"; value: "isBlocked"; type: "general" }
+        ListElement { name: "Assisted"; value: "isAssisted"; type: "general" }
+        ListElement { name: "Blocked"; value: "isBlocked"; type: "general" }
     }
     ListModel{
         id: shotProp
