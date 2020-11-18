@@ -138,7 +138,6 @@ Item {
         active: true
 //        x: parent.width  / 2
         y: parent.height / 2
-
     }
 
     function shotProperties(x, y) {

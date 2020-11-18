@@ -10,6 +10,8 @@ Dialog {
     modal: true
     clip: true
 
+//    contentWidth: scroll.contentWidth
+//    contentHeight: scroll.contentHeight
 //    property bool isMiss : false
 //    property bool isContested: false
 //    property bool isThree: false
@@ -39,12 +41,15 @@ Dialog {
 
     anchors.centerIn: parent
 
-    contentItem: Item {
+
+   ScrollView {
+        id: scroll
+        clip : true
         anchors.fill: parent
         Column{
-            width: parent.width * 0.9
-            height: parent.height * 0.8
-            anchors.centerIn: parent
+            id: grids
+            width: shotDialog.width * 0.9
+            height: shotDialog.height
             Grid{
                 columns: 3
                 width: parent.width
@@ -75,6 +80,7 @@ Dialog {
                         onCheckedChanged: paramShot[value] = checked;
                     }
                 }
+
 
             }
             Rectangle {
@@ -113,6 +119,24 @@ Dialog {
                     }
                 }
             }
+            Rectangle {
+                implicitWidth: parent.width
+                implicitHeight: 1
+                color: "grey"
+            }
+            Grid{
+                columns: 3
+                width: parent.width
+                Repeater {
+                    model: postProp
+                    delegate: CheckBox {
+                        text: name
+                        width: parent.width / 3
+                        checked: paramShot[value]
+                        onCheckedChanged: paramShot[value] = checked;
+                    }
+                }
+            }
         }
     }
 
@@ -130,12 +154,15 @@ Dialog {
         ListElement { name: "Putback"; value:"isPutback"; type: "general" }
         ListElement { name: "SecondChance"; value:"isSecondChance"; type: "general" }
         ListElement { name: "OffTurnover"; value:"isOffTurnover"; type: "general" }
+        ListElement { name: "Drive"; value: "isDrive"; type: "general" }
     }
     ListModel{
         id: shotProp
         ListElement { name: "Three Points"; value:"isThreePoints"; type: "shot" }
         ListElement { name: "OffTheDribble"; value:"isOffTheDribble"; type: "shot" }
         ListElement { name: "CatchAndShoot"; value:"isCatchAndShoot"; type: "shot" }
+        ListElement { name: "Fadeaway"; value:"isFadeaway"; type: "shot" }
+        ListElement { name: "Stepback"; value:"isStepback"; type: "shot" }
     }
 
     ListModel{
@@ -148,7 +175,15 @@ Dialog {
         ListElement { name: "Layup"; value:"isLayup"; type: "cut" }
         ListElement { name: "Floater"; value:"isFloater"; type: "cut" }
         ListElement { name: "Eurostep"; value:"isEurostep"; type: "cut" }
+        ListElement { name: "Reverse"; value: "isReverse"; type: "cut" }
+    }
 
+    ListModel{
+        id: postProp
+        ListElement{ name: "Roll"; value: "isRoll"; type: "post" }
+        ListElement{ name: "UpAndUnder"; value: "isUpAndUnder"; type: "post" }
+        ListElement{ name: "Hookshot"; value: "isHookshot"; type: "post" }
+        ListElement{ name: "Turnaround"; value: "isTurnaround"; type: "post" }
     }
 
 }
