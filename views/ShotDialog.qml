@@ -42,49 +42,66 @@ Dialog {
     contentItem: Item {
         anchors.fill: parent
         Column{
-            width: parent.width
+            width: parent.width * 0.9
             height: parent.height * 0.8
             anchors.centerIn: parent
-            Grid {
+            Grid{
                 columns: 3
-                rows: 4
+                width: parent.width
                 Repeater {
                     model: propModel
                     delegate: CheckBox {
                         text: name
+                        width: parent.width / 3
                     }
                 }
             }
-
-            Grid {
+            Rectangle {
+                implicitWidth: parent.width
+                implicitHeight: 1
+                color: "grey"
+            }
+            Grid{
                 columns: 3
-                rows: 4
+                width: parent.width
                 Repeater {
                     model: shotProp
                     delegate: CheckBox {
                         text: name
+                        width: parent.width / 3
                     }
                 }
-            }
 
-            Grid {
+            }
+            Rectangle {
+                implicitWidth: parent.width
+                implicitHeight: 1
+                color: "grey"
+            }
+            Grid{
                 columns: 3
-                rows: 4
+                width: parent.width
                 Repeater {
                     model: pickProp
                     delegate: CheckBox {
                         text: name
+                        width: parent.width / 3
                     }
                 }
             }
-
-            Grid {
+            Rectangle {
+                implicitWidth: parent.width
+                implicitHeight: 1
+                color: "grey"
+            }
+            Grid{
                 columns: 3
-                rows: 4
+                width: parent.width
                 Repeater {
                     model: cutProp
                     delegate: CheckBox {
                         text: name
+                        width: parent.width / 3
                     }
                 }
             }
@@ -123,6 +140,6 @@ Dialog {
         ListElement { name: "Layup"; value:"isLayup"; type: "cut" }
         ListElement { name: "Floater"; value:"isFloater"; type: "cut" }
         ListElement { name: "Eurostep"; value:"isEurostep"; type: "cut" }
+
     }
 }
-
