@@ -53,6 +53,8 @@ Dialog {
                     delegate: CheckBox {
                         text: name
                         width: parent.width / 3
+                        checked: paramShot[value]
+                        onCheckedChanged: paramShot[value] = checked;
                     }
                 }
             }
@@ -69,6 +71,8 @@ Dialog {
                     delegate: CheckBox {
                         text: name
                         width: parent.width / 3
+                        checked: paramShot[value]
+                        onCheckedChanged: paramShot[value] = checked;
                     }
                 }
 
@@ -86,6 +90,8 @@ Dialog {
                     delegate: CheckBox {
                         text: name
                         width: parent.width / 3
+                        checked: paramShot[value]
+                        onCheckedChanged: paramShot[value] = checked;
                     }
                 }
             }
@@ -102,6 +108,8 @@ Dialog {
                     delegate: CheckBox {
                         text: name
                         width: parent.width / 3
+                        checked: paramShot[value]
+                        onCheckedChanged: paramShot[value] = checked;
                     }
                 }
             }
@@ -142,4 +150,5 @@ Dialog {
         ListElement { name: "Eurostep"; value:"isEurostep"; type: "cut" }
 
     }
+
 }

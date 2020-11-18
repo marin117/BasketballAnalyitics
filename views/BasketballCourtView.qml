@@ -18,31 +18,7 @@ Item {
     property var filters : []
     property var shots: mainModel.selectedPlayer.shots
 
-    Shot {
-        id: newShot
-        x: 0
-        y: 0
-        isMiss: false
-        isOffhand : false
-        isOffTheDribble : false
-        isCatchAndShoot : false
-        isPickAndRoll : false
-        isPickAndPop : false
-        isPost : false
-        isMismatch : false
-        isIso : false
-        isLayup : false
-        isFaul : false
-        isTransition : false
-        isThreePoints: false
-        isClutch: isClutchSelected
-        isDunk: false
-        isFloater: false
-        isEurostep: false
-        isPutback: false
-        isSecondChance: false
-        isOffTurnover: false
-    }
+    property var shot: Shot {}
 
     Component {
         id: shotDialogComp
@@ -106,25 +82,27 @@ Item {
             acceptedButtons: Qt.LeftButton | Qt.RightButton | Qt.MiddleButton
             enabled: courtRoot.enabled
             onPressed:  {
+                var x;
+                var y;
                 if(mainModel.selectedPlayer !== null){
                     shotDlgLoader.active = false;
                     shotDlgLoader.active = true;
 
                     if (canvasMouseArea.pressedButtons & Qt.RightButton) {
-//                        shotDlgLoader.item.isMiss = true;
+                        shotDlgLoader.item.shot.isMiss = true;
                     } else if (canvasMouseArea.pressedButtons & Qt.LeftButton) {
-//                        shotDlgLoader.item.isMiss = false;
+                        shotDlgLoader.item.shot.isMiss = false;
                     }
                     if(canvasMouseArea.pressedButtons & Qt.MiddleButton){
-                        shotDlgLoader.item.isThree = true;
+                        shotDlgLoader.item.shot.isThreePoints = true;
                     }
                     shotDlgLoader.item.open();
 
                     shotDlgLoader.item.accepted.connect(function(){
-                        newShot.x = mouseX * imageScaleX / width;
-                        newShot.y = mouseY * imageScaleY /height;
-                        shotProperties();
-                        shotAdded(newShot);
+                        x = mouseX * imageScaleX / width;
+                        y = mouseY * imageScaleY /height;
+                        shotProperties(x, y);
+                        shotAdded(shot);
                         basketballCourtCanvas.requestPaint();
                     });
                 }
@@ -163,28 +141,11 @@ Item {
 
     }
 
-    function shotProperties() {
-//        newShot.isMiss = shotDlgLoader.item.isMiss;
-//        newShot.isThreePoints = shotDlgLoader.item.isThree;
-//        newShot.isContested = shotDlgLoader.item.isContested;
-//        newShot.isOffhand = shotDlgLoader.item.isOffhand;
-//        newShot.isOffTheDribble = shotDlgLoader.item.isOffTheDribble;
-//        newShot.isCatchAndShoot = shotDlgLoader.item.isCatchAndShoot;
-//        newShot.isPickAndRoll = shotDlgLoader.item.isPickAndRoll;
-//        newShot.isPickAndPop = shotDlgLoader.item.isPickAndPop;
-//        newShot.isPost = shotDlgLoader.item.isPost;
-//        newShot.isMismatch = shotDlgLoader.item.isMismatch;
-//        newShot.isIso = shotDlgLoader.item.isIso;
-//        newShot.isLayup = shotDlgLoader.item.isLayup;
-//        newShot.isFaul = shotDlgLoader.item.isFaul;
-//        newShot.isTransition = shotDlgLoader.item.isTransition;
-//        newShot.isClutch = isClutchSelected;
-//        newShot.isDunk = shotDlgLoader.item.isDunk;
-//        newShot.isFloater = shotDlgLoader.item.isFloater;
-//        newShot.isEurostep = shotDlgLoader.item.isEurostep;
-//        newShot.isPutback = shotDlgLoader.item.isPutback;
-//        newShot.isSecondChance = shotDlgLoader.item.isSecondChance;
-//        newShot.isOffTurnover = shotDlgLoader.item.isOffTurnover;
+    function shotProperties(x, y) {
+
+        shot = shotDlgLoader.item.shot;
+        shot.x = x;
+        shot.y = y;
     }
     onFiltersChanged: {
         console.log(filters);
