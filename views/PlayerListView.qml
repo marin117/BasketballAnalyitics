@@ -36,6 +36,7 @@ ListView {
                 onClicked: {
                     playerList.currentIndex = index;
                     selectedPlayerChanged(index);
+                    mainModel.onSelectedPlayerChanged(index);
                 }
 
                 onDoubleClicked: {
@@ -49,6 +50,7 @@ ListView {
 
     function setToFirst(){
         selectedPlayerChanged(0);
+        mainModel.onSelectedPlayerChanged(index);
         playerList.currentIndex = 0;
     }
 

@@ -102,7 +102,8 @@ Item {
                         x = mouseX * imageScaleX / width;
                         y = mouseY * imageScaleY /height;
                         shotProperties(x, y);
-                        shotAdded(shot);
+                        //shotAdded(shot);
+                        mainModel.onShotAdded(shot);
                         basketballCourtCanvas.requestPaint();
                     });
                 }

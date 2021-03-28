@@ -227,7 +227,8 @@ ApplicationWindow {
                 fileDialog.close();
                 mainModel.importData(fileDialog.fileUrl);
                 playerListView.setToFirst();
-                selectedTeamChanged(0);
+                //selectedTeamChanged(0);
+                mainModel.onSelectedTeamChanged(0);
             }
         }
 
@@ -248,7 +249,8 @@ ApplicationWindow {
 
     function changeTeam(pos){
         headerTab.setCurrentIndex(pos);
-        selectedTeamChanged(pos);
+        //selectedTeamChanged(pos);
+        mainModel.onSelectedTeamChanged(pos);
         playerListView.setToFirst();
         basketballCourtView.repaintCanvas();
         reportTab.updateCourt();

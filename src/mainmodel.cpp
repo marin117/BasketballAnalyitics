@@ -10,7 +10,7 @@
 MainModel::MainModel(QObject *parent) : QObject(parent)
 {
     playerModel = new PlayerListModel(this);
-    connect(this, SIGNAL(refreshList()), playerModel, SLOT(onRefresh()));
+    connect(this, &MainModel::refreshList, playerModel, &PlayerListModel::onRefresh);
 
     teams[0] = new Team(this);
     teams[1] = new Team(this);
