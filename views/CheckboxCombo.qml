@@ -4,6 +4,7 @@ import QtQml.Models 2.15
 
 Item{
     property var selected: []
+    property var selectedNames: []
     property string textVal: ""
     signal selectionChanged
     ComboBox {
@@ -19,8 +20,10 @@ Item{
             onCheckedChanged: {
                 if(checked){
                     model.on = true;
-                    if(!selected.includes(value))
+                    if(!selected.includes(value)){
                         selected.push(model.value);
+                        selectedNames.push(model.name);
+                    }
                 }
                 else{
                     model.on = false;
@@ -28,7 +31,7 @@ Item{
                     selected.splice(pos, 1);
                 }
                 selectionChanged();
-                textVal = selected.toString();
+                textVal = selectedNames.toString();
             }
         }
         onCurrentIndexChanged: {
