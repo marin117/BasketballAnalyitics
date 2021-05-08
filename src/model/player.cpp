@@ -151,7 +151,7 @@ void Player::writeToJson(QJsonObject &json)
     json["statistics"] = statisticsJson;
 
     QJsonArray shotsArray;
-    for(auto shot : shots){
+    for(auto &shot : qAsConst(shots)){
         QJsonObject shotJson;
         shot->writeToJson(shotJson);
         shotsArray.append(shotJson);
@@ -159,7 +159,7 @@ void Player::writeToJson(QJsonObject &json)
     json["shots"] = shotsArray;
 
     QJsonArray quarterStatisticsArray;
-    for(auto s : quarterStatistics){
+    for(auto &s : qAsConst(quarterStatistics)){
         QJsonObject qStatisicsJson;
         s->writeToJson(qStatisicsJson);
         quarterStatisticsArray.append(qStatisicsJson);

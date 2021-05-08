@@ -146,7 +146,7 @@ void MainModel::setSelectedQuarter(int value)
 void MainModel::onWidthChanged(const int &width, const int &prevWidth)
 {
     for(auto team : teams){
-        for(auto player : team->getPlayerList()){
+        for(auto &player : team->getPlayerList()){
             for(int i = 0; i < player->getShots()->size(); i++){
                 int newX = player->getShots()->at(i)->x * width / prevWidth;
                 player->getShots()->at(i)->x = newX;
@@ -157,7 +157,7 @@ void MainModel::onWidthChanged(const int &width, const int &prevWidth)
 
 void MainModel::onHeightChanged(const int& height, const int& prevHeight){
     for(auto team : teams){
-        for(auto player : team->getPlayerList()){
+        for(auto &player : team->getPlayerList()){
             for(int i = 0; i < player->getShots()->size(); i++){
                 int newY = player->getShots()->at(i)->y * height / prevHeight;
                 player->getShots()->at(i)->y = newY;
@@ -205,7 +205,7 @@ Statistics *MainModel::selectedTeamStatistics()
 Statistics *MainModel::playerSelectedQuarterStatistics()
 {
     if(selectedPlayer && selectedQuarter < selectedPlayer->getQuarterStatistics().size())
-        return selectedPlayer->getQuarterStatistics()[selectedQuarter];
+        return selectedPlayer->getQuarterStatistics().at(selectedQuarter);
     return new Statistics(this);
 }
 
@@ -264,7 +264,7 @@ void MainModel::importData(const QUrl &url)
     }
     playerModel->setPlayerList(teams[0]->getPlayerList());
 
-    refreshList();
+    emit refreshList();
     if(playerModel->getPlayerList().size())
         setSelectedPlayer(playerModel->getPlayerAt(0));
 
@@ -273,8 +273,8 @@ void MainModel::importData(const QUrl &url)
         emit notesChanged();
     }
     onSelectedPlayerChanged(0);
-    team1Changed();
-    team2Changed();
+    emit team1Changed();
+    emit team2Changed();
 }
 
 

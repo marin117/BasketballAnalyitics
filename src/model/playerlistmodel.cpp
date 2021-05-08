@@ -40,7 +40,10 @@ QVariant PlayerListModel::data(const QModelIndex &index, int role) const
     case NumberRole:
         return player->getNumber();
     case TextRole:
-        return QString("%1 %2 %3").arg(player->getNumber()).arg(player->getName()).arg(player->getSurname());
+        return QString("%1 %2 %3").
+                arg(player->getNumber()).
+                arg(player->getName()).
+                arg(player->getSurname());
     default:
         break;
     }
@@ -67,7 +70,7 @@ bool PlayerListModel::setData(const QModelIndex &index, const QVariant &value, i
             break;
         }
         playerList.replace(row, player);
-        emit(dataChanged(index, index, {role, Qt::EditRole}));
+        emit dataChanged(index, index, {role, Qt::EditRole});
 
         return true;
     }
@@ -115,7 +118,7 @@ Player *PlayerListModel::getPlayerAt(const int &pos)
 void PlayerListModel::onRefresh()
 {
     beginResetModel();
-    dataChanged(createIndex(0,0), createIndex(rowCount()-1, 0));
+    emit dataChanged(createIndex(0,0), createIndex(rowCount()-1, 0));
     endResetModel();
 }
 

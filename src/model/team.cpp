@@ -77,7 +77,7 @@ void Team::writeToJson(QJsonObject &json)
     statistics->writeToJson(statisticsJson);
     json["statistics"] = statisticsJson;
 
-    for(auto player : playerList){
+    for(auto &player : playerList){
         QJsonObject playerJson;
         player->writeToJson(playerJson);
         playersArray.append(playerJson);
